@@ -341,7 +341,7 @@
                                     skill.description.toLowerCase().includes(searchTerm);
 
                 const matchesFilter = currentFilter === 'all' ||
-                                    skill.tags.some(tag => tag.toLowerCase().includes(currentFilter.toLowerCase()));
+                                    (skill.category && skill.category.toLowerCase().includes(currentFilter.toLowerCase()));
 
                 return matchesSearch && matchesFilter;
             });
@@ -360,7 +360,7 @@
                     <div class="skill-name">${skill.name}</div>
                     <div class="skill-description">${skill.description}</div>
                     <div class="skill-tags">
-                        ${skill.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${skill.category ? `<span class="tag">${skill.category}</span>` : ''}
                     </div>
                 </div>
             `).join('');
@@ -382,7 +382,7 @@
                 const matchesSearch = skill.name.toLowerCase().includes(searchTerm) ||
                                     skill.description.toLowerCase().includes(searchTerm);
                 const matchesFilter = currentFilter === 'all' ||
-                                    skill.tags.some(tag => tag.toLowerCase().includes(currentFilter.toLowerCase()));
+                                    (skill.category && skill.category.toLowerCase().includes(currentFilter.toLowerCase()));
 
                 if (matchesSearch && matchesFilter) {
                     selectedSkills.add(skill.name);
