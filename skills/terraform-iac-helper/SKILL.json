@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When working with Terraform:\n- main.tf: Primary resources\n- variables.tf: Input variables\n- outputs.tf: Output values\n- terraform.tfvars: Variable values\n- backend.tf: State backend config\n- Use remote state (S3, Terraform Cloud)\n- Implement state locking\n- Use modules for reusability\n- Tag all resources\n- Use workspaces for environments\n- terraform init: Initialize\n- terraform plan: Preview changes\n- terraform apply: Apply changes\n- terraform destroy: Destroy resources\n- terraform state: State management\n- Help with Proxmox provider setup\n- VM/container provisioning\n- Cloud-init configuration\n- Resource dependencies\n- State file issues\n- Provider authentication\n- Resource drift detection\n- Dependency cycles",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "terraform-iac-helper",
+  "name": "terraform-iac-helper",
+  "description": "Expert helper for Terraform and infrastructure-as-code best practices"
+}

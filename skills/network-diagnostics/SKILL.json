@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "For network troubleshooting:\n1. **MTU Issues** (common in WSL)\n   - Check current MTU: ip link show\n   - Test different MTU: sudo ip link set dev eth0 mtu 1350\n   - Common WSL MTU: 1300-1400\n2. **DNS Resolution**\n   - Check /etc/resolv.conf\n   - Test with: dig google.com, nslookup google.com\n   - Try different DNS: 8.8.8.8, 1.1.1.1\n3. **Connectivity Tests**\n   - Ping gateway: ip route | grep default\n   - Traceroute to destination\n   - Test ports: nc -zv host port, telnet host port\n4. **Firewall/Routing**\n   - Check iptables: sudo iptables -L\n   - Review routes: ip route show\n   - WSL: Check Windows Firewall\n5. **Service Status**\n   - Verify service is running\n   - Check listening ports: ss -tlnp, netstat -tlnp\n- Generate scripts to persist fixes\n- Include checks for WSL vs native Linux\n- Add rollback mechanisms",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "network-diagnostics",
+  "name": "network-diagnostics",
+  "description": "Automated network troubleshooting and diagnostics for WSL/Linux environments"
+}

@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When working with YAML files:\n1. Check syntax (indentation, colons, quotes)\n2. Validate against schemas when possible:\n   - Docker Compose\n   - Kubernetes\n   - GitHub Actions\n   - Ansible\n- Tabs instead of spaces (YAML requires spaces)\n- Incorrect indentation levels\n- Missing colons after keys\n- Unquoted strings with special characters\n- Inconsistent list formatting\n- Use 2-space indentation (standard)\n- Quote strings with special characters\n- Use explicit typing when needed (!!str, !!int)\n- Add comments for complex configurations\n- Use anchors and aliases for repeated content\n- Suggest yamllint for validation\n- Provide corrected versions\n- Explain validation errors",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "yaml-config-helper",
+  "name": "yaml-config-helper",
+  "description": "Validate, format, and troubleshoot YAML configuration files"
+}

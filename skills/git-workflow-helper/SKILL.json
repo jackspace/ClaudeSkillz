@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When working with Git:\n- Commit early and often\n- Write clear commit messages (imperative mood)\n- Use branches for features/fixes\n- Rebase before merge for clean history\n- main/master: Production-ready\n- develop: Integration branch\n- feature/*: New features\n- fix/*: Bug fixes\n- hotfix/*: Emergency fixes\n- Undo changes: git reset, git revert, git restore\n- Stash work: git stash save/pop/apply\n- Interactive rebase: git rebase -i\n- Cherry-pick commits: git cherry-pick\n- Resolve merge conflicts\n- Recover lost commits (git reflog)\n- Fix detached HEAD\n- Clean up branches\n- Never force push to shared branches\n- Use .gitignore properly\n- Sign commits (GPG)\n- Regular garbage collection",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "git-workflow-helper",
+  "name": "git-workflow-helper",
+  "description": "Expert guidance for Git workflows, troubleshooting, and best practices"
+}

@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When helping with Windows-related tasks:\n- Use /mnt/c/ paths for Windows drives in WSL\n- Use wslpath for path conversion: wslpath -w (Linux to Windows), wslpath -u (Windows to Linux)\n- Windows executables can be called from WSL: cmd.exe, powershell.exe, *.exe\n- Be aware of file permissions and line ending differences (CRLF vs LF)\n- Provide PowerShell examples alongside bash when relevant\n- Use modern PowerShell conventions (cmdlets, pipelines)\n- Suggest PowerShell Core (pwsh) for cross-platform scripts\n- Help with Registry operations (Get-ItemProperty, Set-ItemProperty)\n- Windows Services management\n- Task Scheduler for automation\n- Windows networking (netsh, Get-NetAdapter)\n- NTFS permissions and ACLs\n- Path length limitations (260 char limit)\n- Case sensitivity differences\n- Drive letter handling\n- Windows Defender/Firewall interactions\n- WSL2 networking quirks (bridge mode, port forwarding)",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "windows-expert",
+  "name": "windows-expert",
+  "description": "Expert guidance for Windows, PowerShell, WSL interop, and cross-platform development"
+}

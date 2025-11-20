@@ -1,0 +1,19 @@
+{
+  "cookies": {
+    "SESSDATA": "请在这里填入你的SESSDATA",
+    "bili_jct": "请在这里填入你的bili_jct",
+    "DedeUserID": "请在这里填入你的DedeUserID"
+  },
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Referer": "https://www.bilibili.com",
+    "Accept": "application/json, text/plain, */*"
+  },
+  "settings": {
+    "max_workers": 3,
+    "request_delay_min": 1,
+    "request_delay_max": 3,
+    "min_play_count": 50000,
+    "output_dir": "subtitles"
+  }
+}

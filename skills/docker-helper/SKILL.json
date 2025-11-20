@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When helping with Docker tasks:\n1. Check running containers: docker ps -a\n2. View logs: docker logs -f <container>\n3. Inspect container: docker inspect <container>\n4. Execute commands: docker exec -it <container> /bin/bash\n- Use multi-stage builds to reduce image size\n- Order Dockerfile commands by frequency of change\n- Use .dockerignore to exclude unnecessary files\n- Avoid running as root; create non-privileged users\n- Use health checks in docker-compose\n- Networking: Check bridge networks and port mappings\n- Volumes: Verify volume mounts and permissions\n- Build cache: Use --no-cache when needed\n- Resource limits: Set memory/CPU limits appropriately\n- Use version 3+ syntax\n- Leverage environment files (.env)\n- Use depends_on with health checks\n- Implement restart policies",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "docker-helper",
+  "name": "docker-helper",
+  "description": "Expert helper for Docker containers, Docker Compose, and container optimization"
+}

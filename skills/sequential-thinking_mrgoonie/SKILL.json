@@ -1,0 +1,24 @@
+{
+  "description": "Use when complex problems require systematic step-by-step reasoning with ability to revise thoughts, branch into alternative approaches, or dynamically adjust scope. Ideal for multi-stage analysis, design planning, problem decomposition, or tasks with initially unclear scope.",
+  "metadata": {
+    "license": "MIT"
+  },
+  "references": {
+    "files": [
+      "references/advanced.md",
+      "references/examples.md"
+    ]
+  },
+  "content": "Enables structured problem-solving through iterative reasoning with revision and branching capabilities.",
+  "name": "sequential-thinking",
+  "id": "sequential-thinking_mrgoonie",
+  "sections": {
+    "When to Use": "Use `mcp__reasoning__sequentialthinking` when:\r\n- Problem requires multiple interconnected reasoning steps\r\n- Initial scope or approach is uncertain\r\n- Need to filter through complexity to find core issues\r\n- May need to backtrack or revise earlier conclusions\r\n- Want to explore alternative solution paths\r\n\r\n**Don't use for**: Simple queries, direct facts, or single-step tasks.",
+    "Simple Example": "```typescript\r\n// First thought\r\n{\r\n  thought: \"Problem involves optimizing database queries. Need to identify bottlenecks first.\",\r\n  thoughtNumber: 1,\r\n  totalThoughts: 5,\r\n  nextThoughtNeeded: true\r\n}\r\n\r\n// Second thought\r\n{\r\n  thought: \"Analyzing query patterns reveals N+1 problem in user fetches.\",\r\n  thoughtNumber: 2,\r\n  totalThoughts: 6, // Adjusted scope\r\n  nextThoughtNeeded: true\r\n}\r\n\r\n// ... continue until done\r\n```",
+    "Workflow Pattern": "```\r\n1. Start with initial thought (thoughtNumber: 1)\r\n2. For each step:\r\n   - Express current reasoning in `thought`\r\n   - Estimate remaining work via `totalThoughts` (adjust dynamically)\r\n   - Set `nextThoughtNeeded: true` to continue\r\n3. When reaching conclusion, set `nextThoughtNeeded: false`\r\n```",
+    "Basic Usage": "The MCP tool `mcp__reasoning__sequentialthinking` accepts these parameters:\r\n\r\n### Required Parameters\r\n\r\n- `thought` (string): Current reasoning step\r\n- `nextThoughtNeeded` (boolean): Whether more reasoning is needed\r\n- `thoughtNumber` (integer): Current step number (starts at 1)\r\n- `totalThoughts` (integer): Estimated total steps needed\r\n\r\n### Optional Parameters\r\n\r\n- `isRevision` (boolean): Indicates this revises previous thinking\r\n- `revisesThought` (integer): Which thought number is being reconsidered\r\n- `branchFromThought` (integer): Thought number to branch from\r\n- `branchId` (string): Identifier for this reasoning branch",
+    "Core Capabilities": "- **Iterative reasoning**: Break complex problems into sequential thought steps\r\n- **Dynamic scope**: Adjust total thought count as understanding evolves\r\n- **Revision tracking**: Reconsider and modify previous conclusions\r\n- **Branch exploration**: Explore alternative reasoning paths from any point\r\n- **Maintained context**: Keep track of reasoning chain throughout analysis",
+    "Advanced Features": "For revision patterns, branching strategies, and complex workflows, see:\r\n- [Advanced Usage](references/advanced.md) - Revision and branching patterns\r\n- [Examples](references/examples.md) - Real-world use cases",
+    "Tips": "- Start with rough estimate for `totalThoughts`, refine as you progress\r\n- Use revision when assumptions prove incorrect\r\n- Branch when multiple approaches seem viable\r\n- Express uncertainty explicitly in thoughts\r\n- Adjust scope freely - accuracy matters less than progress visibility"
+  }
+}

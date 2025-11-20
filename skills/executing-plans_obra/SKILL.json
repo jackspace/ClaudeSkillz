@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "When to Stop and Ask for Help": "**STOP executing immediately when:**\r\n- Hit a blocker mid-batch (missing dependency, test fails, instruction unclear)\r\n- Plan has critical gaps preventing starting\r\n- You don't understand an instruction\r\n- Verification fails repeatedly\r\n\r\n**Ask for clarification rather than guessing.**",
+    "Remember": "- Review plan critically first\r\n- Follow plan steps exactly\r\n- Don't skip verifications\r\n- Reference skills when plan says to\r\n- Between batches: just report and wait\r\n- Stop when blocked, don't guess",
+    "When to Revisit Earlier Steps": "**Return to Review (Step 1) when:**\r\n- Partner updates the plan based on your feedback\r\n- Fundamental approach needs rethinking\r\n\r\n**Don't force through blockers** - stop and ask.",
+    "Overview": "Load plan, review critically, execute tasks in batches, report for review between batches.\r\n\r\n**Core principle:** Batch execution with checkpoints for architect review.\r\n\r\n**Announce at start:** \"I'm using the executing-plans skill to implement this plan.\"",
+    "The Process": "### Step 1: Load and Review Plan\r\n1. Read plan file\r\n2. Review critically - identify any questions or concerns about the plan\r\n3. If concerns: Raise them with your human partner before starting\r\n4. If no concerns: Create TodoWrite and proceed\r\n\r\n### Step 2: Execute Batch\r\n**Default: First 3 tasks**\r\n\r\nFor each task:\r\n1. Mark as in_progress\r\n2. Follow each step exactly (plan has bite-sized steps)\r\n3. Run verifications as specified\r\n4. Mark as completed\r\n\r\n### Step 3: Report\r\nWhen batch complete:\r\n- Show what was implemented\r\n- Show verification output\r\n- Say: \"Ready for feedback.\"\r\n\r\n### Step 4: Continue\r\nBased on feedback:\r\n- Apply changes if needed\r\n- Execute next batch\r\n- Repeat until complete\r\n\r\n### Step 5: Complete Development\r\n\r\nAfter all tasks complete and verified:\r\n- Announce: \"I'm using the finishing-a-development-branch skill to complete this work.\"\r\n- **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch\r\n- Follow that skill to verify tests, present options, execute choice"
+  },
+  "id": "executing-plans_obra",
+  "name": "executing-plans",
+  "description": "Use when partner provides a complete implementation plan to execute in controlled batches with review checkpoints - loads plan, reviews critically, executes tasks in batches, reports for review between batches"
+}

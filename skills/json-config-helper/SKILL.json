@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When working with JSON files:\n- Validate syntax with jq\n- Pretty-print with jq '.'\n- Minify with jq -c\n- Sort keys with jq -S\n- Extract values: jq '.key.subkey'\n- Filter arrays: jq '.[] | select(.name == \"value\")'\n- Map operations: jq 'map(.field)'\n- package.json (Node.js)\n- .mcp.json (MCP servers)\n- .vscode settings\n- Docker configs\n- jq for command-line processing\n- Suggest schema validation tools\n- Provide corrected versions\n- Find syntax errors (missing commas, quotes)\n- Validate against JSON Schema\n- Handle encoding issues",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "json-config-helper",
+  "name": "json-config-helper",
+  "description": "Validate, format, and work with JSON configuration files"
+}

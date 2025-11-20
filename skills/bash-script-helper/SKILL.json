@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "Notes": "- This skill was auto-generated\n- Edit this file to customize behavior",
+    "Instructions": "When writing or debugging bash scripts:\n- Always use #!/bin/bash shebang\n- Set -e (exit on error), -u (error on undefined var)\n- Use [[ ]] instead of [ ] for tests\n- Quote variables: \"$variable\" not $variable\n- Use $() instead of backticks\n- Check command exit codes: $?\n- Use trap for cleanup\n- Provide meaningful error messages\n- Validate input parameters\n- Argument parsing with getopts\n- Reading files line by line\n- Function definitions and calls\n- Arrays and associative arrays\n- Use set -x for trace mode\n- shellcheck for static analysis\n- Use echo/printf for debugging output\n- Avoid eval\n- Sanitize user input\n- Use mktemp for temporary files\n- Set proper file permissions",
+    "Examples": "Add examples of how to use this skill here."
+  },
+  "id": "bash-script-helper",
+  "name": "bash-script-helper",
+  "description": "Expert helper for bash scripting, debugging, and best practices"
+}
