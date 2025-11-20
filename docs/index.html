@@ -25,18 +25,33 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
         }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; cursor: pointer; user-select: none; }
+        .header h1:hover { opacity: 0.9; }
         .header p { font-size: 1.1em; opacity: 0.9; }
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
         .controls {
             background: #34495e;
             padding: 15px 30px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
         }
-        .search-box { flex: 1; min-width: 200px; }
+        .search-box { width: 100%; }
         .search-box input {
             width: 100%;
             padding: 12px 20px;
@@ -44,19 +59,6 @@
             border-radius: 6px;
             font-size: 16px;
         }
-        .filter-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-        .filter-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            background: #2c3e50;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-        .filter-btn:hover { background: #1a252f; }
-        .filter-btn.active { background: #3498db; }
         .stats {
             background: #f8f9fa;
             padding: 20px 30px;
@@ -73,76 +75,223 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+        .skills-container {
             padding: 30px;
             max-height: 600px;
             overflow-y: auto;
-        }
-        .skill-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
             background: white;
         }
-        .skill-card:hover {
-            border-color: #3498db;
-            box-shadow: 0 4px 12px rgba(52,152,219,0.2);
+        .category-section {
+            margin-bottom: 30px;
         }
-        .skill-card.selected {
-            border-color: #3498db;
-            background: #f0f8ff;
-        }
-        .checkbox {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 24px;
-            height: 24px;
-            border: 2px solid #bdc3c7;
-            border-radius: 4px;
-            background: white;
-        }
-        .skill-card.selected .checkbox {
-            background: #3498db;
-            border-color: #3498db;
-        }
-        .skill-card.selected .checkbox::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .skill-name {
-            font-size: 1.1em;
+        .category-header {
+            font-size: 1.3em;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 10px;
-            padding-right: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .skill-description {
+        .category-title {
+            flex: 1;
+        }
+        .category-count {
+            color: #7f8c8d;
             font-size: 0.9em;
-            color: #7f8c8d;
-            line-height: 1.5;
-            margin-bottom: 10px;
+            font-weight: normal;
         }
-        .skill-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-        .tag {
-            background: #ecf0f1;
-            color: #7f8c8d;
-            padding: 4px 10px;
-            border-radius: 12px;
+        .category-select-all {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
             font-size: 0.75em;
-            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+        }
+        .category-select-all:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        body.dark-mode .container {
+            background: #16213e;
+            color: #eaeaea;
+        }
+        body.dark-mode .header {
+            background: #0f3460;
+        }
+        body.dark-mode .controls {
+            background: #0f3460;
+        }
+        body.dark-mode .stats {
+            background: #1a1a2e;
+            border-bottom-color: #2d3748;
+        }
+        body.dark-mode .stat-label {
+            color: #a0a0a0;
+        }
+        body.dark-mode .skills-container {
+            background: #16213e;
+        }
+        body.dark-mode .category-header {
+            color: #eaeaea;
+            border-bottom-color: #667eea;
+        }
+        body.dark-mode .category-count {
+            color: #a0a0a0;
+        }
+        body.dark-mode .skill-item:hover {
+            background: #1f2937;
+        }
+        body.dark-mode .skill-name {
+            color: #eaeaea;
+        }
+        body.dark-mode .skill-tooltip {
+            background: #0f3460;
+        }
+        body.dark-mode .actions {
+            background: #0f3460;
+        }
+        body.dark-mode .script-preview {
+            background: #0d0d0d;
+            border-color: #2d3748;
+        }
+
+        /* Matrix Mode (Easter Egg) */
+        body.matrix-mode {
+            background: linear-gradient(135deg, #000000 0%, #001a00 100%);
+        }
+        body.matrix-mode .container {
+            background: #0d0d0d;
+            color: #00ff00;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+        }
+        body.matrix-mode .header {
+            background: #001a00;
+            animation: matrix-glow 2s ease-in-out infinite;
+        }
+        body.matrix-mode .header h1 {
+            text-shadow: 0 0 10px #00ff00;
+        }
+        body.matrix-mode .controls {
+            background: #001a00;
+        }
+        body.matrix-mode .stats {
+            background: #000000;
+            border-bottom-color: #003300;
+        }
+        body.matrix-mode .stat-number {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        body.matrix-mode .stat-label {
+            color: #00cc00;
+        }
+        body.matrix-mode .skills-container {
+            background: #0d0d0d;
+        }
+        body.matrix-mode .category-header {
+            color: #00ff00;
+            border-bottom-color: #00ff00;
+        }
+        body.matrix-mode .category-count {
+            color: #00cc00;
+        }
+        body.matrix-mode .skill-item:hover {
+            background: #001a00;
+        }
+        body.matrix-mode .skill-name {
+            color: #00ff00;
+        }
+        body.matrix-mode .skill-tooltip {
+            background: #001a00;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        body.matrix-mode .actions {
+            background: #001a00;
+        }
+        body.matrix-mode .category-select-all {
+            background: #003300;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        body.matrix-mode .category-select-all:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+
+        @keyframes matrix-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); }
+        }
+
+        /* Smooth transitions */
+        body, .container, .header, .controls, .stats, .skills-container, .actions, .script-preview {
+            transition: all 0.5s ease;
+        }
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+        }
+        .skill-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .skill-item:hover {
+            background: #f8f9fa;
+        }
+        .skill-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .skill-name {
+            font-size: 0.95em;
+            color: #2c3e50;
+            cursor: pointer;
+            flex: 1;
+        }
+        .skill-name:hover {
+            color: #3498db;
+        }
+        .skill-tooltip {
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            line-height: 1.5;
+            max-width: 400px;
+            width: max-content;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-top: 5px;
+        }
+        .skill-item:hover .skill-tooltip {
+            visibility: visible;
         }
         .actions {
             background: #2c3e50;
@@ -187,7 +336,7 @@
             transition: all 0.2s;
         }
         .os-checkbox:hover { background: #2c3e50; }
-        .os-checkbox input[type="checkbox"] {
+        .os-checkbox input[type="radio"] {
             width: 18px;
             height: 18px;
             cursor: pointer;
@@ -264,19 +413,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>ClaudeSkillz</h1>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeToggle">🌙 Dark Mode</button>
+            <h1 id="logo" onclick="easterEggClick()">ClaudeSkillz</h1>
             <p>Select the skills you want to install</p>
         </div>
         <div class="controls">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search skills...">
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="cloudflare">Cloudflare</button>
-                <button class="filter-btn" data-filter="ai">AI/ML</button>
-                <button class="filter-btn" data-filter="web">Web Dev</button>
-                <button class="filter-btn" data-filter="devops">DevOps</button>
             </div>
         </div>
         <div class="stats">
@@ -288,12 +431,8 @@
                 <div class="stat-number" id="selectedCount">0</div>
                 <div class="stat-label">Selected</div>
             </div>
-            <div class="stat">
-                <div class="stat-number" id="filteredSkills">0</div>
-                <div class="stat-label">Showing</div>
-            </div>
         </div>
-        <div class="skills-grid" id="skillsGrid">
+        <div class="skills-container" id="skillsContainer">
             <div class="loading">Loading skills...</div>
         </div>
         <div class="script-preview" id="scriptPreview">
@@ -311,16 +450,12 @@
             <div class="os-selector">
                 <span class="os-label">Target OS:</span>
                 <label class="os-checkbox">
-                    <input type="checkbox" id="osWindows" checked onchange="updateGenerateButton()">
+                    <input type="radio" name="targetOS" id="osWindows" value="windows" checked onchange="handleOSChange()">
                     <span>Windows</span>
                 </label>
                 <label class="os-checkbox">
-                    <input type="checkbox" id="osLinux" onchange="updateGenerateButton()">
-                    <span>Linux</span>
-                </label>
-                <label class="os-checkbox">
-                    <input type="checkbox" id="osMacOS" onchange="updateGenerateButton()">
-                    <span>macOS</span>
+                    <input type="radio" name="targetOS" id="osUnix" value="unix" onchange="handleOSChange()">
+                    <span>Linux/macOS</span>
                 </label>
             </div>
             <button class="btn btn-primary" onclick="generateInstallScript()" id="generateBtn" disabled>
@@ -333,7 +468,7 @@
                 <a href="https://github.com/jackspace/ClaudeSkillz/blob/master/CONTRIBUTING.md" target="_blank" class="footer-link">Contribute</a>
                 <a href="https://github.com/jackspace/ClaudeSkillz/issues" target="_blank" class="footer-link">Report Issue</a>
             </div>
-            <p>Powered by Claude Code Mastery Collective | Select skills and click "Generate Install Script" to download</p>
+            <p>Shabby Road Studios - San Antonio Tlayacapan, México | Select skills and click "Generate Install Script" to download</p>
         </div>
     </div>
     <script src="selector.js"></script>

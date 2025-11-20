@@ -12,7 +12,7 @@ Welcome to ClaudeSkillz - a curated collection of 260+ Claude Code skills!
 
 This directory contains the GitHub Pages site for ClaudeSkillz:
 
-- `index.html` - Interactive skill selector (Ninite-inspired UI)
+- `index.html` - Interactive skill selector with category-grouped layout
 - `skills-catalog.json` - Machine-readable catalog of all skills
 - `CNAME` - Custom domain configuration
 

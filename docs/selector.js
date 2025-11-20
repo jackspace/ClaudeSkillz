@@ -1,42 +1,111 @@
 // ClaudeSkillz Selector Logic
 let allSkills = [];
 let selectedSkills = new Set();
-let currentFilter = 'all';
+
+// Easter Egg Variables
+let logoClickCount = 0;
+let logoClickTimeout = null;
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
 
 function initializeSkills() {
     if (window.EMBEDDED_SKILLS && window.EMBEDDED_SKILLS.length > 0) {
         allSkills = window.EMBEDDED_SKILLS;
         console.log(`Loaded ${allSkills.length} skills`);
 
-        // Auto-detect OS and pre-select checkbox
+        // Auto-detect OS and pre-select radio button
         const userAgent = navigator.userAgent.toLowerCase();
         if (userAgent.includes('win')) {
             document.getElementById('osWindows').checked = true;
-        } else if (userAgent.includes('mac')) {
-            document.getElementById('osMacOS').checked = true;
-        } else if (userAgent.includes('linux')) {
-            document.getElementById('osLinux').checked = true;
+        } else {
+            // Mac and Linux both use Unix script
+            document.getElementById('osUnix').checked = true;
         }
+
+        // Load dark mode preference
+        loadDarkModePreference();
 
         updateStats();
         renderSkills();
         setupEventListeners();
     } else {
-        document.getElementById('skillsGrid').innerHTML = '<div class="loading">No skills found. Please regenerate the catalog.</div>';
+        document.getElementById('skillsContainer').innerHTML = '<div class="loading">No skills found. Please regenerate the catalog.</div>';
     }
 }
 
 function setupEventListeners() {
     document.getElementById('searchInput').addEventListener('input', renderSkills);
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            currentFilter = this.dataset.filter;
-            renderSkills();
-        });
-    });
+    // Konami Code Easter Egg
+    document.addEventListener('keydown', handleKonamiCode);
+}
+
+// Dark Mode Functions
+function loadDarkModePreference() {
+    const darkMode = localStorage.getItem('claudeskillz-darkmode') === 'true';
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+        updateDarkModeButton();
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('claudeskillz-darkmode', isDark);
+    updateDarkModeButton();
+}
+
+function updateDarkModeButton() {
+    const btn = document.getElementById('darkModeToggle');
+    const isDark = document.body.classList.contains('dark-mode');
+    btn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+}
+
+// Easter Egg: Logo Click Counter
+function easterEggClick() {
+    logoClickCount++;
+
+    clearTimeout(logoClickTimeout);
+    logoClickTimeout = setTimeout(() => {
+        logoClickCount = 0;
+    }, 2000);
+
+    if (logoClickCount === 5) {
+        activateMatrixMode();
+        logoClickCount = 0;
+    } else if (logoClickCount === 3) {
+        const logo = document.getElementById('logo');
+        logo.style.transform = 'rotate(360deg)';
+        logo.style.transition = 'transform 0.5s ease';
+        setTimeout(() => {
+            logo.style.transform = 'rotate(0deg)';
+        }, 500);
+    }
+}
+
+// Easter Egg: Konami Code
+function handleKonamiCode(e) {
+    if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            activateMatrixMode();
+            konamiIndex = 0;
+        }
+    } else {
+        konamiIndex = 0;
+    }
+}
+
+// Easter Egg: Matrix Mode
+function activateMatrixMode() {
+    const wasMatrix = document.body.classList.contains('matrix-mode');
+    document.body.classList.toggle('matrix-mode');
+
+    if (!wasMatrix) {
+        alert('🎉 MATRIX MODE ACTIVATED! 🎉\n\nYou found the secret mode!\n\nTry the Konami Code or click the logo 5 times fast to toggle.');
+        console.log('%c WELCOME TO THE MATRIX ', 'background: #000; color: #0f0; font-size: 20px; font-family: monospace;');
+    }
 }
 
 function updateStats() {
@@ -44,41 +113,88 @@ function updateStats() {
     document.getElementById('selectedCount').textContent = selectedSkills.size;
 }
 
-function renderSkills() {
-    const grid = document.getElementById('skillsGrid');
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-
-    let filteredSkills = allSkills.filter(skill => {
-        const matchesSearch = skill.name.toLowerCase().includes(searchTerm) ||
-                            skill.description.toLowerCase().includes(searchTerm);
-
-        const matchesFilter = currentFilter === 'all' ||
-                            (skill.category && skill.category.toLowerCase().includes(currentFilter.toLowerCase()));
-
-        return matchesSearch && matchesFilter;
+function groupSkillsByCategory() {
+    const grouped = {};
+    allSkills.forEach(skill => {
+        const category = skill.category || 'General';
+        if (!grouped[category]) {
+            grouped[category] = [];
+        }
+        grouped[category].push(skill);
     });
 
-    document.getElementById('filteredSkills').textContent = filteredSkills.length;
+    // Sort categories alphabetically, but put General last
+    const sortedCategories = Object.keys(grouped).sort((a, b) => {
+        if (a === 'General') return 1;
+        if (b === 'General') return -1;
+        return a.localeCompare(b);
+    });
 
-    if (filteredSkills.length === 0) {
-        grid.innerHTML = '<div class="loading">No skills found matching your criteria.</div>';
-        return;
-    }
+    const sortedGrouped = {};
+    sortedCategories.forEach(cat => {
+        // Sort skills within category alphabetically
+        sortedGrouped[cat] = grouped[cat].sort((a, b) => a.name.localeCompare(b.name));
+    });
 
-    grid.innerHTML = filteredSkills.map(skill => {
-        const escapedName = skill.name.replace(/'/g, "\\'");
-        return `
-            <div class="skill-card ${selectedSkills.has(skill.name) ? 'selected' : ''}"
-                 onclick="toggleSkill('${escapedName}')">
-                <div class="checkbox"></div>
-                <div class="skill-name">${skill.name}</div>
-                <div class="skill-description">${skill.description}</div>
-                <div class="skill-tags">
-                    ${skill.category ? `<span class="tag">${skill.category}</span>` : ''}
+    return sortedGrouped;
+}
+
+function renderSkills() {
+    const container = document.getElementById('skillsContainer');
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+    const groupedSkills = groupSkillsByCategory();
+    let html = '';
+    let totalVisible = 0;
+
+    Object.keys(groupedSkills).forEach(category => {
+        const skillsInCategory = groupedSkills[category];
+
+        // Filter skills by search term
+        const filteredSkills = skillsInCategory.filter(skill => {
+            return skill.name.toLowerCase().includes(searchTerm) ||
+                   skill.description.toLowerCase().includes(searchTerm);
+        });
+
+        if (filteredSkills.length === 0) return;
+
+        totalVisible += filteredSkills.length;
+
+        html += `
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-title">
+                        ${category} <span class="category-count">(${filteredSkills.length})</span>
+                    </div>
+                    <button class="category-select-all" onclick="selectCategory('${category}')">
+                        Select All
+                    </button>
+                </div>
+                <div class="skills-list">
+                    ${filteredSkills.map(skill => {
+                        const escapedName = skill.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                        const isChecked = selectedSkills.has(skill.name) ? 'checked' : '';
+                        return `
+                            <div class="skill-item">
+                                <input type="checkbox"
+                                       id="skill-${skill.name}"
+                                       ${isChecked}
+                                       onchange="toggleSkill('${escapedName}')">
+                                <label class="skill-name" for="skill-${skill.name}">${skill.name}</label>
+                                <div class="skill-tooltip">${skill.description}</div>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
             </div>
         `;
-    }).join('');
+    });
+
+    if (totalVisible === 0) {
+        container.innerHTML = '<div class="loading">No skills found matching your search.</div>';
+    } else {
+        container.innerHTML = html;
+    }
 }
 
 function toggleSkill(skillName) {
@@ -89,7 +205,6 @@ function toggleSkill(skillName) {
     }
     updateStats();
     updateGenerateButton();
-    renderSkills();
     updateScriptPreview();
 }
 
@@ -98,13 +213,32 @@ function selectAll() {
     allSkills.forEach(skill => {
         const matchesSearch = skill.name.toLowerCase().includes(searchTerm) ||
                             skill.description.toLowerCase().includes(searchTerm);
-        const matchesFilter = currentFilter === 'all' ||
-                            (skill.category && skill.category.toLowerCase().includes(currentFilter.toLowerCase()));
 
-        if (matchesSearch && matchesFilter) {
+        if (matchesSearch) {
             selectedSkills.add(skill.name);
         }
     });
+    updateStats();
+    updateGenerateButton();
+    renderSkills();
+    updateScriptPreview();
+}
+
+function selectCategory(category) {
+    // Get all skills in this category
+    const categorySkills = allSkills.filter(skill => (skill.category || 'General') === category);
+
+    // Check if all are already selected
+    const allSelected = categorySkills.every(skill => selectedSkills.has(skill.name));
+
+    if (allSelected) {
+        // Deselect all in category
+        categorySkills.forEach(skill => selectedSkills.delete(skill.name));
+    } else {
+        // Select all in category
+        categorySkills.forEach(skill => selectedSkills.add(skill.name));
+    }
+
     updateStats();
     updateGenerateButton();
     renderSkills();
@@ -119,13 +253,16 @@ function deselectAll() {
     updateScriptPreview();
 }
 
+function handleOSChange() {
+    updateGenerateButton();
+    updateScriptPreview();
+}
+
 function updateGenerateButton() {
     const btn = document.getElementById('generateBtn');
     const hasSelection = selectedSkills.size > 0;
-    const hasOS = document.getElementById('osWindows').checked ||
-                 document.getElementById('osLinux').checked ||
-                 document.getElementById('osMacOS').checked;
-    btn.disabled = !hasSelection || !hasOS;
+    // OS is always selected (radio buttons)
+    btn.disabled = !hasSelection;
 }
 
 function generateWindowsScript(skills) {
@@ -242,19 +379,16 @@ function updateScriptPreview() {
 
     const skills = Array.from(selectedSkills);
     const osWindows = document.getElementById('osWindows').checked;
-    const osLinux = document.getElementById('osLinux').checked;
-    const osMacOS = document.getElementById('osMacOS').checked;
 
-    let scripts = [];
-    if (osWindows) scripts.push({ os: 'Windows (PowerShell)', content: generateWindowsScript(skills) });
-    if (osLinux || osMacOS) scripts.push({ os: 'Linux/macOS (Bash)', content: generateLinuxScript(skills) });
-
-    if (scripts.length > 0) {
-        const script = scripts[0];
-        title.textContent = `Installation Script - ${script.os}`;
-        content.textContent = script.content;
-        preview.classList.add('active');
+    if (osWindows) {
+        title.textContent = 'Installation Script - Windows (PowerShell)';
+        content.textContent = generateWindowsScript(skills);
+    } else {
+        title.textContent = 'Installation Script - Linux/macOS (Bash)';
+        content.textContent = generateLinuxScript(skills);
     }
+
+    preview.classList.add('active');
 }
 
 function copyScript() {
@@ -280,29 +414,16 @@ function generateInstallScript() {
         return;
     }
 
-    const osWindows = document.getElementById('osWindows').checked;
-    const osLinux = document.getElementById('osLinux').checked;
-    const osMacOS = document.getElementById('osMacOS').checked;
-
-    if (!osWindows && !osLinux && !osMacOS) {
-        alert('Please select at least one target operating system.');
-        return;
-    }
-
     const skills = Array.from(selectedSkills);
+    const osWindows = document.getElementById('osWindows').checked;
 
-    // Generate scripts for selected OSes
     if (osWindows) {
         downloadScript(generateWindowsScript(skills), 'install-claudeskillz.ps1', 'text/plain');
-    }
-
-    if (osLinux || osMacOS) {
+        alert(`Install script generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n- install-claudeskillz.ps1 (Windows)`);
+    } else {
         downloadScript(generateLinuxScript(skills), 'install-claudeskillz.sh', 'text/x-shellscript');
+        alert(`Install script generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n- install-claudeskillz.sh (Linux/macOS)`);
     }
-
-    alert(`Install script(s) generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n` +
-          (osWindows ? '- install-claudeskillz.ps1 (Windows)\n' : '') +
-          (osLinux || osMacOS ? '- install-claudeskillz.sh (Linux/macOS)' : ''));
 }
 
 function downloadScript(content, filename, mimeType) {
