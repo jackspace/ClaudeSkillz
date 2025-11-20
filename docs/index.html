@@ -151,17 +151,26 @@
         body.dark-mode .category-count {
             color: #a0a0a0;
         }
+        body.dark-mode .skill-item {
+            background: #1a1a2e;
+            border-color: #2d3748;
+        }
         body.dark-mode .skill-item:hover {
             background: #1f2937;
+            border-color: #667eea;
         }
         body.dark-mode .skill-name {
             color: #eaeaea;
         }
-        body.dark-mode .skill-tooltip {
-            background: #0f3460;
+        body.dark-mode .skill-description {
+            color: #a0a0a0;
         }
         body.dark-mode .actions {
             background: #0f3460;
+        }
+        body.dark-mode .instructions {
+            background: rgba(102, 126, 234, 0.2);
+            border-left-color: #667eea;
         }
         body.dark-mode .script-preview {
             background: #0d0d0d;
@@ -208,19 +217,26 @@
         body.matrix-mode .category-count {
             color: #00cc00;
         }
+        body.matrix-mode .skill-item {
+            background: #000000;
+            border-color: #003300;
+        }
         body.matrix-mode .skill-item:hover {
             background: #001a00;
+            border-color: #00ff00;
         }
         body.matrix-mode .skill-name {
             color: #00ff00;
         }
-        body.matrix-mode .skill-tooltip {
-            background: #001a00;
-            color: #00ff00;
-            border: 1px solid #00ff00;
+        body.matrix-mode .skill-description {
+            color: #00cc00;
         }
         body.matrix-mode .actions {
             background: #001a00;
+        }
+        body.matrix-mode .instructions {
+            background: rgba(0, 255, 0, 0.1);
+            border-left-color: #00ff00;
         }
         body.matrix-mode .category-select-all {
             background: #003300;
@@ -243,55 +259,52 @@
         }
         .skills-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
         }
         .skill-item {
             display: flex;
-            align-items: center;
-            padding: 8px 12px;
+            align-items: flex-start;
+            padding: 12px;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s;
-            position: relative;
+            border-radius: 6px;
+            transition: all 0.2s;
+            border: 1px solid #e0e0e0;
+            background: white;
         }
         .skill-item:hover {
             background: #f8f9fa;
+            border-color: #3498db;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
         }
         .skill-item input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            margin-right: 10px;
+            margin-right: 12px;
+            margin-top: 2px;
             cursor: pointer;
+            flex-shrink: 0;
+        }
+        .skill-content {
+            flex: 1;
+            min-width: 0;
         }
         .skill-name {
             font-size: 0.95em;
+            font-weight: 600;
             color: #2c3e50;
             cursor: pointer;
-            flex: 1;
+            margin-bottom: 4px;
+            display: block;
         }
         .skill-name:hover {
             color: #3498db;
         }
-        .skill-tooltip {
-            visibility: hidden;
-            position: absolute;
-            left: 0;
-            top: 100%;
-            background: #2c3e50;
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
+        .skill-description {
             font-size: 0.85em;
-            line-height: 1.5;
-            max-width: 400px;
-            width: max-content;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            margin-top: 5px;
-        }
-        .skill-item:hover .skill-tooltip {
-            visibility: visible;
+            color: #7f8c8d;
+            line-height: 1.4;
+            word-wrap: break-word;
         }
         .actions {
             background: #2c3e50;
@@ -302,6 +315,24 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+        }
+        .instructions {
+            width: 100%;
+            background: rgba(52, 152, 219, 0.15);
+            border-left: 4px solid #3498db;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .instructions-icon {
+            font-size: 1.2em;
+        }
+        .instructions-text {
+            line-height: 1.4;
         }
         .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
         .btn {
@@ -433,6 +464,12 @@
             </div>
         </div>
         <div class="actions">
+            <div class="instructions">
+                <span class="instructions-icon">💡</span>
+                <span class="instructions-text">
+                    <strong>How to use:</strong> Select skills below → Choose your OS → Click "Generate Install Script" → Copy and run the script
+                </span>
+            </div>
             <div class="action-buttons">
                 <button class="btn btn-secondary" onclick="selectAll()">Select All</button>
                 <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>

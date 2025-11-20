@@ -180,8 +180,10 @@ function renderSkills() {
                                        id="skill-${skill.name}"
                                        ${isChecked}
                                        onchange="toggleSkill('${escapedName}')">
-                                <label class="skill-name" for="skill-${skill.name}">${skill.name}</label>
-                                <div class="skill-tooltip">${skill.description}</div>
+                                <div class="skill-content">
+                                    <label class="skill-name" for="skill-${skill.name}">${skill.name}</label>
+                                    <div class="skill-description">${skill.description}</div>
+                                </div>
                             </div>
                         `;
                     }).join('')}
