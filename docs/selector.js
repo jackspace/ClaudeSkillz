@@ -2,6 +2,10 @@
 let allSkills = [];
 let selectedSkills = new Set();
 
+// Debouncing variables
+let isProcessing = false;
+let searchTimeout = null;
+
 // Easter Egg Variables
 let logoClickCount = 0;
 let logoClickTimeout = null;
@@ -34,7 +38,11 @@ function initializeSkills() {
 }
 
 function setupEventListeners() {
-    document.getElementById('searchInput').addEventListener('input', renderSkills);
+    // Debounced search input
+    document.getElementById('searchInput').addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(renderSkills, 300);
+    });
 
     // Konami Code Easter Egg
     document.addEventListener('keydown', handleKonamiCode);
@@ -44,12 +52,13 @@ function setupEventListeners() {
 function loadDarkModePreference() {
     try {
         if (typeof localStorage !== 'undefined') {
-            const darkMode = localStorage.getItem('claudeskillz-darkmode') === 'true';
-            if (darkMode) {
-                document.body.classList.add('dark-mode');
-                updateDarkModeButton();
+            const storedPref = localStorage.getItem('claudeskillz-darkmode');
+            // Dark mode is now the default, only switch to light if explicitly set to 'false'
+            if (storedPref === 'false') {
+                document.body.classList.remove('dark-mode');
             }
         }
+        updateDarkModeButton();
     } catch (e) {
         console.warn('Could not load dark mode preference:', e.message);
     }
@@ -225,6 +234,9 @@ function toggleSkill(skillName) {
 }
 
 function selectAll() {
+    if (isProcessing) return;
+    isProcessing = true;
+
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     allSkills.forEach(skill => {
         const matchesSearch = skill.name.toLowerCase().includes(searchTerm) ||
@@ -238,6 +250,8 @@ function selectAll() {
     updateGenerateButton();
     renderSkills();
     updateScriptPreview();
+
+    setTimeout(() => isProcessing = false, 100);
 }
 
 function selectCategory(category) {
@@ -262,11 +276,16 @@ function selectCategory(category) {
 }
 
 function deselectAll() {
+    if (isProcessing) return;
+    isProcessing = true;
+
     selectedSkills.clear();
     updateStats();
     updateGenerateButton();
     renderSkills();
     updateScriptPreview();
+
+    setTimeout(() => isProcessing = false, 100);
 }
 
 function handleOSChange() {
@@ -451,20 +470,38 @@ function generateInstallScript() {
     console.log('[DEBUG] generateInstallScript called');
     console.log('[DEBUG] selectedSkills.size:', selectedSkills.size);
 
+    const btn = document.getElementById('generateBtn');
+    if (btn.disabled || isProcessing) return;
+
     if (selectedSkills.size === 0) {
         alert('Please select at least one skill to install.');
         return;
     }
 
+    // Disable button and show processing state
+    isProcessing = true;
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = 'Generating...';
+
     const skills = Array.from(selectedSkills);
     const osWindows = document.getElementById('osWindows').checked;
 
-    if (osWindows) {
-        downloadScript(generateWindowsScript(skills), 'install-claudeskillz.ps1', 'text/plain');
-        alert(`Install script generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n- install-claudeskillz.ps1 (Windows)`);
-    } else {
-        downloadScript(generateLinuxScript(skills), 'install-claudeskillz.sh', 'text/x-shellscript');
-        alert(`Install script generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n- install-claudeskillz.sh (Linux/macOS)`);
+    try {
+        if (osWindows) {
+            downloadScript(generateWindowsScript(skills), 'install-claudeskillz.ps1', 'text/plain');
+            alert(`Install script generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n- install-claudeskillz.ps1 (Windows)`);
+        } else {
+            downloadScript(generateLinuxScript(skills), 'install-claudeskillz.sh', 'text/x-shellscript');
+            alert(`Install script generated for ${skills.length} skill(s)!\n\nCheck your Downloads folder for:\n- install-claudeskillz.sh (Linux/macOS)`);
+        }
+    } finally {
+        // Re-enable button after a short delay
+        setTimeout(() => {
+            btn.textContent = originalText;
+            updateGenerateButton();
+            isProcessing = false;
+        }, 1000);
     }
 }
 

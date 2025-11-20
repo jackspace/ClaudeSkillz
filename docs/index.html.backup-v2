@@ -25,28 +25,9 @@
             color: white;
             padding: 30px;
             text-align: center;
-            position: relative;
         }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; cursor: pointer; user-select: none; }
-        .header h1:hover { opacity: 0.9; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
         .header p { font-size: 1.1em; opacity: 0.9; }
-        .dark-mode-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        .dark-mode-toggle:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.05);
-        }
         .controls {
             background: #34495e;
             padding: 15px 30px;
@@ -71,7 +52,7 @@
         .stat-number { font-size: 2.5em; font-weight: bold; color: #3498db; }
         .stat-label {
             font-size: 0.9em;
-            color: #5a6c7d;  /* Darker for WCAG AA compliance (4.5:1 contrast) */
+            color: #7f8c8d;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -91,220 +72,63 @@
             margin-bottom: 15px;
             padding-bottom: 8px;
             border-bottom: 2px solid #3498db;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .category-title {
-            flex: 1;
         }
         .category-count {
-            color: #5a6c7d;  /* Darker for WCAG AA compliance (4.5:1 contrast) */
+            color: #7f8c8d;
             font-size: 0.9em;
             font-weight: normal;
         }
-        .category-select-all {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.75em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-left: 10px;
-        }
-        .category-select-all:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Dark Mode Styles */
-        body.dark-mode {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-        body.dark-mode .container {
-            background: #16213e;
-            color: #eaeaea;
-        }
-        body.dark-mode .header {
-            background: #0f3460;
-        }
-        body.dark-mode .controls {
-            background: #0f3460;
-        }
-        body.dark-mode .stats {
-            background: #1a1a2e;
-            border-bottom-color: #2d3748;
-        }
-        body.dark-mode .stat-label {
-            color: #c5c5c5;  /* Lighter for WCAG AA compliance (4.5:1 contrast on dark bg) */
-        }
-        body.dark-mode .skills-container {
-            background: #16213e;
-        }
-        body.dark-mode .category-header {
-            color: #eaeaea;
-            border-bottom-color: #667eea;
-        }
-        body.dark-mode .category-count {
-            color: #c5c5c5;  /* Lighter for WCAG AA compliance (4.5:1 contrast on dark bg) */
-        }
-        body.dark-mode .skill-item {
-            background: #1a1a2e;
-            border-color: #2d3748;
-        }
-        body.dark-mode .skill-item:hover {
-            background: #1f2937;
-            border-color: #667eea;
-        }
-        body.dark-mode .skill-name {
-            color: #eaeaea;
-        }
-        body.dark-mode .skill-description {
-            color: #a0a0a0;
-        }
-        body.dark-mode .actions {
-            background: #0f3460;
-        }
-        body.dark-mode .instructions {
-            background: rgba(102, 126, 234, 0.2);
-            border-left-color: #667eea;
-        }
-        body.dark-mode .script-preview {
-            background: #0d0d0d;
-            border-color: #2d3748;
-        }
-
-        /* Matrix Mode (Easter Egg) */
-        body.matrix-mode {
-            background: linear-gradient(135deg, #000000 0%, #001a00 100%);
-        }
-        body.matrix-mode .container {
-            background: #0d0d0d;
-            color: #00ff00;
-            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
-        }
-        body.matrix-mode .header {
-            background: #001a00;
-            animation: matrix-glow 2s ease-in-out infinite;
-        }
-        body.matrix-mode .header h1 {
-            text-shadow: 0 0 10px #00ff00;
-        }
-        body.matrix-mode .controls {
-            background: #001a00;
-        }
-        body.matrix-mode .stats {
-            background: #000000;
-            border-bottom-color: #003300;
-        }
-        body.matrix-mode .stat-number {
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00;
-        }
-        body.matrix-mode .stat-label {
-            color: #00cc00;
-        }
-        body.matrix-mode .skills-container {
-            background: #0d0d0d;
-        }
-        body.matrix-mode .category-header {
-            color: #00ff00;
-            border-bottom-color: #00ff00;
-        }
-        body.matrix-mode .category-count {
-            color: #00cc00;
-        }
-        body.matrix-mode .skill-item {
-            background: #000000;
-            border-color: #003300;
-        }
-        body.matrix-mode .skill-item:hover {
-            background: #001a00;
-            border-color: #00ff00;
-        }
-        body.matrix-mode .skill-name {
-            color: #00ff00;
-        }
-        body.matrix-mode .skill-description {
-            color: #00cc00;
-        }
-        body.matrix-mode .actions {
-            background: #001a00;
-        }
-        body.matrix-mode .instructions {
-            background: rgba(0, 255, 0, 0.1);
-            border-left-color: #00ff00;
-        }
-        body.matrix-mode .category-select-all {
-            background: #003300;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-        }
-        body.matrix-mode .category-select-all:hover {
-            background: #00ff00;
-            color: #000000;
-        }
-
-        @keyframes matrix-glow {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); }
-        }
-
-        /* Smooth transitions */
-        body, .container, .header, .controls, .stats, .skills-container, .actions, .script-preview {
-            transition: all 0.5s ease;
-        }
         .skills-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
         }
         .skill-item {
             display: flex;
-            align-items: flex-start;
-            padding: 12px;
+            align-items: center;
+            padding: 8px 12px;
             cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
-            border: 1px solid #e0e0e0;
-            background: white;
+            border-radius: 4px;
+            transition: background 0.2s;
+            position: relative;
         }
         .skill-item:hover {
             background: #f8f9fa;
-            border-color: #3498db;
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
         }
         .skill-item input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            margin-right: 12px;
-            margin-top: 2px;
+            margin-right: 10px;
             cursor: pointer;
-            flex-shrink: 0;
-        }
-        .skill-content {
-            flex: 1;
-            min-width: 0;
         }
         .skill-name {
             font-size: 0.95em;
-            font-weight: 600;
             color: #2c3e50;
             cursor: pointer;
-            margin-bottom: 4px;
-            display: block;
+            flex: 1;
         }
         .skill-name:hover {
             color: #3498db;
         }
-        .skill-description {
+        .skill-tooltip {
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
             font-size: 0.85em;
-            color: #5a6c7d;  /* Darker for WCAG AA compliance (4.5:1 contrast) */
-            line-height: 1.4;
-            word-wrap: break-word;
+            line-height: 1.5;
+            max-width: 400px;
+            width: max-content;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-top: 5px;
+        }
+        .skill-item:hover .skill-tooltip {
+            visibility: visible;
         }
         .actions {
             background: #2c3e50;
@@ -315,24 +139,6 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
-        }
-        .instructions {
-            width: 100%;
-            background: rgba(52, 152, 219, 0.15);
-            border-left: 4px solid #3498db;
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .instructions-icon {
-            font-size: 1.2em;
-        }
-        .instructions-text {
-            line-height: 1.4;
         }
         .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
         .btn {
@@ -349,12 +155,11 @@
         .btn-primary {
             background: #3498db;
             color: white;
-            font-size: 14px;
-            padding: 8px 16px;
-            white-space: nowrap;
+            font-size: 18px;
+            padding: 15px 40px;
         }
         .btn-primary:hover { background: #2980b9; }
-        .btn-primary:disabled { background: #95a5a6; cursor: not-allowed; opacity: 0.6; }
+        .btn-primary:disabled { background: #95a5a6; cursor: not-allowed; }
         .os-selector { display: flex; gap: 10px; align-items: center; }
         .os-label { font-weight: 500; }
         .os-checkbox {
@@ -396,21 +201,14 @@
             border-bottom: 1px solid #3e3e3e;
         }
         .script-title { font-weight: 600; color: #569cd6; }
-        .script-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
         .copy-btn {
-            padding: 8px 16px;
+            padding: 6px 15px;
             background: #0e639c;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             color: white;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-            white-space: nowrap;
+            font-size: 12px;
         }
         .copy-btn:hover { background: #1177bb; }
         .script-content { white-space: pre-wrap; word-wrap: break-word; }
@@ -449,11 +247,10 @@
         }
     </style>
 </head>
-<body class="dark-mode">
+<body>
     <div class="container">
         <div class="header">
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeToggle">☀️ Light Mode</button>
-            <h1 id="logo" onclick="easterEggClick()">ClaudeSkillz</h1>
+            <h1>ClaudeSkillz</h1>
             <p>Select the skills you want to install</p>
         </div>
         <div class="controls">
@@ -471,13 +268,17 @@
                 <div class="stat-label">Selected</div>
             </div>
         </div>
-        <div class="actions">
-            <div class="instructions">
-                <span class="instructions-icon">💡</span>
-                <span class="instructions-text">
-                    <strong>How to use:</strong> Select skills below → Choose your OS → Click "Download Install Script" → Copy and run
-                </span>
+        <div class="skills-container" id="skillsContainer">
+            <div class="loading">Loading skills...</div>
+        </div>
+        <div class="script-preview" id="scriptPreview">
+            <div class="script-header">
+                <span class="script-title" id="scriptTitle">Installation Script</span>
+                <button class="copy-btn" onclick="copyScript()">Copy to Clipboard</button>
             </div>
+            <div class="script-content" id="scriptContent"></div>
+        </div>
+        <div class="actions">
             <div class="action-buttons">
                 <button class="btn btn-secondary" onclick="selectAll()">Select All</button>
                 <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
@@ -493,21 +294,9 @@
                     <span>Linux/macOS</span>
                 </label>
             </div>
-        </div>
-        <div class="script-preview" id="scriptPreview">
-            <div class="script-header">
-                <span class="script-title" id="scriptTitle">Installation Script</span>
-                <div class="script-actions">
-                    <button class="btn btn-primary" onclick="generateInstallScript()" id="generateBtn" disabled>
-                        Download Install Script
-                    </button>
-                    <button class="copy-btn" onclick="copyScript(event)">Copy to Clipboard</button>
-                </div>
-            </div>
-            <div class="script-content" id="scriptContent"></div>
-        </div>
-        <div class="skills-container" id="skillsContainer">
-            <div class="loading">Loading skills...</div>
+            <button class="btn btn-primary" onclick="generateInstallScript()" id="generateBtn" disabled>
+                Generate Install Script
+            </button>
         </div>
         <div class="footer">
             <div class="footer-links">

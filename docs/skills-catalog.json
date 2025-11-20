@@ -2,7 +2,7 @@
   "skills": [
     {
       "name": "ai-elements-chatbot",
-      "description": "Claude Code skill for Ai Elements Chatbot",
+      "description": "building ChatGPT-style chat interfaces with streaming responses, tool/function call displays, reasoning visualization, or source citations.",
       "category": "AI/ML"
     },
     {
@@ -12,12 +12,12 @@
     },
     {
       "name": "ai-sdk-core",
-      "description": "Claude Code skill for Ai Sdk Core",
+      "description": "Production-ready backend AI with Vercel AI SDK v5.",
       "category": "AI/ML"
     },
     {
       "name": "ai-sdk-ui",
-      "description": "Claude Code skill for Ai Sdk Ui",
+      "description": "Frontend React hooks for AI-powered user interfaces with Vercel AI SDK v5.",
       "category": "AI/ML"
     },
     {
@@ -27,12 +27,12 @@
     },
     {
       "name": "auth-js",
-      "description": "Claude Code skill for Auth Js",
+      "description": "Say: \"I'm setting up Auth.",
       "category": "General"
     },
     {
       "name": "auto-animate",
-      "description": "Claude Code skill for Auto Animate",
+      "description": "For Cloudflare Workers or Next.",
       "category": "General"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "name": "base-ui-react",
-      "description": "Claude Code skill for Base Ui React",
+      "description": "new projects comfortable with beta software.",
       "category": "Web Development"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "name": "better-auth",
-      "description": "Claude Code skill for Better Auth",
+      "description": "skill when building auth systems as a self-hosted alternative to Clerk or Auth.",
       "category": "General"
     },
     {
@@ -62,17 +62,17 @@
     },
     {
       "name": "better-chatbot",
-      "description": "Claude Code skill for Better Chatbot",
+      "description": "skill when contributing to or working with better-chatbot to understand the design philosophy and ensure code follows established patterns.",
       "category": "General"
     },
     {
       "name": "better-chatbot-patterns",
-      "description": "Claude Code skill for Better Chatbot Patterns",
+      "description": "skill when building AI chatbots with server action validators, tool abstraction systems, workflow execution, or multi-AI provider integration in your own projects (not contributing to better-chatbot itself).",
       "category": "General"
     },
     {
       "name": "bilibili-subtitle-fetcher-skill_suyuan2022",
-      "description": "\u4ece\u54d4\u54e9\u54d4\u54e9(B\u7ad9)\u641c\u7d22\u89c6\u9891\u3001\u83b7\u53d6\u5b57\u5e55\u5e76\u8f6c\u6362\u4e3a Markdown \u683c\u5f0f\u3002\u5f53\u7528\u6237\u9700\u8981\u641c\u7d22 B \u7ad9\u89c6\u9891\u3001\u4e0b\u8f7d\u89c6\u9891\u5b57\u5e55\u3001\u6279\u91cf\u83b7\u53d6\u5b57\u5e55\u3001\u5206\u6790\u89c6\u9891\u5185\u5bb9\u65f6\u4f7f\u7528\u3002\u652f\u6301\u5173\u952e\u8bcd\u641c\u7d22\u3001\u5355\u89c6\u9891\u5904\u7406\u3001\u6279\u91cf\u5e76\u53d1\u4e0b\u8f7d\u3002",
+      "description": "从哔哩哔哩(B站)搜索视频、获取字幕并转换为 Markdown 格式。当用户需要搜索 B 站视频、下载视频字幕、批量获取字幕、分析视频内容时使用。支持关键词搜索、单视频处理、批量并发下载。",
       "category": "General"
     },
     {
@@ -102,17 +102,17 @@
     },
     {
       "name": "claude-agent-sdk",
-      "description": "Claude Code skill for Claude Agent Sdk",
+      "description": "building coding agents, SRE systems, security auditors, incident responders, code review bots, or any autonomous system that requires programmatic interaction with Claude Code CLI, persistent sessions, tool orchestration, and fine-grained permissi...",
       "category": "General"
     },
     {
       "name": "claude-api",
-      "description": "Claude Code skill for Claude Api",
+      "description": "building chatbots, AI assistants, content generation tools, or any application requiring Claude's language understanding.",
       "category": "General"
     },
     {
       "name": "claude-code-bash-patterns",
-      "description": "Claude Code skill for Claude Code Bash Patterns",
+      "description": "The Bash tool is Claude Code's primary interface for executing command-line operations.",
       "category": "Development Tools"
     },
     {
@@ -132,117 +132,117 @@
     },
     {
       "name": "clerk-auth",
-      "description": "Claude Code skill for Clerk Auth",
+      "description": "adding Clerk to React/Vite projects, setting up Clerk in Next.",
       "category": "General"
     },
     {
       "name": "cloudflare-agents",
-      "description": "Claude Code skill for Cloudflare Agents",
+      "description": "building AI agents, creating stateful agents with WebSockets, implementing chat agents with streaming, scheduling tasks with cron/delays, running asynchronous workflows, building RAG (Retrieval Augmented Generation) systems with Vectorize, creatin...",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-browser-rendering",
-      "description": "Claude Code skill for Cloudflare Browser Rendering",
+      "description": "Production-ready knowledge domain for building browser automation workflows with Cloudflare Browser Rendering.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-cron-triggers",
-      "description": "Claude Code skill for Cloudflare Cron Triggers",
+      "description": "The cron expression that triggered this execution.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-d1",
-      "description": "Claude Code skill for Cloudflare D1",
+      "description": "Add to your wrangler.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-durable-objects",
-      "description": "Claude Code skill for Cloudflare Durable Objects",
+      "description": "building real-time applications, creating WebSocket servers with hibernation, implementing chat rooms or multiplayer games, coordinating between multiple clients, managing per-user or per-room state, implementing rate limiting or session managemen...",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-email-routing",
-      "description": "Claude Code skill for Cloudflare Email Routing",
+      "description": "setting up email routing, creating email workers, processing incoming emails, sending emails from Workers, implementing email allowlists/blocklists, forwarding emails with custom logic, replying to emails automatically, parsing email content, conf...",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-full-stack-integration",
-      "description": "Claude Code skill for Cloudflare Full Stack Integration",
+      "description": "Production-tested patterns for React + Cloudflare Workers + Hono + Clerk authentication.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-full-stack-scaffold",
-      "description": "Claude Code skill for Cloudflare Full Stack Scaffold",
+      "description": "Complete, production-ready starter project for building full-stack applications on Cloudflare with React, Hono, AI SDK, and all Cloudflare services pre-configured.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-hyperdrive",
-      "description": "Claude Code skill for Cloudflare Hyperdrive",
+      "description": "connecting Workers to existing databases, migrating PostgreSQL/MySQL to Cloudflare, setting up connection pooling, configuring Hyperdrive bindings, using node-postgres/postgres.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-images",
-      "description": "Claude Code skill for Cloudflare Images",
+      "description": "setting up Cloudflare Images storage, implementing user-uploaded images, creating responsive images, optimizing image formats (WebP/AVIF), resizing images via URL or Workers, debugging CORS errors with direct uploads, handling image transformation...",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-kv",
-      "description": "Claude Code skill for Cloudflare Kv",
+      "description": "Add to your wrangler.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-mcp-server",
-      "description": "Claude Code skill for Cloudflare Mcp Server",
+      "description": "skill when building Model Context Protocol (MCP) servers on Cloudflare Workers.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-nextjs",
-      "description": "Claude Code skill for Cloudflare Nextjs",
+      "description": "The OpenNext Cloudflare adapter (@opennextjs/cloudflare) transforms Next.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-queues",
-      "description": "Claude Code skill for Cloudflare Queues",
+      "description": "exponential backoff: delaySeconds: 60  message.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-r2",
-      "description": "Claude Code skill for Cloudflare R2",
+      "description": "Add to your wrangler.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-sandbox",
-      "description": "Claude Code skill for Cloudflare Sandbox",
+      "description": "Setting up Cloudflare Sandboxes, executing Python/Node.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-turnstile",
-      "description": "Claude Code skill for Cloudflare Turnstile",
+      "description": "Adding bot protection to forms, implementing login security, protecting API endpoints from abuse, migrating from reCAPTCHA/hCaptcha, encountering CSP errors with Turnstile, handling token validation failures, implementing E2E tests with Turnstile,...",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-vectorize",
-      "description": "Claude Code skill for Cloudflare Vectorize",
+      "description": "Complete implementation guide for Cloudflare Vectorize - a globally distributed vector database for building semantic search, RAG (Retrieval Augmented Generation), and AI-powered applications with Cloudflare Workers.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-worker-base",
-      "description": "Claude Code skill for Cloudflare Worker Base",
+      "description": "Create or update wrangler.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-workers-ai",
-      "description": "Claude Code skill for Cloudflare Workers Ai",
+      "description": "Production-ready knowledge domain for building AI-powered applications with Cloudflare Workers AI.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-workflows",
-      "description": "Claude Code skill for Cloudflare Workflows",
+      "description": "Workflows automatically persist state returned from step.",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-zero-trust-access",
-      "description": "Claude Code skill for Cloudflare Zero Trust Access",
+      "description": "skill when integrating Cloudflare Zero Trust Access authentication with Cloudflare Workers applications.",
       "category": "Cloudflare"
     },
     {
@@ -267,7 +267,7 @@
     },
     {
       "name": "content-collections",
-      "description": "Claude Code skill for Content Collections",
+      "description": "Content Collections transforms local content files (Markdown/MDX) into type-safe TypeScript data with automatic validation at build time.",
       "category": "General"
     },
     {
@@ -312,12 +312,12 @@
     },
     {
       "name": "drizzle-orm-d1",
-      "description": "Claude Code skill for Drizzle Orm D1",
+      "description": "Create src/db/schema.",
       "category": "General"
     },
     {
       "name": "elevenlabs-agents",
-      "description": "Claude Code skill for Elevenlabs Agents",
+      "description": "skill when building AI voice agents with the ElevenLabs Agents Platform.",
       "category": "AI/ML"
     },
     {
@@ -337,7 +337,7 @@
     },
     {
       "name": "fastmcp",
-      "description": "Claude Code skill for Fastmcp",
+      "description": "skill when building MCP (Model Context Protocol) servers with FastMCP in Python.",
       "category": "General"
     },
     {
@@ -347,7 +347,7 @@
     },
     {
       "name": "firecrawl-scraper",
-      "description": "Claude Code skill for Firecrawl Scraper",
+      "description": "scraping websites, crawling entire sites, extracting web content, converting HTML to markdown, building web scrapers, handling dynamic JavaScript content, bypassing anti-bot protection, extracting structured data from web pages, or when encounteri...",
       "category": "General"
     },
     {
@@ -402,7 +402,7 @@
     },
     {
       "name": "github-project-automation",
-      "description": "Claude Code skill for Github Project Automation",
+      "description": "libraries that support multiple Node.",
       "category": "Development Tools"
     },
     {
@@ -412,22 +412,22 @@
     },
     {
       "name": "google-gemini-api",
-      "description": "Claude Code skill for Google Gemini Api",
+      "description": "This skill uses the correct current SDK and provides a complete migration guide.",
       "category": "AI/ML"
     },
     {
       "name": "google-gemini-embeddings",
-      "description": "Claude Code skill for Google Gemini Embeddings",
+      "description": "implementing vector search with Google's embedding models, integrating with Cloudflare Vectorize, or building retrieval-augmented generation systems.",
       "category": "AI/ML"
     },
     {
       "name": "hono-routing",
-      "description": "Claude Code skill for Hono Routing",
+      "description": "building APIs with Hono (any runtime), setting up request validation with Zod/Valibot/Typia/ArkType validators, creating type-safe RPC client/server communication, implementing custom middleware, handling errors with HTTPException, extending Hono ...",
       "category": "General"
     },
     {
       "name": "hugo",
-      "description": "Claude Code skill for Hugo",
+      "description": "skill when encountering these scenarios: scaffolding new Hugo sites, choosing between Hugo Extended and Standard editions, integrating Tailwind CSS v4 with Hugo Pipes, configuring hugo.",
       "category": "General"
     },
     {
@@ -457,7 +457,7 @@
     },
     {
       "name": "multi-ai-consultant",
-      "description": "Claude Code skill for Multi Ai Consultant",
+      "description": "debugging attempts have failed, making significant architectural choices, security concerns, or need fresh perspective.",
       "category": "AI/ML"
     },
     {
@@ -467,7 +467,7 @@
     },
     {
       "name": "neon-vercel-postgres",
-      "description": "Claude Code skill for Neon Vercel Postgres",
+      "description": "DATABASEURL=\"postgresql://user:password@ep-xyz-pooler.",
       "category": "General"
     },
     {
@@ -477,32 +477,32 @@
     },
     {
       "name": "nextjs",
-      "description": "Claude Code skill for Nextjs",
+      "description": "Server Components are React components that render on the server.",
       "category": "Web Development"
     },
     {
       "name": "open-source-contributions",
-      "description": "Claude Code skill for Open Source Contributions",
+      "description": "skill when contributing code to open source projects.",
       "category": "General"
     },
     {
       "name": "openai-agents",
-      "description": "Claude Code skill for Openai Agents",
+      "description": "skill when building AI applications with OpenAI Agents SDK for JavaScript/TypeScript.",
       "category": "AI/ML"
     },
     {
       "name": "openai-api",
-      "description": "Claude Code skill for Openai Api",
+      "description": "The Chat Completions API is the core interface for interacting with OpenAI's language models.",
       "category": "AI/ML"
     },
     {
       "name": "openai-assistants",
-      "description": "Claude Code skill for Openai Assistants",
+      "description": "See references/migration-to-responses.",
       "category": "AI/ML"
     },
     {
       "name": "openai-responses",
-      "description": "Claude Code skill for Openai Responses",
+      "description": "building agentic workflows, conversational AI with memory, tools-based applications, RAG systems, data analysis agents, or any application requiring OpenAI's reasoning models with persistent state.",
       "category": "AI/ML"
     },
     {
@@ -517,12 +517,12 @@
     },
     {
       "name": "project-planning",
-      "description": "Claude Code skill for Project Planning",
+      "description": "You are a specialized project planning assistant.",
       "category": "General"
     },
     {
       "name": "project-session-management",
-      "description": "Claude Code skill for Project Session Management",
+      "description": "You are a session management assistant.",
       "category": "General"
     },
     {
@@ -542,7 +542,7 @@
     },
     {
       "name": "react-hook-form-zod",
-      "description": "Claude Code skill for React Hook Form Zod",
+      "description": "building forms with validation in React, integrating Zod schema validation with React Hook Form, using shadcn/ui Form or Field components, implementing client and server-side validation with a single schema, handling complex validation scenarios (...",
       "category": "Web Development"
     },
     {
@@ -1167,22 +1167,22 @@
     },
     {
       "name": "sveltia-cms",
-      "description": "Claude Code skill for Sveltia Cms",
+      "description": "Complete skill for integrating Sveltia CMS into static site projects.",
       "category": "General"
     },
     {
       "name": "tailwind-v4-shadcn",
-      "description": "Claude Code skill for Tailwind V4 Shadcn",
+      "description": "All of these are handled automatically when the skill is active.",
       "category": "Web Development"
     },
     {
       "name": "tanstack-query",
-      "description": "Claude Code skill for Tanstack Query",
+      "description": "initializing TanStack Query in React projects, configuring QueryClient settings, creating custom query hooks, implementing mutations with error handling, setting up optimistic updates, using useInfiniteQuery for pagination, migrating from React Qu...",
       "category": "General"
     },
     {
       "name": "tdd-reference",
-      "description": "Claude Code skill for Tdd Reference",
+      "description": "You are a lightweight TDD reference assistant.",
       "category": "General"
     },
     {
@@ -1217,7 +1217,7 @@
     },
     {
       "name": "thesys-generative-ui",
-      "description": "Claude Code skill for Thesys Generative Ui",
+      "description": "skill when implementing conversational UIs, AI assistants, search interfaces, or any application requiring real-time generative user interfaces with streaming LLM responses.",
       "category": "General"
     },
     {
@@ -1227,12 +1227,12 @@
     },
     {
       "name": "tinacms",
-      "description": "Claude Code skill for Tinacms",
+      "description": "Complete skill for integrating TinaCMS into modern web applications.",
       "category": "General"
     },
     {
       "name": "typescript-mcp",
-      "description": "Claude Code skill for Typescript Mcp",
+      "description": "skill when building MCP (Model Context Protocol) servers with TypeScript on Cloudflare Workers.",
       "category": "Automation"
     },
     {
@@ -1252,12 +1252,12 @@
     },
     {
       "name": "vercel-blob",
-      "description": "Claude Code skill for Vercel Blob",
+      "description": "This skill provides comprehensive knowledge for integrating Vercel Blob object storage into Vercel applications.",
       "category": "General"
     },
     {
       "name": "vercel-kv",
-      "description": "Claude Code skill for Vercel Kv",
+      "description": "KVRESTAPIURL=\"https://xyz.",
       "category": "General"
     },
     {
@@ -1282,7 +1282,7 @@
     },
     {
       "name": "wordpress-plugin-core",
-      "description": "Claude Code skill for Wordpress Plugin Core",
+      "description": "Creating new WordPress plugins, implementing nonces/sanitization/escaping, working with $wpdb and prepared statements, building Settings API pages, registering custom post types or taxonomies, implementing REST API endpoints, handling AJAX request...",
       "category": "General"
     },
     {
@@ -1302,7 +1302,7 @@
     },
     {
       "name": "zustand-state-management",
-      "description": "Claude Code skill for Zustand State Management",
+      "description": "Persist middleware reads from localStorage on client but not on server, causing state mismatch.",
       "category": "General"
     }
   ]
