@@ -71,7 +71,7 @@
         .stat-number { font-size: 2.5em; font-weight: bold; color: #3498db; }
         .stat-label {
             font-size: 0.9em;
-            color: #7f8c8d;
+            color: #5a6c7d;  /* Darker for WCAG AA compliance (4.5:1 contrast) */
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -99,7 +99,7 @@
             flex: 1;
         }
         .category-count {
-            color: #7f8c8d;
+            color: #5a6c7d;  /* Darker for WCAG AA compliance (4.5:1 contrast) */
             font-size: 0.9em;
             font-weight: normal;
         }
@@ -139,7 +139,7 @@
             border-bottom-color: #2d3748;
         }
         body.dark-mode .stat-label {
-            color: #a0a0a0;
+            color: #c5c5c5;  /* Lighter for WCAG AA compliance (4.5:1 contrast on dark bg) */
         }
         body.dark-mode .skills-container {
             background: #16213e;
@@ -149,7 +149,7 @@
             border-bottom-color: #667eea;
         }
         body.dark-mode .category-count {
-            color: #a0a0a0;
+            color: #c5c5c5;  /* Lighter for WCAG AA compliance (4.5:1 contrast on dark bg) */
         }
         body.dark-mode .skill-item {
             background: #1a1a2e;
@@ -302,7 +302,7 @@
         }
         .skill-description {
             font-size: 0.85em;
-            color: #7f8c8d;
+            color: #5a6c7d;  /* Darker for WCAG AA compliance (4.5:1 contrast) */
             line-height: 1.4;
             word-wrap: break-word;
         }
@@ -492,7 +492,7 @@
         <div class="script-preview" id="scriptPreview">
             <div class="script-header">
                 <span class="script-title" id="scriptTitle">Installation Script</span>
-                <button class="copy-btn" onclick="copyScript()">Copy to Clipboard</button>
+                <button class="copy-btn" onclick="copyScript(event)">Copy to Clipboard</button>
             </div>
             <div class="script-content" id="scriptContent"></div>
         </div>

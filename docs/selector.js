@@ -42,17 +42,31 @@ function setupEventListeners() {
 
 // Dark Mode Functions
 function loadDarkModePreference() {
-    const darkMode = localStorage.getItem('claudeskillz-darkmode') === 'true';
-    if (darkMode) {
-        document.body.classList.add('dark-mode');
-        updateDarkModeButton();
+    try {
+        if (typeof localStorage !== 'undefined') {
+            const darkMode = localStorage.getItem('claudeskillz-darkmode') === 'true';
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                updateDarkModeButton();
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load dark mode preference:', e.message);
     }
 }
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
     const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('claudeskillz-darkmode', isDark);
+
+    try {
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('claudeskillz-darkmode', isDark);
+        }
+    } catch (e) {
+        console.warn('Could not save dark mode preference:', e.message);
+    }
+
     updateDarkModeButton();
 }
 
@@ -268,6 +282,9 @@ function updateGenerateButton() {
 }
 
 function generateWindowsScript(skills) {
+    // Escape single quotes for PowerShell by doubling them
+    const escapedSkills = skills.map(s => s.replace(/'/g, "''"));
+
     return `# ClaudeSkillz Installation Script for Windows
 # Generated: ${new Date().toISOString()}
 # Selected Skills: ${skills.length}
@@ -300,7 +317,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # Install selected skills
 $selectedSkills = @(
-${skills.map(s => `    '${s}'`).join(',\n')}
+${escapedSkills.map(s => `    '${s}'`).join(',\n')}
 )
 
 foreach ($skill in $selectedSkills) {
@@ -322,6 +339,9 @@ Write-Host "Installation complete! ${skills.length} skills installed." -Foregrou
 }
 
 function generateLinuxScript(skills) {
+    // Escape double quotes and backslashes for Bash
+    const escapedSkills = skills.map(s => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"'));
+
     return `#!/usr/bin/env bash
 # ClaudeSkillz Installation Script for Linux/macOS
 # Generated: ${new Date().toISOString()}
@@ -348,7 +368,7 @@ git clone --depth 1 "$REPO_URL" "$TEMP_DIR"
 
 # Install selected skills
 SKILLS=(
-${skills.map(s => `    "${s}"`).join('\n')}
+${escapedSkills.map(s => `    "${s}"`).join('\n')}
 )
 
 for skill in "\${SKILLS[@]}"; do
@@ -393,18 +413,38 @@ function updateScriptPreview() {
     preview.classList.add('active');
 }
 
-function copyScript() {
+function copyScript(event) {
     const content = document.getElementById('scriptContent').textContent;
-    navigator.clipboard.writeText(content).then(() => {
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(() => {
-            btn.textContent = originalText;
-        }, 2000);
-    }).catch(err => {
-        alert('Failed to copy: ' + err);
-    });
+    const btn = event.target;
+    const originalText = btn.textContent;
+
+    // Modern Clipboard API with fallback for older browsers
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(content).then(() => {
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        }).catch(err => {
+            alert('Failed to copy: ' + err.message);
+        });
+    } else {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = content;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+            document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        } catch (err) {
+            alert('Failed to copy: ' + err.message);
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    }
 }
 
 function generateInstallScript() {
