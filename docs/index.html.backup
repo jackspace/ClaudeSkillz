@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Skills Installer - Ninite Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: #34495e;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: white;
+            color: #34495e;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .stats {
+            background: #ecf0f1;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .skill-card {
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .skill-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .skill-card.selected {
+            border-color: #27ae60;
+            background: #e8f8f5;
+        }
+
+        .skill-card .checkbox {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #bdc3c7;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-card.selected .checkbox {
+            background: #27ae60;
+            border-color: #27ae60;
+        }
+
+        .skill-card.selected .checkbox::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .skill-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-right: 30px;
+        }
+
+        .skill-description {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 20px;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+<script>
+    // Auto-generated skills data - injected at build time
+    window.EMBEDDED_SKILLS = [{"name": "ai-elements-chatbot", "description": "|", "category": "General"}, {"name": "ai-multimodal_mrgoonie", "description": "Process and generate multimedia content using Google Gemini API. Capabilities include analyze audio files (transcription with timestamps, summarization, speech understanding, music/sound analysis up t", "category": "General"}, {"name": "ai-sdk-core", "description": "|", "category": "General"}, {"name": "ai-sdk-ui", "description": "|", "category": "General"}, {"name": "api-integration-builder", "description": "Generates production-ready API clients with TypeScript types, retry logic, rate limiting, authentication (OAuth, API keys), error handling, and mock responses. Use when user says \"integrate API\", \"API", "category": "General"}, {"name": "auth-js", "description": "|", "category": "General"}, {"name": "auto-animate", "description": "|", "category": "General"}, {"name": "backend-dev-guidelines_diet103", "description": "Comprehensive backend development guide for Node.js/Express/TypeScript microservices. Use when creating routes, controllers, services, repositories, middleware, or working with Express APIs, Prisma da", "category": "General"}, {"name": "base-ui-react", "description": "|", "category": "Web Development"}, {"name": "bash-script-helper", "description": "Expert helper for bash scripting, debugging, and best practices", "category": "Automation"}, {"name": "better-auth", "description": "|", "category": "General"}, {"name": "better-auth_mrgoonie", "description": "Implement authentication and authorization with Better Auth - a framework-agnostic TypeScript authentication framework. Features include email/password authentication with verification, OAuth provider", "category": "General"}, {"name": "better-chatbot", "description": "|", "category": "General"}, {"name": "better-chatbot-patterns", "description": "|", "category": "General"}, {"name": "bilibili-subtitle-fetcher-skill_suyuan2022", "description": "从哔哩哔哩(B站)搜索视频、获取字幕并转换为 Markdown 格式。当用户需要搜索 B 站视频、下载视频字幕、批量获取字幕、分析视频内容时使用。支持关键词搜索、单视频处理、批量并发下载。", "category": "General"}, {"name": "brainstorming_obra", "description": "Use when creating or developing, before writing code or implementation plans - refines rough ideas into fully-formed designs through collaborative questioning, alternative exploration, and incremental", "category": "General"}, {"name": "browser-app-creator", "description": "Creates complete single-file HTML/CSS/JS web apps with localStorage persistence, ADHD-optimized UI (60px+ buttons), dark mode, and offline functionality. Use when user says \"create app\", \"build tool\",", "category": "General"}, {"name": "bulk-github-skills-downloader", "description": "Expert skill for downloading and consolidating Claude Code skills from multiple GitHub repositories efficiently.", "category": "Development Tools"}, {"name": "checkpoint-workflow-builder", "description": "---", "category": "Automation"}, {"name": "chrome-devtools_mrgoonie", "description": "Browser automation, debugging, and performance analysis using Puppeteer CLI scripts. Use for automating browsers, taking screenshots, analyzing performance, monitoring network traffic, web scraping, f", "category": "General"}, {"name": "claude-agent-sdk", "description": "|", "category": "General"}, {"name": "claude-api", "description": "|", "category": "General"}, {"name": "claude-code-bash-patterns", "description": "|", "category": "Development Tools"}, {"name": "claude-code_mrgoonie", "description": "Claude Code is Anthropic's agentic coding tool that lives in the terminal and helps turn ideas into code faster. It combines autonomous planning, execution, and validation with extensibility through s", "category": "Development Tools"}, {"name": "claude-d3js-skill_chrisvoncsefalvay", "description": "Creating interactive data visualisations using d3.js. This skill should be used when creating custom charts, graphs, network diagrams, geographic visualisations, or any complex SVG-based data visualis", "category": "General"}, {"name": "claude-git-branching", "description": "---", "category": "Development Tools"}, {"name": "clerk-auth", "description": "|", "category": "General"}, {"name": "cloudflare-agents", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-browser-rendering", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-cron-triggers", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-d1", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-durable-objects", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-email-routing", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-full-stack-integration", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-full-stack-scaffold", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-hyperdrive", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-images", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-kv", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-mcp-server", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-nextjs", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-queues", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-r2", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-sandbox", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-turnstile", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-vectorize", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-worker-base", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-workers-ai", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-workflows", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "cloudflare-zero-trust-access", "description": "|", "category": "Cloud & Infrastructure"}, {"name": "code-review_mrgoonie", "description": "Use when receiving code review feedback (especially if unclear or technically questionable), when completing tasks or major features requiring review before proceeding, or before making any completion", "category": "Development Tools"}, {"name": "codex", "description": "Executes OpenAI Codex CLI for code analysis, refactoring, and automated editing. Activates when users mention codex commands, code review requests, or automated code transformations requiring advanced", "category": "Development Tools"}, {"name": "comfyui-workflow-helper", "description": "Expert guidance for ComfyUI workflow creation, node configuration, and optimization.", "category": "Automation"}, {"name": "condition-based-waiting_obra", "description": "Use when tests have race conditions, timing dependencies, or inconsistent pass/fail behavior - replaces arbitrary timeouts with condition polling to wait for actual state changes, eliminating flaky te", "category": "General"}, {"name": "content-collections", "description": "|", "category": "General"}, {"name": "context-manager", "description": "Manages permanent memory storage for decisions, blockers, context, preferences, and procedures. Use when user says \"remember\", \"save this decision\", \"what did we decide\", \"recall\", \"search memories\", ", "category": "General"}, {"name": "csv-data-summarizer-claude-skill_coffeefuelbump", "description": "Analyzes CSV files, generates summary stats, and plots quick visualizations using Python and pandas.", "category": "General"}, {"name": "databases_mrgoonie", "description": "Work with MongoDB (document database, BSON documents, aggregation pipelines, Atlas cloud) and PostgreSQL (relational database, SQL queries, psql CLI, pgAdmin). Use when designing database schemas, wri", "category": "General"}, {"name": "defense-in-depth_obra", "description": "Use when invalid data causes failures deep in execution, requiring validation at multiple system layers - validates at every layer data passes through to make bugs structurally impossible", "category": "General"}, {"name": "devops_mrgoonie", "description": "Deploy and manage cloud infrastructure on Cloudflare (Workers, R2, D1, KV, Pages, Durable Objects, Browser Rendering), Docker containers, and Google Cloud Platform (Compute Engine, GKE, Cloud Run, App", "category": "Infrastructure"}, {"name": "dispatching-parallel-agents_obra", "description": "Use when facing 3+ independent failures that can be investigated without shared state or dependencies - dispatches multiple Claude agents to investigate and fix independent problems concurrently", "category": "General"}, {"name": "docker-helper", "description": "Expert helper for Docker containers, Docker Compose, and container optimization", "category": "Infrastructure"}, {"name": "docs-seeker_mrgoonie", "description": "\"Searching internet for technical documentation using llms.txt standard, GitHub repositories via Repomix, and parallel exploration. Use when user needs: (1) Latest documentation for libraries/framewor", "category": "General"}, {"name": "drizzle-orm-d1", "description": "|", "category": "General"}, {"name": "elevenlabs-agents", "description": "|", "category": "General"}, {"name": "error-debugger", "description": "Analyzes errors, searches past solutions in memory, provides immediate fixes with code examples, and saves solutions for future reference. Use when user says \"debug this\", \"fix this error\", \"why is th", "category": "Development Tools"}, {"name": "error-tracking_diet103", "description": "Add Sentry v8 error tracking and performance monitoring to your project services. Use this skill when adding error handling, creating new controllers, instrumenting cron jobs, or tracking database per", "category": "General"}, {"name": "executing-plans_obra", "description": "Use when partner provides a complete implementation plan to execute in controlled batches with review checkpoints - loads plan, reviews critically, executes tasks in batches, reports for review betwee", "category": "General"}, {"name": "fastmcp", "description": "|", "category": "General"}, {"name": "finishing-a-development-branch_obra", "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup", "category": "General"}, {"name": "firecrawl-scraper", "description": "|", "category": "General"}, {"name": "fluxwing-component-creator", "description": "Create uxscii components with ASCII art and structured metadata when user wants to create, build, or design UI components. Use when working with .uxm files, when user mentions .uxm components, or when", "category": "General"}, {"name": "fluxwing-component-expander", "description": "Add interaction states like hover, focus, disabled, active, error to existing uxscii components. Use when working with .uxm files, when user wants to expand, enhance, or add states to .uxm components.", "category": "General"}, {"name": "fluxwing-component-viewer", "description": "View detailed information about a specific uxscii component including metadata, states, props, and ASCII preview. Use when working with .uxm files, when user wants to see, view, inspect, or get detail", "category": "General"}, {"name": "fluxwing-enhancer", "description": "Enhance uxscii components from sketch to production fidelity. Use when working with .uxm files marked as \"fidelity: sketch\" or when user wants to add detail and polish to components.", "category": "General"}, {"name": "fluxwing-library-browser", "description": "Browse and view all available uxscii components including bundled templates, user components, and screens. Use when working with .uxm files, when user wants to see, list, browse, or search .uxm compon", "category": "General"}, {"name": "fluxwing-screen-scaffolder", "description": "Build complete UI screens by composing multiple uxscii components. Use when working with .uxm files, when user wants to create, scaffold, or build .uxm screens like login, dashboard, profile, settings", "category": "General"}, {"name": "fluxwing-screenshot-importer", "description": "Import UI screenshots and generate uxscii components automatically using vision analysis. Use when user wants to import, convert, or generate .uxm components from screenshots or images.", "category": "General"}, {"name": "frontend-dev-guidelines_diet103", "description": "Frontend development guidelines for React/TypeScript applications. Modern patterns including Suspense, lazy loading, useSuspenseQuery, file organization with features directory, MUI v7 styling, TanSta", "category": "Web Development"}, {"name": "git-workflow-helper", "description": "Expert guidance for Git workflows, troubleshooting, and best practices", "category": "Development Tools"}, {"name": "github-auth", "description": "Securely authenticate with GitHub using stored credentials for API operations and git commands", "category": "Development Tools"}, {"name": "github-project-automation", "description": "|", "category": "Development Tools"}, {"name": "google-adk-python_mrgoonie", "description": "You are an expert guide for Google's Agent Development Kit (ADK) Python - an open-source, code-first toolkit for building, evaluating, and deploying AI agents.", "category": "General"}, {"name": "google-gemini-api", "description": "|", "category": "General"}, {"name": "google-gemini-embeddings", "description": "|", "category": "General"}, {"name": "hono-routing", "description": "|", "category": "General"}, {"name": "hugo", "description": "|", "category": "General"}, {"name": "infrastructure-skill-builder", "description": "---", "category": "General"}, {"name": "json-config-helper", "description": "Validate, format, and work with JSON configuration files", "category": "General"}, {"name": "mcp-builder_mrgoonie", "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate externa", "category": "General"}, {"name": "media-processing_mrgoonie", "description": "Process multimedia files with FFmpeg (video/audio encoding, conversion, streaming, filtering, hardware acceleration) and ImageMagick (image manipulation, format conversion, batch processing, effects, ", "category": "General"}, {"name": "motion", "description": "---", "category": "General"}, {"name": "multi-ai-consultant", "description": "|", "category": "General"}, {"name": "multi-repository-orchestrator", "description": "---", "category": "General"}, {"name": "neon-vercel-postgres", "description": "|", "category": "General"}, {"name": "network-diagnostics", "description": "Automated network troubleshooting and diagnostics for WSL/Linux environments", "category": "General"}, {"name": "nextjs", "description": "|", "category": "Web Development"}, {"name": "open-source-contributions", "description": "|", "category": "General"}, {"name": "openai-agents", "description": "|", "category": "General"}, {"name": "openai-api", "description": "|", "category": "General"}, {"name": "openai-assistants", "description": "|", "category": "General"}, {"name": "openai-responses", "description": "|", "category": "General"}, {"name": "playwright-skill", "description": "Persistent browser automation via Playwright daemon. Keep a browser window open and send it commands (navigate, execute JS, inspect console). Perfect for interactive debugging, development, and testin", "category": "General"}, {"name": "playwright-skill_playwright", "description": "Complete browser automation with Playwright. Auto-detects dev servers, writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check responsive design, validate UX, test login flo", "category": "General"}, {"name": "project-planning", "description": ">", "category": "General"}, {"name": "project-session-management", "description": ">", "category": "General"}, {"name": "proxmox-auth", "description": "Expert guidance for Proxmox VE cluster authentication, API access, and infrastructure management.", "category": "General"}, {"name": "pypict-claude-skill_omkamal", "description": "Design comprehensive test cases using PICT (Pairwise Independent Combinatorial Testing) for any piece of requirements or code. Analyzes inputs, generates PICT models with parameters, values, and const", "category": "General"}, {"name": "rapid-prototyper", "description": "Creates minimal working prototypes for quick idea validation. Single-file when possible, includes test data, ready to demo immediately. Use when user says \"prototype\", \"MVP\", \"proof of concept\", \"quic", "category": "General"}, {"name": "react-hook-form-zod", "description": "|", "category": "Web Development"}, {"name": "repomix_mrgoonie", "description": "Package entire code repositories into single AI-friendly files using Repomix. Capabilities include pack codebases with customizable include/exclude patterns, generate multiple output formats (XML, Mar", "category": "General"}, {"name": "repository-analyzer", "description": "Analyzes codebases to generate comprehensive documentation including structure, languages, frameworks, dependencies, design patterns, and technical debt. Use when user says \"analyze repository\", \"unde", "category": "General"}, {"name": "root-cause-tracing_obra", "description": "Use when errors occur deep in execution and you need to trace back to find the original trigger - systematically traces bugs backward through call stack, adding instrumentation when needed, to identif", "category": "General"}, {"name": "route-tester_diet103", "description": "Test authenticated routes in the your project using cookie-based authentication. Use this skill when testing API endpoints, validating route functionality, or debugging authentication issues. Includes", "category": "General"}, {"name": "scientific-db-alphafold-database", "description": "\"Access AlphaFold's 200M+ AI-predicted protein structures. Retrieve structures by UniProt ID, download PDB/mmCIF files, analyze confidence metrics (pLDDT, PAE), for drug discovery and structural biolo", "category": "Scientific"}, {"name": "scientific-db-biorxiv-database", "description": "Efficient database search tool for bioRxiv preprint server. Use this skill when searching for life sciences preprints by keywords, authors, date ranges, or categories, retrieving paper metadata, downl", "category": "Scientific"}, {"name": "scientific-db-chembl-database", "description": "\"Query ChEMBL's bioactive molecules and drug discovery data. Search compounds by structure/properties, retrieve bioactivity data (IC50, Ki), find inhibitors, perform SAR studies, for medicinal chemist", "category": "Scientific"}, {"name": "scientific-db-clinicaltrials-database", "description": "\"Query ClinicalTrials.gov via API v2. Search trials by condition, drug, location, status, or phase. Retrieve trial details by NCT ID, export data, for clinical research and patient matching.\"", "category": "Scientific"}, {"name": "scientific-db-clinpgx-database", "description": "\"Access ClinPGx pharmacogenomics data (successor to PharmGKB). Query gene-drug interactions, CPIC guidelines, allele functions, for precision medicine and genotype-guided dosing decisions.\"", "category": "Scientific"}, {"name": "scientific-db-clinvar-database", "description": "\"Query NCBI ClinVar for variant clinical significance. Search by gene/position, interpret pathogenicity classifications, access via E-utilities API or FTP, annotate VCFs, for genomic medicine.\"", "category": "Scientific"}, {"name": "scientific-db-cosmic-database", "description": "\"Access COSMIC cancer mutation database. Query somatic mutations, Cancer Gene Census, mutational signatures, gene fusions, for cancer research and precision oncology. Requires authentication.\"", "category": "Scientific"}, {"name": "scientific-db-drugbank-database", "description": "Access and analyze comprehensive drug information from the DrugBank database including drug properties, interactions, targets, pathways, chemical structures, and pharmacology data. This skill should b", "category": "Scientific"}, {"name": "scientific-db-ena-database", "description": "\"Access European Nucleotide Archive via API/FTP. Retrieve DNA/RNA sequences, raw reads (FASTQ), genome assemblies by accession, for genomics and bioinformatics pipelines. Supports multiple formats.\"", "category": "Scientific"}, {"name": "scientific-db-ensembl-database", "description": "\"Query Ensembl genome database REST API for 250+ species. Gene lookups, sequence retrieval, variant analysis, comparative genomics, orthologs, VEP predictions, for genomic research.\"", "category": "Scientific"}, {"name": "scientific-db-fda-database", "description": "\"Query openFDA API for drugs, devices, adverse events, recalls, regulatory submissions (510k, PMA), substance identification (UNII), for FDA regulatory data analysis and safety research.\"", "category": "Scientific"}, {"name": "scientific-db-gene-database", "description": "\"Query NCBI Gene via E-utilities/Datasets API. Search by symbol/ID, retrieve gene info (RefSeqs, GO, locations, phenotypes), batch lookups, for gene annotation and functional analysis.\"", "category": "Scientific"}, {"name": "scientific-db-geo-database", "description": "\"Access NCBI GEO for gene expression/genomics data. Search/download microarray and RNA-seq datasets (GSE, GSM, GPL), retrieve SOFT/Matrix files, for transcriptomics and expression analysis.\"", "category": "Scientific"}, {"name": "scientific-db-gwas-database", "description": "\"Query NHGRI-EBI GWAS Catalog for SNP-trait associations. Search variants by rs ID, disease/trait, gene, retrieve p-values and summary statistics, for genetic epidemiology and polygenic risk scores.\"", "category": "Scientific"}, {"name": "scientific-db-hmdb-database", "description": "\"Access Human Metabolome Database (220K+ metabolites). Search by name/ID/structure, retrieve chemical properties, biomarker data, NMR/MS spectra, pathways, for metabolomics and identification.\"", "category": "Scientific"}, {"name": "scientific-db-kegg-database", "description": "\"Direct REST API access to KEGG (academic use only). Pathway analysis, gene-pathway mapping, metabolic pathways, drug interactions, ID conversion. For Python workflows with multiple databases, prefer ", "category": "Scientific"}, {"name": "scientific-db-metabolomics-workbench-database", "description": "\"Access NIH Metabolomics Workbench via REST API (4,200+ studies). Query metabolites, RefMet nomenclature, MS/NMR data, m/z searches, study metadata, for metabolomics and biomarker discovery.\"", "category": "Scientific"}, {"name": "scientific-db-opentargets-database", "description": "\"Query Open Targets Platform for target-disease associations, drug target discovery, tractability/safety data, genetics/omics evidence, known drugs, for therapeutic target identification.\"", "category": "Scientific"}, {"name": "scientific-db-pdb-database", "description": "\"Access RCSB PDB for 3D protein/nucleic acid structures. Search by text/sequence/structure, download coordinates (PDB/mmCIF), retrieve metadata, for structural biology and drug discovery.\"", "category": "Scientific"}, {"name": "scientific-db-pubchem-database", "description": "\"Query PubChem via PUG-REST API/PubChemPy (110M+ compounds). Search by name/CID/SMILES, retrieve properties, similarity/substructure searches, bioactivity, for cheminformatics.\"", "category": "Scientific"}, {"name": "scientific-db-pubmed-database", "description": "\"Direct REST API access to PubMed. Advanced Boolean/MeSH queries, E-utilities API, batch processing, citation management. For Python workflows, prefer biopython (Bio.Entrez). Use this for direct HTTP/", "category": "Scientific"}, {"name": "scientific-db-string-database", "description": "\"Query STRING API for protein-protein interactions (59M proteins, 20B interactions). Network analysis, GO/KEGG enrichment, interaction discovery, 5000+ species, for systems biology.\"", "category": "Scientific"}, {"name": "scientific-db-uniprot-database", "description": "\"Direct REST API access to UniProt. Protein searches, FASTA retrieval, ID mapping, Swiss-Prot/TrEMBL. For Python workflows with multiple databases, prefer bioservices (unified interface to 40+ service", "category": "Scientific"}, {"name": "scientific-db-uspto-database", "description": "\"Access USPTO APIs for patent/trademark searches, examination history (PEDS), assignments, citations, office actions, TSDR, for IP analysis and prior art searches.\"", "category": "Scientific"}, {"name": "scientific-db-zinc-database", "description": "\"Access ZINC (230M+ purchasable compounds). Search by ZINC ID/SMILES, similarity searches, 3D-ready structures for docking, analog discovery, for virtual screening and drug discovery.\"", "category": "Scientific"}, {"name": "scientific-integration-benchling-integration", "description": "\"Benchling R&D platform integration. Access registry (DNA, proteins), inventory, ELN entries, workflows via API, build Benchling Apps, query Data Warehouse, for lab data management automation.\"", "category": "Scientific"}, {"name": "scientific-integration-dnanexus-integration", "description": "\"DNAnexus cloud genomics platform. Build apps/applets, manage data (upload/download), dxpy Python SDK, run workflows, FASTQ/BAM/VCF, for genomics pipeline development and execution.\"", "category": "Scientific"}, {"name": "scientific-integration-labarchive-integration", "description": "\"Electronic lab notebook API integration. Access notebooks, manage entries/attachments, backup notebooks, integrate with Protocols.io/Jupyter/REDCap, for programmatic ELN workflows.\"", "category": "Scientific"}, {"name": "scientific-integration-latchbio-integration", "description": "\"Latch platform for bioinformatics workflows. Build pipelines with Latch SDK, @workflow/@task decorators, deploy serverless workflows, LatchFile/LatchDir, Nextflow/Snakemake integration.\"", "category": "Scientific"}, {"name": "scientific-integration-omero-integration", "description": "\"Microscopy data management platform. Access images via Python, retrieve datasets, analyze pixels, manage ROIs/annotations, batch processing, for high-content screening and microscopy workflows.\"", "category": "Scientific"}, {"name": "scientific-integration-opentrons-integration", "description": "\"Lab automation platform for Flex/OT-2 robots. Write Protocol API v2 protocols, liquid handling, hardware modules (heater-shaker, thermocycler), labware management, for automated pipetting workflows.\"", "category": "Scientific"}, {"name": "scientific-integration-protocolsio-integration", "description": "Integration with protocols.io API for managing scientific protocols. This skill should be used when working with protocols.io to search, create, update, or publish protocols; manage protocol steps and", "category": "Scientific"}, {"name": "scientific-pkg-aeon", "description": "This skill should be used for time series machine learning tasks including classification, regression, clustering, forecasting, anomaly detection, segmentation, and similarity search. Use when working", "category": "Scientific"}, {"name": "scientific-pkg-anndata", "description": "This skill should be used when working with annotated data matrices in Python, particularly for single-cell genomics analysis, managing experimental measurements with metadata, or handling large-scale", "category": "Scientific"}, {"name": "scientific-pkg-arboreto", "description": "Infer gene regulatory networks (GRNs) from gene expression data using scalable algorithms (GRNBoost2, GENIE3). Use when analyzing transcriptomics data (bulk RNA-seq, single-cell RNA-seq) to identify t", "category": "Scientific"}, {"name": "scientific-pkg-astropy", "description": "Comprehensive Python library for astronomy and astrophysics. This skill should be used when working with astronomical data including celestial coordinates, physical units, FITS files, cosmological cal", "category": "Scientific"}, {"name": "scientific-pkg-biomni", "description": "Autonomous biomedical AI agent framework for executing complex research tasks across genomics, drug discovery, molecular biology, and clinical analysis. Use this skill when conducting multi-step biome", "category": "Scientific"}, {"name": "scientific-pkg-biopython", "description": "\"Primary Python toolkit for molecular biology. Preferred for Python-based PubMed/NCBI queries (Bio.Entrez), sequence manipulation, file parsing (FASTA, GenBank, FASTQ, PDB), advanced BLAST workflows, ", "category": "Scientific"}, {"name": "scientific-pkg-bioservices", "description": "\"Primary Python tool for 40+ bioinformatics services. Preferred for multi-database workflows: UniProt, KEGG, ChEMBL, PubChem, Reactome, QuickGO. Unified API for queries, ID mapping, pathway analysis. ", "category": "Scientific"}, {"name": "scientific-pkg-cellxgene-census", "description": "\"Query CZ CELLxGENE Census (61M+ cells). Filter by cell type/tissue/disease, retrieve expression data, integrate with scanpy/PyTorch, for population-scale single-cell analysis.\"", "category": "Scientific"}, {"name": "scientific-pkg-cobrapy", "description": "\"Constraint-based metabolic modeling (COBRA). FBA, FVA, gene knockouts, flux sampling, SBML models, for systems biology and metabolic engineering analysis.\"", "category": "Scientific"}, {"name": "scientific-pkg-dask", "description": "\"Parallel/distributed computing. Scale pandas/NumPy beyond memory, parallel DataFrames/Arrays, multi-file processing, task graphs, for larger-than-RAM datasets and parallel workflows.\"", "category": "Scientific"}, {"name": "scientific-pkg-datacommons-client", "description": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources. Use this skill when working with demographic data, economic indicators, health statisti", "category": "Scientific"}, {"name": "scientific-pkg-datamol", "description": "\"Pythonic wrapper around RDKit with simplified interface and sensible defaults. Preferred for standard drug discovery: SMILES parsing, standardization, descriptors, fingerprints, clustering, 3D confor", "category": "Scientific"}, {"name": "scientific-pkg-deepchem", "description": "\"Molecular machine learning toolkit. Property prediction (ADMET, toxicity), GNNs (GCN, MPNN), MoleculeNet benchmarks, pretrained models, featurization, for drug discovery ML.\"", "category": "Scientific"}, {"name": "scientific-pkg-deeptools", "description": "\"NGS analysis toolkit. BAM to bigWig conversion, QC (correlation, PCA, fingerprints), heatmaps/profiles (TSS, peaks), for ChIP-seq, RNA-seq, ATAC-seq visualization.\"", "category": "Scientific"}, {"name": "scientific-pkg-denario", "description": "Multiagent AI system for scientific research assistance that automates research workflows from data analysis to publication. This skill should be used when generating research ideas from datasets, dev", "category": "Scientific"}, {"name": "scientific-pkg-diffdock", "description": "\"Diffusion-based molecular docking. Predict protein-ligand binding poses from PDB/SMILES, confidence scores, virtual screening, for structure-based drug design. Not for affinity prediction.\"", "category": "Scientific"}, {"name": "scientific-pkg-esm", "description": "Comprehensive toolkit for protein language models including ESM3 (generative multimodal protein design across sequence, structure, and function) and ESM C (efficient protein embeddings and representat", "category": "Scientific"}, {"name": "scientific-pkg-etetoolkit", "description": "\"Phylogenetic tree toolkit (ETE). Tree manipulation (Newick/NHX), evolutionary event detection, orthology/paralogy, NCBI taxonomy, visualization (PDF/SVG), for phylogenomics.\"", "category": "Scientific"}, {"name": "scientific-pkg-flowio", "description": "\"Parse FCS (Flow Cytometry Standard) files v2.0-3.1. Extract events as NumPy arrays, read metadata/channels, convert to CSV/DataFrame, for flow cytometry data preprocessing.\"", "category": "Scientific"}, {"name": "scientific-pkg-geniml", "description": "This skill should be used when working with genomic interval data (BED files) for machine learning tasks. Use for training region embeddings (Region2Vec, BEDspace), single-cell ATAC-seq analysis (scEm", "category": "Scientific"}, {"name": "scientific-pkg-gget", "description": "\"CLI/Python toolkit for rapid bioinformatics queries. Preferred for quick BLAST searches. Access to 20+ databases: gene info (Ensembl/UniProt), AlphaFold, ARCHS4, Enrichr, OpenTargets, COSMIC, genome ", "category": "Scientific"}, {"name": "scientific-pkg-gtars", "description": "High-performance toolkit for genomic interval analysis in Rust with Python bindings. Use when working with genomic regions, BED files, coverage tracks, overlap detection, tokenization for ML models, o", "category": "Scientific"}, {"name": "scientific-pkg-histolab", "description": "Digital pathology image processing toolkit for whole slide images (WSI). Use this skill when working with histopathology slides, processing H&E or IHC stained tissue images, extracting tiles from giga", "category": "Scientific"}, {"name": "scientific-pkg-hypogenic", "description": "Automated hypothesis generation and testing using large language models. Use this skill when generating scientific hypotheses from datasets, combining literature insights with empirical data, testing ", "category": "Scientific"}, {"name": "scientific-pkg-lamindb", "description": "This skill should be used when working with LaminDB, an open-source data framework for biology that makes data queryable, traceable, reproducible, and FAIR. Use when managing biological datasets (scRN", "category": "Scientific"}, {"name": "scientific-pkg-markitdown", "description": "Convert various file formats (PDF, Office documents, images, audio, web content, structured data) to Markdown optimized for LLM processing. Use when converting documents to markdown, extracting text f", "category": "Scientific"}, {"name": "scientific-pkg-matchms", "description": "\"Mass spectrometry analysis. Process mzML/MGF/MSP, spectral similarity (cosine, modified cosine), metadata harmonization, compound ID, for metabolomics and MS data processing.\"", "category": "Scientific"}, {"name": "scientific-pkg-matplotlib", "description": "\"Foundational plotting library. Create line plots, scatter, bar, histograms, heatmaps, 3D, subplots, export PNG/PDF/SVG, for scientific visualization and publication figures.\"", "category": "Scientific"}, {"name": "scientific-pkg-medchem", "description": "\"Medicinal chemistry filters. Apply drug-likeness rules (Lipinski, Veber), PAINS filters, structural alerts, complexity metrics, for compound prioritization and library filtering.\"", "category": "Scientific"}, {"name": "scientific-pkg-molfeat", "description": "\"Molecular featurization for ML (100+ featurizers). ECFP, MACCS, descriptors, pretrained models (ChemBERTa), convert SMILES to features, for QSAR and molecular ML.\"", "category": "Scientific"}, {"name": "scientific-pkg-networkx", "description": "Comprehensive toolkit for creating, analyzing, and visualizing complex networks and graphs in Python. Use when working with network/graph data structures, analyzing relationships between entities, com", "category": "Scientific"}, {"name": "scientific-pkg-neurokit2", "description": "Comprehensive biosignal processing toolkit for analyzing physiological data including ECG, EEG, EDA, RSP, PPG, EMG, and EOG signals. Use this skill when processing cardiovascular signals, brain activi", "category": "Scientific"}, {"name": "scientific-pkg-paper-2-web", "description": "This skill should be used when converting academic papers into promotional and presentation formats including interactive websites (Paper2Web), presentation videos (Paper2Video), and conference poster", "category": "Scientific"}, {"name": "scientific-pkg-pathml", "description": "Computational pathology toolkit for analyzing whole-slide images (WSI) and multiparametric imaging data. Use this skill when working with histopathology slides, H&E stained images, multiplex immunoflu", "category": "Scientific"}, {"name": "scientific-pkg-polars", "description": "\"Fast DataFrame library (Apache Arrow). Select, filter, group_by, joins, lazy evaluation, CSV/Parquet I/O, expression API, for high-performance data analysis workflows.\"", "category": "Scientific"}, {"name": "scientific-pkg-pufferlib", "description": "This skill should be used when working with reinforcement learning tasks including high-performance RL training, custom environment development, vectorized parallel simulation, multi-agent systems, or", "category": "Scientific"}, {"name": "scientific-pkg-pydeseq2", "description": "\"Differential gene expression analysis (Python DESeq2). Identify DE genes from bulk RNA-seq counts, Wald tests, FDR correction, volcano/MA plots, for RNA-seq analysis.\"", "category": "Scientific"}, {"name": "scientific-pkg-pydicom", "description": "Python library for working with DICOM (Digital Imaging and Communications in Medicine) files. Use this skill when reading, writing, or modifying medical imaging data in DICOM format, extracting pixel ", "category": "Scientific"}, {"name": "scientific-pkg-pyhealth", "description": "Comprehensive healthcare AI toolkit for developing, testing, and deploying machine learning models with clinical data. This skill should be used when working with electronic health records (EHR), clin", "category": "Scientific"}, {"name": "scientific-pkg-pylabrobot", "description": "Laboratory automation toolkit for controlling liquid handlers, plate readers, pumps, heater shakers, incubators, centrifuges, and analytical equipment. Use this skill when automating laboratory workfl", "category": "Scientific"}, {"name": "scientific-pkg-pymatgen", "description": "\"Materials science toolkit. Crystal structures (CIF, POSCAR), phase diagrams, band structure, DOS, Materials Project integration, format conversion, for computational materials science.\"", "category": "Scientific"}, {"name": "scientific-pkg-pymc", "description": "\"Bayesian modeling with PyMC. Build hierarchical models, MCMC (NUTS), variational inference, LOO/WAIC comparison, posterior checks, for probabilistic programming and inference.\"", "category": "Scientific"}, {"name": "scientific-pkg-pymoo", "description": "\"Multi-objective optimization framework. NSGA-II, NSGA-III, MOEA/D, Pareto fronts, constraint handling, benchmarks (ZDT, DTLZ), for engineering design and optimization problems.\"", "category": "Scientific"}, {"name": "scientific-pkg-pyopenms", "description": "Python interface to OpenMS for mass spectrometry data analysis. Use for LC-MS/MS proteomics and metabolomics workflows including file handling (mzML, mzXML, mzTab, FASTA, pepXML, protXML, mzIdentML), ", "category": "Scientific"}, {"name": "scientific-pkg-pysam", "description": "\"Genomic file toolkit. Read/write SAM/BAM/CRAM alignments, VCF/BCF variants, FASTA/FASTQ sequences, extract regions, calculate coverage, for NGS data processing pipelines.\"", "category": "Scientific"}, {"name": "scientific-pkg-pytdc", "description": "\"Therapeutics Data Commons. AI-ready drug discovery datasets (ADME, toxicity, DTI), benchmarks, scaffold splits, molecular oracles, for therapeutic ML and pharmacological prediction.\"", "category": "Scientific"}, {"name": "scientific-pkg-pytorch-lightning", "description": "\"Deep learning framework (PyTorch Lightning). Organize PyTorch code into LightningModules, configure Trainers for multi-GPU/TPU, implement data pipelines, callbacks, logging (W&B, TensorBoard), distri", "category": "Scientific"}, {"name": "scientific-pkg-rdkit", "description": "\"Cheminformatics toolkit for fine-grained molecular control. SMILES/SDF parsing, descriptors (MW, LogP, TPSA), fingerprints, substructure search, 2D/3D generation, similarity, reactions. For standard ", "category": "Scientific"}, {"name": "scientific-pkg-reportlab", "description": "\"PDF generation toolkit. Create invoices, reports, certificates, forms, charts, tables, barcodes, QR codes, Canvas/Platypus APIs, for professional document automation.\"", "category": "Scientific"}, {"name": "scientific-pkg-scanpy", "description": "\"Single-cell RNA-seq analysis. Load .h5ad/10X data, QC, normalization, PCA/UMAP/t-SNE, Leiden clustering, marker genes, cell type annotation, trajectory, for scRNA-seq analysis.\"", "category": "Scientific"}, {"name": "scientific-pkg-scikit-bio", "description": "\"Biological data toolkit. Sequence analysis, alignments, phylogenetic trees, diversity metrics (alpha/beta, UniFrac), ordination (PCoA), PERMANOVA, FASTA/Newick I/O, for microbiome analysis.\"", "category": "Scientific"}, {"name": "scientific-pkg-scikit-learn", "description": "Machine learning in Python with scikit-learn. Use when working with supervised learning (classification, regression), unsupervised learning (clustering, dimensionality reduction), model evaluation, hy", "category": "Scientific"}, {"name": "scientific-pkg-scikit-survival", "description": "Comprehensive toolkit for survival analysis and time-to-event modeling in Python using scikit-survival. Use this skill when working with censored survival data, performing time-to-event analysis, fitt", "category": "Scientific"}, {"name": "scientific-pkg-scvi-tools", "description": "This skill should be used when working with single-cell omics data analysis using scvi-tools, including scRNA-seq, scATAC-seq, CITE-seq, spatial transcriptomics, and other single-cell modalities. Use ", "category": "Scientific"}, {"name": "scientific-pkg-seaborn", "description": "\"Statistical visualization. Scatter, box, violin, heatmaps, pair plots, regression, correlation matrices, KDE, faceted plots, for exploratory analysis and publication figures.\"", "category": "Scientific"}, {"name": "scientific-pkg-shap", "description": "Model interpretability and explainability using SHAP (SHapley Additive exPlanations). Use this skill when explaining machine learning model predictions, computing feature importance, generating SHAP p", "category": "Scientific"}, {"name": "scientific-pkg-simpy", "description": "Process-based discrete-event simulation framework in Python. Use this skill when building simulations of systems with processes, queues, resources, and time-based events such as manufacturing systems,", "category": "Scientific"}, {"name": "scientific-pkg-stable-baselines3", "description": "Use this skill for reinforcement learning tasks including training RL agents (PPO, SAC, DQN, TD3, DDPG, A2C, etc.), creating custom Gym environments, implementing callbacks for monitoring and control,", "category": "Scientific"}, {"name": "scientific-pkg-statsmodels", "description": "\"Statistical modeling toolkit. OLS, GLM, logistic, ARIMA, time series, hypothesis tests, diagnostics, AIC/BIC, for rigorous statistical inference and econometric analysis.\"", "category": "Scientific"}, {"name": "scientific-pkg-sympy", "description": "Use this skill when working with symbolic mathematics in Python. This skill should be used for symbolic computation tasks including solving equations algebraically, performing calculus operations (der", "category": "Scientific"}, {"name": "scientific-pkg-tooluniverse", "description": "Use this skill when working with scientific research tools and workflows across bioinformatics, cheminformatics, genomics, structural biology, proteomics, and drug discovery. This skill provides acces", "category": "Scientific"}, {"name": "scientific-pkg-torch_geometric", "description": "\"Graph Neural Networks (PyG). Node/graph classification, link prediction, GCN, GAT, GraphSAGE, heterogeneous graphs, molecular property prediction, for geometric deep learning.\"", "category": "Scientific"}, {"name": "scientific-pkg-torchdrug", "description": "\"Graph-based drug discovery toolkit. Molecular property prediction (ADMET), protein modeling, knowledge graph reasoning, molecular generation, retrosynthesis, GNNs (GIN, GAT, SchNet), 40+ datasets, fo", "category": "Scientific"}, {"name": "scientific-pkg-transformers", "description": "This skill should be used when working with pre-trained transformer models for natural language processing, computer vision, audio, or multimodal tasks. Use for text generation, classification, questi", "category": "Scientific"}, {"name": "scientific-pkg-umap-learn", "description": "\"UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D visualization, clustering preprocessing (HDBSCAN), supervised/parametric UMAP, for high-dimensional data.\"", "category": "Scientific"}, {"name": "scientific-pkg-vaex", "description": "Use this skill for processing and analyzing large tabular datasets (billions of rows) that exceed available RAM. Vaex excels at out-of-core DataFrame operations, lazy evaluation, fast aggregations, ef", "category": "Scientific"}, {"name": "scientific-pkg-zarr-python", "description": "\"Chunked N-D arrays for cloud storage. Compressed arrays, parallel I/O, S3/GCS integration, NumPy/Dask/Xarray compatible, for large-scale scientific computing pipelines.\"", "category": "Scientific"}, {"name": "scientific-thinking-exploratory-data-analysis", "description": "\"Analyze datasets to discover patterns, anomalies, and relationships. Use when exploring data files, generating statistical summaries, checking data quality, or creating visualizations. Supports CSV, ", "category": "Scientific"}, {"name": "scientific-thinking-hypothesis-generation", "description": "\"Generate testable hypotheses. Formulate from observations, design experiments, explore competing explanations, develop predictions, propose mechanisms, for scientific inquiry across domains.\"", "category": "Scientific"}, {"name": "scientific-thinking-literature-review", "description": "Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should be used when conducting systematic literature", "category": "Scientific"}, {"name": "scientific-thinking-peer-review", "description": "\"Systematic peer review toolkit. Evaluate methodology, statistics, design, reproducibility, ethics, figure integrity, reporting standards, for manuscript and grant review across disciplines.\"", "category": "Scientific"}, {"name": "scientific-thinking-scholar-evaluation", "description": "Systematic framework for evaluating scholarly and research work based on the ScholarEval methodology. This skill should be used when assessing research papers, evaluating literature reviews, scoring r", "category": "Scientific"}, {"name": "scientific-thinking-scientific-critical-thinking", "description": "\"Evaluate research rigor. Assess methodology, experimental design, statistical validity, biases, confounding, evidence quality (GRADE, Cochrane ROB), for critical analysis of scientific claims.\"", "category": "Scientific"}, {"name": "scientific-thinking-scientific-visualization", "description": "\"Create publication figures with matplotlib/seaborn/plotly. Multi-panel layouts, error bars, significance markers, colorblind-safe, export PDF/EPS/TIFF, for journal-ready scientific plots.\"", "category": "Scientific"}, {"name": "scientific-thinking-scientific-writing", "description": "\"Write scientific manuscripts. IMRAD structure, citations (APA/AMA/Vancouver), figures/tables, reporting guidelines (CONSORT/STROBE/PRISMA), abstracts, for research papers and journal submissions.\"", "category": "Scientific"}, {"name": "scientific-thinking-statistical-analysis", "description": "\"Statistical analysis toolkit. Hypothesis tests (t-test, ANOVA, chi-square), regression, correlation, Bayesian stats, power analysis, assumption checks, APA reporting, for academic research.\"", "category": "Scientific"}, {"name": "sequential-thinking_mrgoonie", "description": "Use when complex problems require systematic step-by-step reasoning with ability to revise thoughts, branch into alternative approaches, or dynamically adjust scope. Ideal for multi-stage analysis, de", "category": "General"}, {"name": "session-launcher", "description": "Restores full context when user says \"hi-ai\" or starts a new conversation. Searches project files, loads memory indexes, reads session state, and creates visual dashboard showing current project, rece", "category": "General"}, {"name": "session-timeout-handler", "description": "---", "category": "General"}, {"name": "sharing-skills_obra", "description": "Use when you've developed a broadly useful skill and want to contribute it upstream via pull request - guides process of branching, committing, pushing, and creating PR to contribute skills back to up", "category": "General"}, {"name": "shopify_mrgoonie", "description": "Build Shopify applications, extensions, and themes using GraphQL/REST APIs, Shopify CLI, Polaris UI components, and Liquid templating. Capabilities include app development with OAuth authentication, c", "category": "General"}, {"name": "skill-creator_mrgoonie", "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workfl", "category": "General"}, {"name": "skill-harvester", "description": "---", "category": "General"}, {"name": "skills-collection-manager", "description": "---", "category": "General"}, {"name": "skills-consolidator", "description": "Expert skill for merging, organizing, and maintaining large collections of Claude Code skills with intelligent conflict resolution and structure optimization.", "category": "General"}, {"name": "skills-duplicate-detector", "description": "Expert skill for identifying duplicate, similar, and overlapping Claude Code skills across your collection using intelligent comparison algorithms.", "category": "General"}, {"name": "stable-diffusion-helper", "description": "Expert guidance for Stable Diffusion image generation, optimization, and troubleshooting.", "category": "General"}, {"name": "subagent-driven-development_obra", "description": "Use when executing implementation plans with independent tasks in the current session - dispatches fresh subagent for each task with code review between tasks, enabling fast iteration with quality gat", "category": "General"}, {"name": "sveltia-cms", "description": "|", "category": "General"}, {"name": "tailwind-v4-shadcn", "description": "|", "category": "Web Development"}, {"name": "tanstack-query", "description": "|", "category": "General"}, {"name": "tdd-reference", "description": ">", "category": "General"}, {"name": "template-skill_mrgoonie", "description": "Replace with description of the skill and when Claude should use it.", "category": "General"}, {"name": "terraform-iac-helper", "description": "Expert helper for Terraform and infrastructure-as-code best practices", "category": "Infrastructure"}, {"name": "test-driven-development_obra", "description": "Use when implementing any feature or bugfix, before writing implementation code - write the test first, watch it fail, write minimal code to pass; ensures tests actually verify behavior by requiring f", "category": "General"}, {"name": "testing-anti-patterns_obra", "description": "Use when writing or changing tests, adding mocks, or tempted to add test-only methods to production code - prevents testing mock behavior, production pollution with test-only methods, and mocking with", "category": "Development Tools"}, {"name": "testing-builder", "description": "Automatically generates comprehensive test suites (unit, integration, E2E) based on code and past testing patterns. Use when user says \"write tests\", \"test this\", \"add coverage\", or after fixing bugs ", "category": "Development Tools"}, {"name": "testing-skills-with-subagents_obra", "description": "Use when creating or editing skills, before deployment, to verify they work under pressure and resist rationalization - applies RED-GREEN-REFACTOR cycle to process documentation by running baseline wi", "category": "Development Tools"}, {"name": "thesys-generative-ui", "description": "|", "category": "General"}, {"name": "timeout-prevention", "description": "Prevent request timeouts in Claude Code sessions by chunking long operations, implementing progress checkpoints, using background processes, and optimizing tool usage patterns. Use when performing bul", "category": "General"}, {"name": "tinacms", "description": "|", "category": "General"}, {"name": "typescript-mcp", "description": "|", "category": "Automation"}, {"name": "ui-styling_mrgoonie", "description": "Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user inter", "category": "General"}, {"name": "using-git-worktrees_obra", "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verificat", "category": "Development Tools"}, {"name": "using-superpowers_obra", "description": "Use when starting any conversation - establishes mandatory workflows for finding and using skills, including using Skill tool before announcing usage, following brainstorming before coding, and creati", "category": "General"}, {"name": "vercel-blob", "description": "|", "category": "General"}, {"name": "vercel-kv", "description": "|", "category": "General"}, {"name": "verification-before-completion_obra", "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence", "category": "General"}, {"name": "web-asset-generator", "description": "Generate web assets including favicons, app icons (PWA), and social media meta images (Open Graph) for Facebook, Twitter, WhatsApp, and LinkedIn. Use when users need icons, favicons, social sharing im", "category": "Web Development"}, {"name": "web-frameworks_mrgoonie", "description": "Build modern full-stack web applications with Next.js (App Router, Server Components, RSC, PPR, SSR, SSG, ISR), Turborepo (monorepo management, task pipelines, remote caching, parallel execution), and", "category": "Web Development"}, {"name": "windows-expert", "description": "Expert guidance for Windows, PowerShell, WSL interop, and cross-platform development", "category": "General"}, {"name": "wordpress-plugin-core", "description": "|", "category": "General"}, {"name": "writing-plans_obra", "description": "Use when design is complete and you need detailed implementation tasks for engineers with zero codebase context - creates comprehensive implementation plans with exact file paths, complete code exampl", "category": "General"}, {"name": "yaml-config-helper", "description": "Validate, format, and troubleshoot YAML configuration files", "category": "General"}, {"name": "youtube-downloader", "description": "Download videos, audio, playlists, and channels from YouTube and 1000+ websites using yt-dlp. Supports quality selection, format conversion, subtitle download, playlist filtering, metadata extraction,", "category": "General"}, {"name": "zustand-state-management", "description": "|", "category": "General"}];
+</script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Claude Code Skills Installer</h1>
+            <p>Select the skills you want to install - Ninite style!</p>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search skills...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="cloudflare">Cloudflare</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+                <button class="filter-btn" data-filter="devops">DevOps</button>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalSkills">0</div>
+                <div>Total Skills</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="selectedSkills">0</div>
+                <div>Selected</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="filteredSkills">0</div>
+                <div>Showing</div>
+            </div>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid">
+            <div class="loading">Loading skills...</div>
+        </div>
+
+        <div class="controls">
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="selectAll()">Select All</button>
+                <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="generateInstallScript()">Generate Install Script</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Powered by Claude Code Tools Team | Select skills and click "Generate Install Script" to download</p>
+        </div>
+    </div>
+
+    <script>
+        let allSkills = [];
+        let selectedSkills = new Set();
+        let currentFilter = 'all';
+
+        function initializeSkills() {
+            // Skills data injected by build script via window.EMBEDDED_SKILLS
+            if (window.EMBEDDED_SKILLS) {
+                allSkills = window.EMBEDDED_SKILLS;
+                console.log(`Loaded ${allSkills.length} skills from embedded data`);
+            } else {
+                console.error('Skills data not embedded! Run: .\\install-from-selector.ps1 -OpenBrowser');
+                allSkills = [];
+            }
+            updateStats();
+            renderSkills();
+        }
+
+        function renderSkills() {
+            const grid = document.getElementById('skillsGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            let filteredSkills = allSkills.filter(skill => {
+                const matchesSearch = skill.name.toLowerCase().includes(searchTerm) ||
+                                    skill.description.toLowerCase().includes(searchTerm);
+
+                const matchesFilter = currentFilter === 'all' ||
+                                    (skill.category && skill.category.toLowerCase().includes(currentFilter.toLowerCase()));
+
+                return matchesSearch && matchesFilter;
+            });
+
+            document.getElementById('filteredSkills').textContent = filteredSkills.length;
+
+            if (filteredSkills.length === 0) {
+                grid.innerHTML = '<div class="loading">No skills found matching your criteria.</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredSkills.map(skill => `
+                <div class="skill-card ${selectedSkills.has(skill.name) ? 'selected' : ''}"
+                     onclick="toggleSkill('${skill.name}')">
+                    <div class="checkbox"></div>
+                    <div class="skill-name">${skill.name}</div>
+                    <div class="skill-description">${skill.description}</div>
+                    <div class="skill-tags">
+                        ${skill.category ? `<span class="tag">${skill.category}</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleSkill(skillName) {
+            if (selectedSkills.has(skillName)) {
+                selectedSkills.delete(skillName);
+            } else {
+                selectedSkills.add(skillName);
+            }
+            updateStats();
+            renderSkills();
+        }
+
+        function selectAll() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            allSkills.forEach(skill => {
+                const matchesSearch = skill.name.toLowerCase().includes(searchTerm) ||
+                                    skill.description.toLowerCase().includes(searchTerm);
+                const matchesFilter = currentFilter === 'all' ||
+                                    (skill.category && skill.category.toLowerCase().includes(currentFilter.toLowerCase()));
+
+                if (matchesSearch && matchesFilter) {
+                    selectedSkills.add(skill.name);
+                }
+            });
+            updateStats();
+            renderSkills();
+        }
+
+        function deselectAll() {
+            selectedSkills.clear();
+            updateStats();
+            renderSkills();
+        }
+
+        function updateStats() {
+            document.getElementById('totalSkills').textContent = allSkills.length;
+            document.getElementById('selectedSkills').textContent = selectedSkills.size;
+        }
+
+        function generateInstallScript() {
+            console.log('[DEBUG] generateInstallScript called');
+            console.log('[DEBUG] selectedSkills.size:', selectedSkills.size);
+            console.log('[DEBUG] selectedSkills:', Array.from(selectedSkills));
+
+            if (selectedSkills.size === 0) {
+                alert('Please select at least one skill to install.');
+                return;
+            }
+
+            const skillsList = Array.from(selectedSkills).join(',');
+            const scriptContent = `# Claude Code Skills Installation Script
+# Generated: ${new Date().toISOString()}
+# Selected Skills: ${selectedSkills.size}
+
+$selectedSkills = @(
+${Array.from(selectedSkills).map(s => `    '${s}'`).join(',\n')}
+)
+
+Write-Host "Installing ${selectedSkills.size} selected skills..." -ForegroundColor Cyan
+
+foreach ($skill in $selectedSkills) {
+    Write-Host "Installing: $skill" -ForegroundColor Yellow
+    # Adjust path as needed for your setup
+    & "$PSScriptRoot\\..\\tools\\install-skills.ps1" -SkillName $skill
+}
+
+Write-Host "Installation complete!" -ForegroundColor Green
+`;
+
+            console.log('[DEBUG] Script content generated, length:', scriptContent.length);
+
+            try {
+                const blob = new Blob([scriptContent], { type: 'text/plain' });
+                console.log('[DEBUG] Blob created:', blob.size, 'bytes');
+
+                const url = URL.createObjectURL(blob);
+                console.log('[DEBUG] Blob URL created:', url);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'install-selected-skills.ps1';
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                console.log('[DEBUG] Link element added to DOM');
+
+                // Force download with setTimeout to ensure it's treated as user-initiated
+                setTimeout(() => {
+                    console.log('[DEBUG] Triggering download...');
+                    a.click();
+                    console.log('[DEBUG] Click triggered');
+
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        console.log('[DEBUG] Cleanup complete');
+                    }, 100);
+                }, 0);
+
+                // Show success message
+                alert(`Install script generated for ${selectedSkills.size} skill(s)!\n\nCheck your Downloads folder for:\ninstall-selected-skills.ps1`);
+
+            } catch (error) {
+                console.error('[ERROR] Failed to generate download:', error);
+                alert('Error generating download: ' + error.message + '\n\nCheck browser console (F12) for details.');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', renderSkills);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderSkills();
+            });
+        });
+
+        // Initialize
+        initializeSkills();
+    </script>
+</body>
+</html>

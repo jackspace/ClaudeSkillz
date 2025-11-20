@@ -2,23 +2,23 @@
   "skills": [
     {
       "name": "ai-elements-chatbot",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Ai Elements Chatbot",
+      "category": "AI/ML"
     },
     {
       "name": "ai-multimodal_mrgoonie",
       "description": "Process and generate multimedia content using Google Gemini API. Capabilities include analyze audio files (transcription with timestamps, summarization, speech understanding, music/sound analysis up t",
-      "category": "General"
+      "category": "AI/ML"
     },
     {
       "name": "ai-sdk-core",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Ai Sdk Core",
+      "category": "AI/ML"
     },
     {
       "name": "ai-sdk-ui",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Ai Sdk Ui",
+      "category": "AI/ML"
     },
     {
       "name": "api-integration-builder",
@@ -27,12 +27,12 @@
     },
     {
       "name": "auth-js",
-      "description": "|",
+      "description": "Claude Code skill for Auth Js",
       "category": "General"
     },
     {
       "name": "auto-animate",
-      "description": "|",
+      "description": "Claude Code skill for Auto Animate",
       "category": "General"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "name": "base-ui-react",
-      "description": "|",
+      "description": "Claude Code skill for Base Ui React",
       "category": "Web Development"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "name": "better-auth",
-      "description": "|",
+      "description": "Claude Code skill for Better Auth",
       "category": "General"
     },
     {
@@ -62,12 +62,12 @@
     },
     {
       "name": "better-chatbot",
-      "description": "|",
+      "description": "Claude Code skill for Better Chatbot",
       "category": "General"
     },
     {
       "name": "better-chatbot-patterns",
-      "description": "|",
+      "description": "Claude Code skill for Better Chatbot Patterns",
       "category": "General"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "name": "checkpoint-workflow-builder",
-      "description": "---",
+      "description": "name: checkpoint-workflow-builder",
       "category": "Automation"
     },
     {
@@ -102,17 +102,17 @@
     },
     {
       "name": "claude-agent-sdk",
-      "description": "|",
+      "description": "Claude Code skill for Claude Agent Sdk",
       "category": "General"
     },
     {
       "name": "claude-api",
-      "description": "|",
+      "description": "Claude Code skill for Claude Api",
       "category": "General"
     },
     {
       "name": "claude-code-bash-patterns",
-      "description": "|",
+      "description": "Claude Code skill for Claude Code Bash Patterns",
       "category": "Development Tools"
     },
     {
@@ -127,123 +127,123 @@
     },
     {
       "name": "claude-git-branching",
-      "description": "---",
+      "description": "name: claude-git-branching",
       "category": "Development Tools"
     },
     {
       "name": "clerk-auth",
-      "description": "|",
+      "description": "Claude Code skill for Clerk Auth",
       "category": "General"
     },
     {
       "name": "cloudflare-agents",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Agents",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-browser-rendering",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Browser Rendering",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-cron-triggers",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Cron Triggers",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-d1",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare D1",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-durable-objects",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Durable Objects",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-email-routing",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Email Routing",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-full-stack-integration",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Full Stack Integration",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-full-stack-scaffold",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Full Stack Scaffold",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-hyperdrive",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Hyperdrive",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-images",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Images",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-kv",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Kv",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-mcp-server",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Mcp Server",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-nextjs",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Nextjs",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-queues",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Queues",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-r2",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare R2",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-sandbox",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Sandbox",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-turnstile",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Turnstile",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-vectorize",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Vectorize",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-worker-base",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Worker Base",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-workers-ai",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Workers Ai",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-workflows",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Workflows",
+      "category": "Cloudflare"
     },
     {
       "name": "cloudflare-zero-trust-access",
-      "description": "|",
-      "category": "Cloud & Infrastructure"
+      "description": "Claude Code skill for Cloudflare Zero Trust Access",
+      "category": "Cloudflare"
     },
     {
       "name": "code-review_mrgoonie",
@@ -267,7 +267,7 @@
     },
     {
       "name": "content-collections",
-      "description": "|",
+      "description": "Claude Code skill for Content Collections",
       "category": "General"
     },
     {
@@ -293,17 +293,17 @@
     {
       "name": "devops_mrgoonie",
       "description": "Deploy and manage cloud infrastructure on Cloudflare (Workers, R2, D1, KV, Pages, Durable Objects, Browser Rendering), Docker containers, and Google Cloud Platform (Compute Engine, GKE, Cloud Run, App",
-      "category": "Infrastructure"
+      "category": "DevOps"
     },
     {
       "name": "dispatching-parallel-agents_obra",
       "description": "Use when facing 3+ independent failures that can be investigated without shared state or dependencies - dispatches multiple Claude agents to investigate and fix independent problems concurrently",
-      "category": "General"
+      "category": "AI/ML"
     },
     {
       "name": "docker-helper",
       "description": "Expert helper for Docker containers, Docker Compose, and container optimization",
-      "category": "Infrastructure"
+      "category": "DevOps"
     },
     {
       "name": "docs-seeker_mrgoonie",
@@ -312,13 +312,13 @@
     },
     {
       "name": "drizzle-orm-d1",
-      "description": "|",
+      "description": "Claude Code skill for Drizzle Orm D1",
       "category": "General"
     },
     {
       "name": "elevenlabs-agents",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Elevenlabs Agents",
+      "category": "AI/ML"
     },
     {
       "name": "error-debugger",
@@ -337,7 +337,7 @@
     },
     {
       "name": "fastmcp",
-      "description": "|",
+      "description": "Claude Code skill for Fastmcp",
       "category": "General"
     },
     {
@@ -347,7 +347,7 @@
     },
     {
       "name": "firecrawl-scraper",
-      "description": "|",
+      "description": "Claude Code skill for Firecrawl Scraper",
       "category": "General"
     },
     {
@@ -402,7 +402,7 @@
     },
     {
       "name": "github-project-automation",
-      "description": "|",
+      "description": "Claude Code skill for Github Project Automation",
       "category": "Development Tools"
     },
     {
@@ -412,28 +412,28 @@
     },
     {
       "name": "google-gemini-api",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Google Gemini Api",
+      "category": "AI/ML"
     },
     {
       "name": "google-gemini-embeddings",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Google Gemini Embeddings",
+      "category": "AI/ML"
     },
     {
       "name": "hono-routing",
-      "description": "|",
+      "description": "Claude Code skill for Hono Routing",
       "category": "General"
     },
     {
       "name": "hugo",
-      "description": "|",
+      "description": "Claude Code skill for Hugo",
       "category": "General"
     },
     {
       "name": "infrastructure-skill-builder",
-      "description": "---",
-      "category": "General"
+      "description": "name: infrastructure-skill-builder",
+      "category": "DevOps"
     },
     {
       "name": "json-config-helper",
@@ -452,22 +452,22 @@
     },
     {
       "name": "motion",
-      "description": "---",
+      "description": "Production-ready setup for Motion (formerly Framer Motion) - the most popular React animation library with 30,200+ GitHub stars. Motion provides declarative animations, gesture controls, scroll-based ",
       "category": "General"
     },
     {
       "name": "multi-ai-consultant",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Multi Ai Consultant",
+      "category": "AI/ML"
     },
     {
       "name": "multi-repository-orchestrator",
-      "description": "---",
+      "description": "name: multi-repository-orchestrator",
       "category": "General"
     },
     {
       "name": "neon-vercel-postgres",
-      "description": "|",
+      "description": "Claude Code skill for Neon Vercel Postgres",
       "category": "General"
     },
     {
@@ -477,52 +477,52 @@
     },
     {
       "name": "nextjs",
-      "description": "|",
+      "description": "Claude Code skill for Nextjs",
       "category": "Web Development"
     },
     {
       "name": "open-source-contributions",
-      "description": "|",
+      "description": "Claude Code skill for Open Source Contributions",
       "category": "General"
     },
     {
       "name": "openai-agents",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Openai Agents",
+      "category": "AI/ML"
     },
     {
       "name": "openai-api",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Openai Api",
+      "category": "AI/ML"
     },
     {
       "name": "openai-assistants",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Openai Assistants",
+      "category": "AI/ML"
     },
     {
       "name": "openai-responses",
-      "description": "|",
-      "category": "General"
+      "description": "Claude Code skill for Openai Responses",
+      "category": "AI/ML"
     },
     {
       "name": "playwright-skill",
       "description": "Persistent browser automation via Playwright daemon. Keep a browser window open and send it commands (navigate, execute JS, inspect console). Perfect for interactive debugging, development, and testin",
-      "category": "General"
+      "category": "Automation"
     },
     {
       "name": "playwright-skill_playwright",
       "description": "Complete browser automation with Playwright. Auto-detects dev servers, writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check responsive design, validate UX, test login flo",
-      "category": "General"
+      "category": "Automation"
     },
     {
       "name": "project-planning",
-      "description": ">",
+      "description": "Claude Code skill for Project Planning",
       "category": "General"
     },
     {
       "name": "project-session-management",
-      "description": ">",
+      "description": "Claude Code skill for Project Session Management",
       "category": "General"
     },
     {
@@ -542,7 +542,7 @@
     },
     {
       "name": "react-hook-form-zod",
-      "description": "|",
+      "description": "Claude Code skill for React Hook Form Zod",
       "category": "Web Development"
     },
     {
@@ -1117,7 +1117,7 @@
     },
     {
       "name": "session-timeout-handler",
-      "description": "---",
+      "description": "name: session-timeout-handler",
       "category": "General"
     },
     {
@@ -1137,12 +1137,12 @@
     },
     {
       "name": "skill-harvester",
-      "description": "---",
+      "description": "name: skill-harvester",
       "category": "General"
     },
     {
       "name": "skills-collection-manager",
-      "description": "---",
+      "description": "name: skills-collection-manager",
       "category": "General"
     },
     {
@@ -1167,22 +1167,22 @@
     },
     {
       "name": "sveltia-cms",
-      "description": "|",
+      "description": "Claude Code skill for Sveltia Cms",
       "category": "General"
     },
     {
       "name": "tailwind-v4-shadcn",
-      "description": "|",
+      "description": "Claude Code skill for Tailwind V4 Shadcn",
       "category": "Web Development"
     },
     {
       "name": "tanstack-query",
-      "description": "|",
+      "description": "Claude Code skill for Tanstack Query",
       "category": "General"
     },
     {
       "name": "tdd-reference",
-      "description": ">",
+      "description": "Claude Code skill for Tdd Reference",
       "category": "General"
     },
     {
@@ -1193,7 +1193,7 @@
     {
       "name": "terraform-iac-helper",
       "description": "Expert helper for Terraform and infrastructure-as-code best practices",
-      "category": "Infrastructure"
+      "category": "DevOps"
     },
     {
       "name": "test-driven-development_obra",
@@ -1213,11 +1213,11 @@
     {
       "name": "testing-skills-with-subagents_obra",
       "description": "Use when creating or editing skills, before deployment, to verify they work under pressure and resist rationalization - applies RED-GREEN-REFACTOR cycle to process documentation by running baseline wi",
-      "category": "Development Tools"
+      "category": "AI/ML"
     },
     {
       "name": "thesys-generative-ui",
-      "description": "|",
+      "description": "Claude Code skill for Thesys Generative Ui",
       "category": "General"
     },
     {
@@ -1227,12 +1227,12 @@
     },
     {
       "name": "tinacms",
-      "description": "|",
+      "description": "Claude Code skill for Tinacms",
       "category": "General"
     },
     {
       "name": "typescript-mcp",
-      "description": "|",
+      "description": "Claude Code skill for Typescript Mcp",
       "category": "Automation"
     },
     {
@@ -1252,12 +1252,12 @@
     },
     {
       "name": "vercel-blob",
-      "description": "|",
+      "description": "Claude Code skill for Vercel Blob",
       "category": "General"
     },
     {
       "name": "vercel-kv",
-      "description": "|",
+      "description": "Claude Code skill for Vercel Kv",
       "category": "General"
     },
     {
@@ -1282,7 +1282,7 @@
     },
     {
       "name": "wordpress-plugin-core",
-      "description": "|",
+      "description": "Claude Code skill for Wordpress Plugin Core",
       "category": "General"
     },
     {
@@ -1293,7 +1293,7 @@
     {
       "name": "yaml-config-helper",
       "description": "Validate, format, and troubleshoot YAML configuration files",
-      "category": "General"
+      "category": "AI/ML"
     },
     {
       "name": "youtube-downloader",
@@ -1302,7 +1302,7 @@
     },
     {
       "name": "zustand-state-management",
-      "description": "|",
+      "description": "Claude Code skill for Zustand State Management",
       "category": "General"
     }
   ]
