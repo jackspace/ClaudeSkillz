@@ -1,6 +1,6 @@
 ---
-name: Fluxwing Library Browser
-description: Browse and view all available uxscii components including bundled templates, user components, and screens. Use when working with .uxm files, when user wants to see, list, browse, or search .uxm components or screens.
+name: fluxwing-library-browser
+description: "Browse and view all available uxscii components including bundled templates, user components, and screens. Use when working with .uxm files, when user wants to see, list, browse, or search .uxm components or screens."
 version: 0.0.1
 author: Trabian
 allowed-tools: Read, Glob, Grep
@@ -36,301 +36,74 @@ Show the user what uxscii components are available across **four sources**:
 
 ## Fast Browsing with Pre-Built Index
 
-**IMPORTANT**: Use the pre-built template index for instant browsing (10x faster than globbing):
+**IMPORTANT**: Use the pre-built template index for instant browsing instead of globbing individual files.
 
-```typescript
-// Load the pre-built index (1 file read = instant results!)
-const index = JSON.parse(read('{SKILL_ROOT}/data/template-index.json'));
+Use the `Read` tool to load the index:
 
-// Browse by type
-const buttons = index.by_type.button; // ["primary-button", "secondary-button"]
-const inputs = index.by_type.input; // ["email-input"]
-
-// Search by tag
-const formComponents = index.by_tag.form; // All form-related components
-const interactiveComponents = index.by_tag.interactive; // All interactive components
-
-// Get component info instantly (no file reads needed!)
-const buttonInfo = index.bundled_templates.find(t => t.id === "primary-button");
-console.log(buttonInfo.name); // "Primary Button"
-console.log(buttonInfo.description); // Full description
-console.log(buttonInfo.preview); // ASCII preview already extracted!
-console.log(buttonInfo.states); // ["default", "hover", "active", "disabled"]
-console.log(buttonInfo.props); // ["text", "variant", "size"]
-console.log(buttonInfo.tags); // ["button", "primary", "action", "interactive"]
+```
+Read {SKILL_ROOT}/data/template-index.json
 ```
 
-**Performance Benefits:**
-- ✅ **1 file read** vs **11+ file reads** (10x faster!)
-- ✅ **Instant type/tag filtering** (no parsing needed)
-- ✅ **Pre-extracted ASCII previews** (show immediately)
-- ✅ **Metadata summary** (no JSON parsing per component)
+The index provides:
+- `bundled_templates[]` - Array of component metadata (id, name, description, preview, states, props, tags)
+- `by_type` - Components grouped by type (button, input, card, modal, etc.)
+- `by_tag` - Components grouped by tags (form, interactive, navigation, etc.)
 
-**Index Structure:**
+**Index structure:**
 ```json
 {
   "version": "1.0.0",
   "generated": "2025-10-18T12:00:00Z",
   "template_count": 11,
-  "bundled_templates": [ /* array of component metadata */ ],
-  "by_type": { /* components grouped by type */ },
-  "by_tag": { /* components grouped by tags */ }
+  "bundled_templates": [{ "id": "primary-button", "name": "Primary Button", "description": "...", "preview": "...", "states": [], "props": [], "tags": [] }],
+  "by_type": { "button": ["primary-button", "icon-button"] },
+  "by_tag": { "form": ["text-input", "email-input"] }
 }
 ```
 
-**When to use full file reads:**
-- User requests detailed view of a specific component
-- User wants to copy a template (need full .uxm and .md content)
-- User searches for a very specific property not in the index
+**When to use full file reads instead:**
+- User requests detailed view of a specific component (need full `.uxm` content)
+- User wants to copy a template (need both `.uxm` and `.md` files)
+- Searching for a property not present in the index
 
 ## Display Format
 
-Present in a clear, hierarchical structure:
+Present results in a hierarchical tree grouped by source. Show component name, description, and an inline ASCII preview where available. Use the pre-built index previews for bundled templates.
 
+**Abbreviated example:**
 ```
-🎁 BUNDLED TEMPLATES
-📁 Component Creator Templates
-─────────────────────────────────────────────────────
-These are starter templates you can copy and customize.
+BUNDLED TEMPLATES (11)
+  Buttons (2): primary-button.uxm, icon-button.uxm
+  Inputs (2): text-input.uxm, email-input.uxm
+  Cards (1): card.uxm
+  ...
 
-Buttons (2 variants)
-  ├─ primary-button.uxm
-  │  └─ Standard clickable button with hover, focus, and disabled states
-  │     ▓▓▓▓▓▓▓▓▓▓▓▓
-  │     ▓ Click Me ▓
-  │     ▓▓▓▓▓▓▓▓▓▓▓▓
-  │
-  └─ icon-button.uxm
-     └─ Button with icon support for visual emphasis
-        [🔍 Search]
+YOUR COMPONENTS (./fluxwing/components/)
+  submit-button.uxm - Custom submit button for forms
 
-Inputs (2 variants)
-  ├─ text-input.uxm
-  │  └─ Basic text input with validation states
-  │     [________________]
-  │
-  └─ email-input.uxm
-     └─ Email-specific input with format validation
-        [user@example.com  ]
+YOUR SCREENS (./fluxwing/screens/)
+  login-screen.uxm - Components: email-input, password-input, submit-button
 
-Cards (1 variant)
-  └─ card.uxm
-     └─ Container for grouping related content
-        ╭─────────────╮
-        │ Card Title  │
-        ├─────────────┤
-        │ Content...  │
-        ╰─────────────╯
-
-Modals (1 variant)
-  └─ modal.uxm
-     └─ Overlay dialog for focused interactions
-        ╔═══════════════╗
-        ║ Modal Title   ║
-        ╠═══════════════╣
-        ║ Content...    ║
-        ╚═══════════════╝
-
-Navigation (1 variant)
-  └─ navigation.uxm
-     └─ Primary navigation menu
-        • Home  • About  • Contact
-
-Feedback (2 variants)
-  ├─ alert.uxm
-  │  └─ User notification with severity levels
-  │     ⚠️ Warning: Action required
-  │
-  └─ badge.uxm
-     └─ Small status indicator or label
-        ● New
-
-Lists (1 variant)
-  └─ list.uxm
-     └─ Vertical list for displaying data
-        • Item 1
-        • Item 2
-        • Item 3
-
-─────────────────────────────────────────────────────
-
-🎨 YOUR COMPONENTS
-📁 ./fluxwing/components/
-─────────────────────────────────────────────────────
-Components you've created for your project.
-
-✓ submit-button.uxm
-  └─ Custom submit button for forms
-     Modified: 2024-10-11 14:23:00
-     [    Submit Form    ]
-
-✓ password-input.uxm
-  └─ Password input with show/hide toggle
-     Modified: 2024-10-11 14:25:00
-     [••••••••] 👁️
-
-✓ user-card.uxm
-  └─ Card displaying user profile information
-     Modified: 2024-10-11 15:10:00
-     ╭──────────────────╮
-     │ John Doe         │
-     │ @johndoe         │
-     ╰──────────────────╯
-
-─────────────────────────────────────────────────────
-
-🖥️ YOUR SCREENS
-📁 ./fluxwing/screens/
-─────────────────────────────────────────────────────
-Complete screen compositions.
-
-✓ login-screen.uxm
-  └─ User authentication screen
-     Components used: email-input, password-input, submit-button, error-alert
-     Modified: 2024-10-11 15:45:00
-
-✓ dashboard.uxm
-  └─ Main application dashboard
-     Components used: navigation, metric-card, data-table, sidebar
-     Modified: 2024-10-11 16:20:00
-
-─────────────────────────────────────────────────────
-Total: 10 templates, 3 components, 2 screens
+Total: 11 templates, 1 component, 1 screen
 ```
 
-## Interactive Options
+For the full display format with ASCII previews, see `{SKILL_ROOT}/DISPLAY_REFERENCE.md`.
 
-After displaying the library, offer these actions:
+## Supported Actions
 
-```
-What would you like to do?
+After browsing, support these user actions:
 
-1️⃣ View component details (ask me to "show me [name]")
-2️⃣ Copy a template to your project
-3️⃣ Create a new component (ask me to "create a [type]")
-4️⃣ Scaffold a new screen (ask me to "build a [screen type] screen")
-5️⃣ Search for a specific pattern (e.g., "button", "input", "card")
-```
+- **View details**: Read the full `.uxm` file and show metadata, props, states, accessibility info, and ASCII preview
+- **Copy template**: Copy `.uxm` and `.md` from bundled templates to `./fluxwing/library/`, then verify the copied files exist with `Read`
+- **Search**: Use `Glob` and `Grep` across all four sources to find components by name, type, or pattern
+- **Create**: Direct user to the Component Creator skill for new components
+- **Scaffold**: Direct user to the Screen Scaffolder skill for new screens
 
-## Detailed View
-
-If user wants to see details of a specific component:
-
-```
-User: Show me primary-button
-
-You: 📄 PRIMARY-BUTTON.UXM
-─────────────────────────────────────────────────────
-ID: primary-button
-Type: button
-Version: 1.0.0
-Description: Standard clickable button with hover, focus, and disabled states
-
-Props:
-  - text: "Click me"
-  - variant: "primary"
-  - disabled: false
-
-States:
-  - default (solid border, white background)
-  - hover (highlighted background)
-  - focus (outline indicator)
-  - disabled (grayed out)
-
-Accessibility:
-  - Role: button
-  - Focusable: true
-  - Keyboard: Space, Enter
-
-ASCII Preview:
-
-Default State:
-▓▓▓▓▓▓▓▓▓▓▓▓
-▓ Click Me ▓
-▓▓▓▓▓▓▓▓▓▓▓▓
-
-Hover State:
-█████████████
-█ Click Me █
-█████████████
-
-Location: {SKILL_ROOT}/../uxscii-component-creator/templates/primary-button.uxm
-
-To customize: Copy to ./fluxwing/library/ for editing
-```
-
-## Copy Template to Project
-
-If user wants to customize a bundled template:
-
-```
-User: Copy primary-button to my project
-
-You: I'll copy primary-button to your library for customization.
-
-[Copies .uxm and .md files]
-
-✓ Copied to ./fluxwing/library/
-  - primary-button.uxm
-  - primary-button.md
-
-You can now edit these files safely. Changes won't affect the original template.
-
-Next steps:
-- Edit: Modify ./fluxwing/library/primary-button.uxm
-- Expand: Ask me to "add hover state to primary-button"
-- Use: Reference it in screens or other components
-```
-
-## Search Functionality
-
-Support component search:
-
-```
-User: Find all button components
-
-You: Found 3 button components:
-
-🎁 Bundled Templates:
-  - primary-button.uxm (standard clickable button)
-  - icon-button.uxm (button with icon support)
-
-🎨 Your Components:
-  - submit-button.uxm (custom submit button for forms)
-
-Would you like details on any of these?
-```
-
-## Empty Library Handling
-
-If user has no components yet:
-
-```
-🎁 BUNDLED TEMPLATES
-📁 Component Creator Templates
-─────────────────────────────────────────────────────
-11 starter templates available
-
-🎨 YOUR COMPONENTS
-📁 ./fluxwing/components/
-─────────────────────────────────────────────────────
-No components yet. Create your first component!
-
-Try: "Create a submit button" or "Create an email input"
-
-🖥️ YOUR SCREENS
-📁 ./fluxwing/screens/
-─────────────────────────────────────────────────────
-No screens yet. Scaffold your first screen!
-
-Try: "Build a login screen" or "Create a dashboard"
-
-─────────────────────────────────────────────────────
-Total: 11 templates, 0 components, 0 screens
-```
+When no project components or screens exist yet, indicate this clearly and suggest creation commands.
 
 ## Resources
 
+- **Display Reference**: See `{SKILL_ROOT}/DISPLAY_REFERENCE.md` for detailed output format templates
 - **Examples Guide**: See `{SKILL_ROOT}/docs/07-examples-guide.md` for detailed template documentation
 - **Component Creator**: Use when you want to create new components
 - **Screen Scaffolder**: Use when you want to build complete screens
@@ -340,8 +113,7 @@ Total: 11 templates, 0 components, 0 screens
 
 1. **Read-only templates**: Bundled templates cannot be modified directly
 2. **Copy before customize**: Copy templates to `./fluxwing/library/` to customize
-3. **Search**: Use Glob and Grep to find components by name or pattern
-4. **Organization**: Keep components in `./fluxwing/components/`, customized templates in `./fluxwing/library/`
-5. **Screens**: Screen files include `.uxm`, `.md`, and `.rendered.md` (three files)
-
-You're helping users discover and navigate their uxscii component library!
+3. **Verify after copy**: Always confirm copied files are readable before reporting success
+4. **Search**: Use Glob and Grep to find components by name or pattern
+5. **Organization**: Keep components in `./fluxwing/components/`, customized templates in `./fluxwing/library/`
+6. **Screens**: Screen files include `.uxm`, `.md`, and `.rendered.md` (three files)

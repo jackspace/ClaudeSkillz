@@ -1,523 +1,174 @@
 ---
 name: session-timeout-handler
-description: Build timeout-resistant Claude Code workflows with chunking strategies, checkpoint patterns, progress tracking, and resume mechanisms to handle 2-minute tool timeouts and ensure reliable completion of long-running operations.
+description: "Build timeout-resistant Claude Code workflows using chunking, checkpoints, and resume patterns to handle 2-minute tool timeouts. Use when a task keeps timing out, an operation runs too long, you need to break up large tasks, or you encounter timeout errors during bulk processing, builds, or API calls."
 license: MIT
 tags: [timeout, resilience, workflow, chunking, checkpoints, claude-code]
 ---
 
 # Session Timeout Handler
 
-Build resilient workflows that gracefully handle Claude Code's 2-minute timeout constraints.
+Build resilient workflows that gracefully handle Claude Code's 2-minute timeout constraints through intelligent chunking, checkpoints, and resumability.
 
-## Overview
+## Core Patterns
 
-Claude Code has a 120-second (2-minute) default tool timeout. This skill provides proven patterns for building workflows that work within this constraint while accomplishing complex, long-running tasks through intelligent chunking, checkpoints, and resumability.
+### 1. Batch Processing
 
-## When to Use
-
-Use this skill when:
-- Processing 50+ items in a loop
-- Running commands that take >60 seconds
-- Downloading multiple large files
-- Performing bulk API calls
-- Processing large datasets
-- Running database migrations
-- Building large projects
-- Cloning multiple repositories
-- Any operation risking timeout
-
-## Core Strategies
-
-### Strategy 1: Batch Processing
+Split large item lists into small batches that complete well within the timeout window.
 
 ```bash
 #!/bin/bash
-# Process items in small batches
+# Process items in small batches with resume support
 
 ITEMS_FILE="items.txt"
 BATCH_SIZE=10
 OFFSET=${1:-0}
 
-# Process one batch
 tail -n +$((OFFSET + 1)) "$ITEMS_FILE" | head -$BATCH_SIZE | while read item; do
     process_item "$item"
-    echo "✓ Processed: $item"
+    echo "Processed: $item"
 done
 
-# Calculate next offset
 NEXT_OFFSET=$((OFFSET + BATCH_SIZE))
 TOTAL=$(wc -l < "$ITEMS_FILE")
 
 if [ $NEXT_OFFSET -lt $TOTAL ]; then
-    echo ""
-    echo "Progress: $NEXT_OFFSET/$TOTAL"
-    echo "Run: ./script.sh $NEXT_OFFSET"
+    echo "Progress: $NEXT_OFFSET/$TOTAL — Run: ./script.sh $NEXT_OFFSET"
 else
-    echo "✓ All items processed!"
+    echo "All items processed!"
 fi
 ```
 
-### Strategy 2: Checkpoint Resume
+### 2. Checkpoint Resume
+
+Persist progress after each item so work survives interruptions and resumes automatically.
 
 ```bash
 #!/bin/bash
-# Checkpoint-based workflow
+# Checkpoint-based workflow — survives interruptions
 
 CHECKPOINT_FILE=".progress"
-ITEMS=("item1" "item2" "item3" ... "item100")
+ITEMS=("item1" "item2" "item3" "item4" "item5")  # Your item list
+BATCH_SIZE=10
 
-# Load last checkpoint
 LAST_COMPLETED=$(cat "$CHECKPOINT_FILE" 2>/dev/null || echo "-1")
-START_INDEX=$((LAST_COMPLETED + 1))
+START=$((LAST_COMPLETED + 1))
+END=$((START + BATCH_SIZE))
+[ $END -gt ${#ITEMS[@]} ] && END=${#ITEMS[@]}
 
-# Process next batch (10 items)
-END_INDEX=$((START_INDEX + 10))
-[ $END_INDEX -gt ${#ITEMS[@]} ] && END_INDEX=${#ITEMS[@]}
-
-for i in $(seq $START_INDEX $END_INDEX); do
+for i in $(seq $START $((END - 1))); do
     process "${ITEMS[$i]}"
-
-    # Save checkpoint after each item
-    echo "$i" > "$CHECKPOINT_FILE"
-    echo "✓ Completed $i/${#ITEMS[@]}"
+    echo "$i" > "$CHECKPOINT_FILE"  # Save after each item
+    echo "Completed $((i + 1))/${#ITEMS[@]}"
 done
 
-# Check if finished
-if [ $END_INDEX -eq ${#ITEMS[@]} ]; then
-    echo "🎉 All items complete!"
+if [ $END -ge ${#ITEMS[@]} ]; then
+    echo "All items complete!"
     rm "$CHECKPOINT_FILE"
 else
-    echo "📋 Run again to continue from item $((END_INDEX + 1))"
+    echo "Run again to continue from item $END"
 fi
 ```
 
-### Strategy 3: State Machine
+### 3. State Machine
+
+Decompose multi-phase workflows into discrete states, advancing one phase per invocation.
 
 ```bash
 #!/bin/bash
-# Multi-phase state machine workflow
+# Multi-phase state machine — one phase per run
 
 STATE_FILE=".workflow_state"
 STATE=$(cat "$STATE_FILE" 2>/dev/null || echo "INIT")
 
+advance_state() { echo "$1" > "$STATE_FILE"; echo "Phase complete. Run again for next phase."; }
+
 case $STATE in
-    INIT)
-        echo "Phase 1: Initialization"
-        setup_environment
-        echo "DOWNLOAD" > "$STATE_FILE"
-        echo "✓ Phase 1 complete. Run again for Phase 2."
-        ;;
-
-    DOWNLOAD)
-        echo "Phase 2: Download (batch 1/5)"
-        download_batch_1
-        echo "PROCESS_1" > "$STATE_FILE"
-        echo "✓ Phase 2 complete. Run again for Phase 3."
-        ;;
-
-    PROCESS_1)
-        echo "Phase 3: Process (batch 1/3)"
-        process_batch_1
-        echo "PROCESS_2" > "$STATE_FILE"
-        echo "✓ Phase 3 complete. Run again for Phase 4."
-        ;;
-
-    PROCESS_2)
-        echo "Phase 4: Process (batch 2/3)"
-        process_batch_2
-        echo "PROCESS_3" > "$STATE_FILE"
-        echo "✓ Phase 4 complete. Run again for Phase 5."
-        ;;
-
-    PROCESS_3)
-        echo "Phase 5: Process (batch 3/3)"
-        process_batch_3
-        echo "FINALIZE" > "$STATE_FILE"
-        echo "✓ Phase 5 complete. Run again to finalize."
-        ;;
-
-    FINALIZE)
-        echo "Phase 6: Finalization"
-        cleanup_and_report
-        echo "COMPLETE" > "$STATE_FILE"
-        echo "🎉 Workflow complete!"
-        ;;
-
-    COMPLETE)
-        echo "Workflow already completed."
-        cat results.txt
-        ;;
+    INIT)       setup_environment;   advance_state "DOWNLOAD" ;;
+    DOWNLOAD)   download_resources;  advance_state "PROCESS"  ;;
+    PROCESS)    process_data;        advance_state "FINALIZE" ;;
+    FINALIZE)   cleanup_and_report;  echo "COMPLETE" > "$STATE_FILE"; echo "Workflow complete!" ;;
+    COMPLETE)   echo "Already completed."; cat results.txt ;;
 esac
 ```
 
-### Strategy 4: Progress Tracking
+## Timeout-Safe Techniques
+
+### Timeout with Fallback
+
+Wrap individual operations with a timeout shorter than the 2-minute limit, falling back to cached results on failure.
 
 ```bash
 #!/bin/bash
-# Detailed progress tracking with JSON
-
-PROGRESS_FILE="progress.json"
-
-# Initialize progress
-init_progress() {
-    cat > "$PROGRESS_FILE" << EOF
-{
-  "total": $1,
-  "completed": 0,
-  "failed": 0,
-  "last_updated": "$(date -Iseconds)",
-  "completed_items": []
-}
-EOF
-}
-
-# Update progress
-update_progress() {
-    local item="$1"
-    local status="$2"  # "success" or "failed"
-
-    # Read current progress
-    local completed=$(jq -r '.completed' "$PROGRESS_FILE")
-    local failed=$(jq -r '.failed' "$PROGRESS_FILE")
-
-    if [ "$status" = "success" ]; then
-        completed=$((completed + 1))
-    else
-        failed=$((failed + 1))
-    fi
-
-    # Update JSON
-    jq --arg item "$item" \
-       --arg status "$status" \
-       --arg timestamp "$(date -Iseconds)" \
-       --argjson completed "$completed" \
-       --argjson failed "$failed" \
-       '.completed = $completed |
-        .failed = $failed |
-        .last_updated = $timestamp |
-        .completed_items += [{item: $item, status: $status, timestamp: $timestamp}]' \
-       "$PROGRESS_FILE" > "$PROGRESS_FILE.tmp"
-
-    mv "$PROGRESS_FILE.tmp" "$PROGRESS_FILE"
-}
-
-# Show progress
-show_progress() {
-    jq -r '"Progress: \(.completed)/\(.total) completed, \(.failed) failed"' "$PROGRESS_FILE"
-}
-
-# Example usage
-init_progress 100
-
-for item in $(seq 1 10); do  # Process 10 at a time
-    if process_item "$item"; then
-        update_progress "item-$item" "success"
-    else
-        update_progress "item-$item" "failed"
-    fi
-done
-
-show_progress
-```
-
-## Timeout-Safe Patterns
-
-### Pattern: Parallel with Rate Limiting
-
-```bash
-#!/bin/bash
-# Process items in parallel with limits
-
-MAX_PARALLEL=3
-ACTIVE_JOBS=0
-
-process_with_limit() {
-    local item="$1"
-
-    # Wait if at max parallel
-    while [ $ACTIVE_JOBS -ge $MAX_PARALLEL ]; do
-        wait -n  # Wait for any job to finish
-        ACTIVE_JOBS=$((ACTIVE_JOBS - 1))
-    done
-
-    # Start background job
-    (
-        process_item "$item"
-        echo "✓ $item"
-    ) &
-
-    ACTIVE_JOBS=$((ACTIVE_JOBS + 1))
-
-    # Rate limiting
-    sleep 0.5
-}
-
-# Process items
-for item in $(seq 1 15); do
-    process_with_limit "item-$item"
-done
-
-# Wait for remaining
-wait
-echo "✓ All processing complete"
-```
-
-### Pattern: Timeout with Fallback
-
-```bash
-#!/bin/bash
-# Try with timeout, fallback to cached/partial result
-
-OPERATION_TIMEOUT=90  # 90 seconds, leave buffer
+OPERATION_TIMEOUT=90  # Leave buffer below 120s limit
 
 if timeout ${OPERATION_TIMEOUT}s expensive_operation > result.txt 2>&1; then
-    echo "✓ Operation completed"
+    echo "Operation completed"
     cat result.txt
+elif [ $? -eq 124 ]; then
+    echo "Timed out after ${OPERATION_TIMEOUT}s"
+    # Fall back to cached result or partial output
+    [ -f "cached_result.txt" ] && cat cached_result.txt || cat result.txt
+    echo "Run again to continue processing"
 else
-    EXIT_CODE=$?
-
-    if [ $EXIT_CODE -eq 124 ]; then
-        echo "⚠️  Operation timed out after ${OPERATION_TIMEOUT}s"
-
-        # Use cached result if available
-        if [ -f "cached_result.txt" ]; then
-            echo "Using cached result from $(stat -c %y cached_result.txt)"
-            cat cached_result.txt
-        else
-            echo "Partial result:"
-            cat result.txt
-            echo ""
-            echo "Run again to continue processing"
-        fi
-    else
-        echo "✗ Operation failed with code $EXIT_CODE"
-    fi
+    echo "Operation failed"
 fi
 ```
 
-### Pattern: Incremental Build
+### Parallel with Rate Limiting
+
+Run multiple items concurrently while staying within resource limits.
 
 ```bash
 #!/bin/bash
-# Incremental build with caching
+MAX_PARALLEL=3
 
-BUILD_CACHE=".build_cache"
-SOURCE_DIR="src"
+for item in $(seq 1 15); do
+    # Cap concurrent jobs
+    while [ $(jobs -r | wc -l) -ge $MAX_PARALLEL ]; do wait -n; done
 
-# Track what needs rebuilding
-mkdir -p "$BUILD_CACHE"
-
-# Find changed files
-find "$SOURCE_DIR" -type f -newer "$BUILD_CACHE/last_build" 2>/dev/null > changed_files.txt
-
-if [ ! -s changed_files.txt ]; then
-    echo "✓ No changes detected, using cached build"
-    exit 0
-fi
-
-# Build only changed files (in batches)
-head -10 changed_files.txt | while read file; do
-    echo "Building: $file"
-    build_file "$file"
+    ( process_item "item-$item" && echo "Done: item-$item" ) &
+    sleep 0.5  # Rate limiting
 done
 
-# Update timestamp
-touch "$BUILD_CACHE/last_build"
-
-REMAINING=$(tail -n +11 changed_files.txt | wc -l)
-if [ $REMAINING -gt 0 ]; then
-    echo ""
-    echo "⚠️  $REMAINING files remaining. Run again to continue."
-else
-    echo "✓ Build complete!"
-fi
+wait
+echo "All processing complete"
 ```
 
-## Real-World Examples
+### Progress Tracking
 
-### Example 1: Bulk Repository Cloning
+Track detailed progress in a JSON file for visibility and resume support.
 
 ```bash
 #!/bin/bash
-# Clone 50 repos without timing out
+PROGRESS_FILE="progress.json"
 
-REPOS_FILE="repos.txt"
-CHECKPOINT="cloned.txt"
-BATCH_SIZE=5
+# Initialize: echo '{"total":100,"completed":0,"failed":0}' > "$PROGRESS_FILE"
 
-# Skip already cloned
-while read repo_url; do
-    # Check checkpoint
-    if grep -qF "$repo_url" "$CHECKPOINT" 2>/dev/null; then
-        echo "✓ Skip: $repo_url (already cloned)"
-        continue
-    fi
+# Update after each item:
+jq --arg item "$1" --arg status "$2" \
+   '.completed += (if $status == "success" then 1 else 0 end) |
+    .failed += (if $status == "failed" then 1 else 0 end)' \
+   "$PROGRESS_FILE" > "$PROGRESS_FILE.tmp" && mv "$PROGRESS_FILE.tmp" "$PROGRESS_FILE"
 
-    REPO_NAME=$(basename "$repo_url" .git)
-
-    # Clone with timeout
-    if timeout 60s git clone --depth 1 "$repo_url" "$REPO_NAME" 2>/dev/null; then
-        echo "$repo_url" >> "$CHECKPOINT"
-        echo "✓ Cloned: $REPO_NAME"
-    else
-        echo "✗ Failed: $REPO_NAME"
-    fi
-done < <(head -$BATCH_SIZE "$REPOS_FILE")
-
-# Progress
-CLONED=$(wc -l < "$CHECKPOINT" 2>/dev/null || echo 0)
-TOTAL=$(wc -l < "$REPOS_FILE")
-echo ""
-echo "Progress: $CLONED/$TOTAL repositories"
-[ $CLONED -lt $TOTAL ] && echo "Run again to continue"
-```
-
-### Example 2: Large Dataset Processing
-
-```bash
-#!/bin/bash
-# Process 1000 data files in batches
-
-DATA_DIR="data"
-OUTPUT_DIR="processed"
-BATCH_NUM=${1:-1}
-BATCH_SIZE=20
-
-mkdir -p "$OUTPUT_DIR"
-
-# Calculate offset
-OFFSET=$(( (BATCH_NUM - 1) * BATCH_SIZE ))
-
-# Process batch
-find "$DATA_DIR" -name "*.csv" | sort | tail -n +$((OFFSET + 1)) | head -$BATCH_SIZE | while read file; do
-    FILENAME=$(basename "$file")
-    OUTPUT="$OUTPUT_DIR/${FILENAME%.csv}.json"
-
-    echo "Processing: $FILENAME"
-    process_csv_to_json "$file" > "$OUTPUT"
-    echo "✓ Created: $OUTPUT"
-done
-
-# Report progress
-TOTAL=$(find "$DATA_DIR" -name "*.csv" | wc -l)
-PROCESSED=$(find "$OUTPUT_DIR" -name "*.json" | wc -l)
-
-echo ""
-echo "Batch $BATCH_NUM complete"
-echo "Progress: $PROCESSED/$TOTAL files"
-
-if [ $PROCESSED -lt $TOTAL ]; then
-    NEXT_BATCH=$((BATCH_NUM + 1))
-    echo "Next: ./script.sh $NEXT_BATCH"
-else
-    echo "🎉 All files processed!"
-fi
-```
-
-### Example 3: API Rate-Limited Scraping
-
-```bash
-#!/bin/bash
-# Scrape API with rate limits and timeouts
-
-API_IDS="ids.txt"
-OUTPUT_DIR="api_data"
-CHECKPOINT=".api_checkpoint"
-
-mkdir -p "$OUTPUT_DIR"
-
-# Load last checkpoint
-LAST_ID=$(cat "$CHECKPOINT" 2>/dev/null || echo "0")
-
-# Process next 10 IDs
-grep -A 10 "^$LAST_ID$" "$API_IDS" | tail -n +2 | head -10 | while read id; do
-    echo "Fetching ID: $id"
-
-    # API call with timeout
-    if timeout 30s curl -s "https://api.example.com/data/$id" > "$OUTPUT_DIR/$id.json"; then
-        echo "$id" > "$CHECKPOINT"
-        echo "✓ Saved: $id.json"
-    else
-        echo "✗ Failed: $id"
-    fi
-
-    # Rate limiting (100ms between requests)
-    sleep 0.1
-done
-
-# Progress
-TOTAL=$(wc -l < "$API_IDS")
-COMPLETED=$(find "$OUTPUT_DIR" -name "*.json" | wc -l)
-
-echo ""
-echo "Progress: $COMPLETED/$TOTAL IDs"
-[ $COMPLETED -lt $TOTAL ] && echo "Run again to continue"
-```
-
-## Integration with Claude Code
-
-### Multi-Turn Workflow
-
-Instead of one long operation, break into multiple Claude Code turns:
-
-**Turn 1:**
-```
-Process first batch of 10 items and save checkpoint
-```
-
-**Turn 2:**
-```
-Resume from checkpoint and process next 10 items
-```
-
-**Turn 3:**
-```
-Complete processing and generate final report
-```
-
-### Status Check Pattern
-
-```bash
-# Turn 1: Start background job
-./long_operation.sh > output.log 2>&1 &
-echo $! > pid.txt
-echo "Started background job (PID: $(cat pid.txt))"
-
-# Turn 2: Check status
-if ps -p $(cat pid.txt) > /dev/null 2>&1; then
-    echo "Still running..."
-    echo "Recent output:"
-    tail -20 output.log
-else
-    echo "✓ Complete!"
-    cat output.log
-    rm pid.txt
-fi
+# Show progress:
+jq -r '"Progress: \(.completed)/\(.total) completed, \(.failed) failed"' "$PROGRESS_FILE"
 ```
 
 ## Best Practices
 
-### ✅ DO
+**Do:**
+- Chunk operations into 5-10 item batches
+- Save checkpoints after each item or batch
+- Set individual operation timeouts to 60-90s (buffer below 120s)
+- Report progress clearly so the next turn knows where to resume
+- Clean up checkpoint files when workflow completes
 
-1. **Chunk operations** into 5-10 item batches
-2. **Save checkpoints** after each item or batch
-3. **Use timeouts** on individual operations (60-90s max)
-4. **Report progress** clearly and frequently
-5. **Enable resume** from any checkpoint
-6. **Parallelize smartly** (3-5 concurrent max)
-7. **Track failures** separately from successes
-8. **Clean up** checkpoint files when complete
-
-### ❌ DON'T
-
-1. **Don't process everything** in one go (>50 items)
-2. **Don't skip checkpoints** on long workflows
-3. **Don't ignore timeout signals** (handle EXIT 124)
-4. **Don't block indefinitely** without progress
-5. **Don't over-parallelize** (causes resource issues)
-6. **Don't lose progress** due to missing state
-7. **Don't retry infinitely** (limit to 3-4 attempts)
-8. **Don't forget cleanup** of temp files
+**Avoid:**
+- Processing 50+ items in a single run
+- Skipping checkpoints on long workflows
+- Ignoring timeout exit codes (handle exit code 124)
+- Running more than 3-5 concurrent background jobs
+- Retrying failed items indefinitely (limit to 3 attempts)
 
 ## Quick Reference
 
@@ -531,20 +182,14 @@ LAST=$(cat .checkpoint || echo 0); process_from $LAST
 # State machine
 case $(cat .state) in PHASE1) step1 ;; PHASE2) step2 ;; esac
 
-# Progress tracking
+# Progress display
 echo "Progress: $COMPLETED/$TOTAL ($((COMPLETED * 100 / TOTAL))%)"
 
 # Timeout with fallback
 timeout 90s operation || use_cached_result
 
 # Parallel with limit
-for i in items; do process &; jobs=$(jobs -r | wc -l); [ $jobs -ge $MAX ] && wait -n; done
+for i in items; do process &; [ $(jobs -r | wc -l) -ge $MAX ] && wait -n; done
 ```
 
----
-
-**Version**: 1.0.0
-**Author**: Harvested from timeout-prevention skill patterns
-**Last Updated**: 2025-11-18
-**License**: MIT
-**Key Principle**: Never try to do everything at once – chunk, checkpoint, and resume.
+See [EXAMPLES.md](./EXAMPLES.md) for complete real-world examples including bulk repository cloning, large dataset processing, API scraping with rate limits, and multi-turn Claude Code workflows.
