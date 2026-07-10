@@ -2,7 +2,7 @@
 
 > A curated collection of 260+ Claude Code skills for productivity, development, and automation
 
-[![Skills](https://img.shields.io/badge/skills-261-blue)](https://claudeskillz.jackspace.com)
+[![Skills](https://img.shields.io/badge/skills-262-blue)](https://claudeskillz.jackspace.com)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Website](https://img.shields.io/badge/website-claudeskillz.jackspace.com-purple)](https://claudeskillz.jackspace.com)
 
@@ -16,7 +16,7 @@ ClaudeSkillz is a professionally curated collection of Claude Code skills, caref
 
 ### Browse & Install Skills
 
-Visit the **[Interactive Skill Selector](https://claudeskillz.jackspace.com)** to browse all 261 skills with filtering, search, and one-click installation.
+Visit the **[Interactive Skill Selector](https://claudeskillz.jackspace.com)** to browse all 262 skills with filtering, search, and one-click installation.
 
 ### Manual Installation
 
@@ -239,7 +239,7 @@ Skills in this collection are sourced from:
 
 ## Statistics
 
-- **Total Skills**: 261
+- **Total Skills**: 262
 - **Categories**: 6 major categories
 - **Contributors**: Growing community
 - **License**: MIT (open source)

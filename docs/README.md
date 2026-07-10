@@ -18,7 +18,7 @@ This directory contains the GitHub Pages site for ClaudeSkillz:
 
 ## Using the Skill Selector
 
-1. **Browse** - View all 261 skills organized by category
+1. **Browse** - View all 262 skills organized by category
 2. **Search** - Filter skills by name or description
 3. **Select** - Check the boxes for skills you want
 4. **Install** - Click "Generate Install Script" to download
