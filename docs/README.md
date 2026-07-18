@@ -35,7 +35,7 @@ This directory contains the GitHub Pages site for ClaudeSkillz:
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/jackspace/ClaudeSkillz/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/jackspace/ClaudeSkillz/discussions)
+- **Feature requests**: [GitHub Issues](https://github.com/jackspace/ClaudeSkillz/issues)
 - **Main Site**: [claudeskillz.jackspace.com](https://claudeskillz.jackspace.com)
 
 ---

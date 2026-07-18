@@ -6,7 +6,9 @@
       "references/document_conversion.md",
       "references/media_processing.md",
       "references/structured_data.md",
-      "references/web_content.md"
+      "references/web_content.md",
+      "references/advanced_integrations.md",
+      "references/troubleshooting.md"
     ]
   },
   "content": "**Preparing documents for RAG:**\r\n```python\r\nfrom markitdown import MarkItDown\r\n\r\nmd = MarkItDown()\r\n\r\ndocs = [\"manual.pdf\", \"guide.docx\", \"faq.html\"]\r\nmarkdown_content = []\r\n\r\nfor doc in docs:\r\n    result = md.convert(doc)\r\n    markdown_content.append(result.text_content)\r\n\r\n```\r\n\r\n**Document analysis pipeline:**\r\n```bash\r\n\r\nMarkItDown supports extensible plugins for custom conversion logic. Plugins are disabled by default for security:\r\n\r\n```python\r\nfrom markitdown import MarkItDown",

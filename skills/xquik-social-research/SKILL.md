@@ -75,3 +75,5 @@ Return the requested records, source metadata, next cursor, & remaining caveats.
 For integrations, return the selected REST or MCP path & validation steps.
 
 For blocked work, state the missing key, input, approval, or account state.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.

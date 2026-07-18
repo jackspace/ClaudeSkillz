@@ -1,9 +1,23 @@
 ---
 name: markitdown
 description: Convert various file formats (PDF, Office documents, images, audio, web content, structured data) to Markdown optimized for LLM processing. Use when converting documents to markdown, extracting text from PDFs/Office files, transcribing audio, performing OCR on images, extracting YouTube transcripts, or processing batches of files. Supports 20+ formats including DOCX, XLSX, PPTX, PDF, HTML, EPUB, CSV, JSON, images with OCR, and audio with transcription.
+permissions:
+  - file_read
+  - file_write
 ---
 
 # MarkItDown
+
+## Contents
+
+- [Overview](#overview)
+- [When to Use This Skill](#when-to-use-this-skill)
+- [Core Capabilities](#core-capabilities)
+- [Installation](#installation)
+- [Common Workflows](#common-workflows)
+- [Troubleshooting](#troubleshooting)
+- [Plugin System](#plugin-system)
+- [Resources](#resources)
 
 ## Overview
 
@@ -125,7 +139,7 @@ For enhanced PDF processing with better table extraction and layout analysis:
 ```python
 from markitdown import MarkItDown
 
-md = MarkItDown(docintel_endpoint="<endpoint>", docintel_key="<key>")
+md = MarkItDown(docintel_endpoint="<document_intelligence_endpoint>")
 result = md.convert("complex.pdf")
 ```
 
@@ -176,8 +190,8 @@ pip install 'markitdown[pdf]'           # PDF support
 pip install 'markitdown[docx]'          # Word support
 pip install 'markitdown[pptx]'          # PowerPoint support
 pip install 'markitdown[xlsx]'          # Excel support
-pip install 'markitdown[audio]'         # Audio transcription
-pip install 'markitdown[youtube]'       # YouTube transcripts
+pip install 'markitdown[audio-transcription]'   # Audio transcription
+pip install 'markitdown[youtube-transcription]' # YouTube transcripts
 ```
 
 **Requirements:**
@@ -218,6 +232,22 @@ for file in documents/*.pdf; do
 done
 ```
 
+## Troubleshooting
+
+- **Unsupported format or missing converter:** Install the matching optional
+  extra, then retry in a clean virtual environment.
+- **Scanned PDF returns little text:** Use the OCR plugin or a cloud document
+  integration. Do not assume every PDF contains a text layer.
+- **Remote URL conversion fails:** Fetch the URL with an allowlisted HTTP
+  client, validate redirects and size, then pass the response to
+  `convert_response()`.
+- **Untrusted path or URL:** Do not pass it to permissive `convert()`. Validate
+  it and use `convert_local()`, `convert_stream()`, or `convert_response()`.
+- **Batch conversion reports failures:** Review the per-file errors, install
+  the required extras, and rerun only failed files.
+
+See `references/troubleshooting.md` for error-handling patterns.
+
 ## Plugin System
 
 MarkItDown supports extensible plugins for custom conversion logic. Plugins are disabled by default for security:
@@ -238,4 +268,5 @@ This skill includes comprehensive reference documentation for each capability:
 - **references/web_content.md** - HTML, YouTube, and EPUB extraction
 - **references/structured_data.md** - CSV, JSON, XML conversion formats
 - **references/advanced_integrations.md** - Azure Document Intelligence and LLM integration
+- **references/troubleshooting.md** - Input validation and common failures
 - **scripts/batch_convert.py** - Batch processing utility for directories

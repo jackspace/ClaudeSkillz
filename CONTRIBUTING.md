@@ -17,7 +17,7 @@ It happens! Skills break. Dependencies change. Stuff gets weird. Open an issue a
 
 ### 💡 Got an Idea?
 
-We LOVE ideas. New skills? Better workflows? Wild improvements? Drop it in [Discussions](https://github.com/jackspace/ClaudeSkillz/discussions) or open an issue. Let's talk it through.
+We LOVE ideas. New skills? Better workflows? Wild improvements? Open an [issue](https://github.com/jackspace/ClaudeSkillz/issues) and let's talk it through.
 
 ### 🛠️ Want to Add a Skill?
 

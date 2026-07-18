@@ -226,7 +226,7 @@ Skills in this collection are sourced from:
 
 - **Documentation**: [claudeskillz.jackspace.com](https://claudeskillz.jackspace.com)
 - **Issues**: [GitHub Issues](https://github.com/jackspace/ClaudeSkillz/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/jackspace/ClaudeSkillz/discussions)
+- **Feature requests**: [GitHub Issues](https://github.com/jackspace/ClaudeSkillz/issues)
 
 ## Roadmap
 
