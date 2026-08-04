@@ -1,14 +1,15 @@
 ---
 name: motion
-description: |
-  Production-ready setup for Motion (formerly Framer Motion) - the most popular React animation library with 30,200+ GitHub stars. Motion provides declarative animations, gesture controls, scroll-based effects, spring physics, layout animations, and SVG manipulation.
-
-  This skill should be used when building UIs that need complex animations beyond simple list transitions: gesture controls (drag, hover, tap), scroll-linked animations, parallax effects, shared element transitions, SVG path morphing, spring physics, or orchestrated animation sequences.
-
-  Use when: Adding drag-and-drop interactions, creating scroll-triggered animations, implementing modal dialogs with sophisticated transitions, building carousels with momentum, animating page/route transitions, creating hero sections with parallax, implementing accordion components with smooth expand/collapse, or optimizing animation bundle size with LazyMotion.
-
-  **Important**: For simple list add/remove/sort animations, use the `auto-animate` skill instead (3.28 KB vs 34 KB bundle). Motion is designed for complex interactive animations that require fine-grained control.
-
+description: >-
+  Production-ready setup for Motion (formerly Framer Motion), the React animation library for
+  declarative animations, gesture controls (drag, hover, tap, pan), scroll-linked and viewport-
+  triggered effects, spring physics, layout and shared element transitions, AnimatePresence exit
+  animations, and SVG path morphing. Covers bundle optimization with LazyMotion and useAnimate
+  mini, tested on React 19, Next.js 15, Vite 6, and Tailwind v4. Use when building drag-and-drop
+  interfaces, scroll-triggered reveals or parallax hero sections, modal dialogs and carousels with
+  momentum, page and route transitions, orchestrated staggered sequences, or accordions needing
+  fine-grained control. For simple list add/remove/sort transitions, the auto-animate skill is far
+  smaller and preferred.
 license: MIT
 ---
 

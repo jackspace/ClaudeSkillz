@@ -1,9 +1,15 @@
 ---
 name: typescript-mcp
-description: |
-  Use this skill when building MCP (Model Context Protocol) servers with TypeScript on Cloudflare Workers. This skill provides production-tested patterns for implementing tools, resources, and prompts using the official @modelcontextprotocol/sdk. It prevents 10+ common errors including export syntax issues, schema validation failures, memory leaks from unclosed transports, CORS misconfigurations, and authentication vulnerabilities. This skill should be used when developers need stateless MCP servers for API integrations, external tool exposure, or serverless edge deployments. For stateful agents with WebSockets and persistent storage, consider the Cloudflare Agents SDK instead. Supports multiple authentication methods (API keys, OAuth, Zero Trust), Cloudflare service integrations (D1, KV, R2, Vectorize), and comprehensive testing strategies. Production tested with token savings of ~70% vs manual implementation.
-
-  Keywords: mcp, model context protocol, typescript mcp, cloudflare workers mcp, mcp server, mcp tools, mcp resources, mcp sdk, @modelcontextprotocol/sdk, hono mcp, streamablehttpservertransport, mcp authentication, mcp cloudflare, edge mcp server, serverless mcp, typescript mcp server, mcp api, llm tools, ai tools, cloudflare d1 mcp, cloudflare kv mcp, mcp testing, mcp deployment, wrangler mcp, export syntax error, schema validation error, memory leak mcp, cors mcp, rate limiting mcp
+description: >-
+  Building MCP (Model Context Protocol) servers in TypeScript on Cloudflare Workers with the
+  official @modelcontextprotocol/sdk: registering tools, resources, and prompts, Hono HTTP
+  routing, StreamableHTTPServerTransport setup, authentication (API keys, OAuth, Zero Trust),
+  Cloudflare D1/KV/R2/Vectorize integration, wrangler deployment, and testing. Prevents common
+  failures including export syntax errors, Zod schema validation failures, memory leaks from
+  unclosed transports, CORS misconfiguration, and missing rate limiting. Use when exposing APIs,
+  tools, or data to LLMs as a stateless serverless MCP server on the edge. Not for Python MCP
+  servers (see FastMCP), stateful WebSocket agents (Cloudflare Agents SDK), or local stdio CLI
+  tools.
 license: MIT
 metadata:
   version: 1.0.0

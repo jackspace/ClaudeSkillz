@@ -1,20 +1,14 @@
 ---
 name: cloudflare-full-stack-integration
-description: |
-  Production-tested integration patterns for connecting React frontends to Cloudflare Worker backends
-  with Hono, Clerk authentication, and D1 databases. Prevents common frontend-backend connection issues,
-  CORS errors, auth token failures, and race conditions.
-
-  Use when: connecting frontend to backend, implementing auth flow, setting up API calls,
-  troubleshooting CORS, fixing race conditions, auth tokens not passing, frontend-backend connection errors,
-  401 errors, integrating Clerk with Workers, setting up full-stack Cloudflare app, vite cloudflare plugin setup.
-
-  Prevents: CORS errors, 401 Unauthorized, auth token mismatches, race conditions with auth loading,
-  environment variable confusion, frontend calling wrong endpoints, JWT verification errors, D1 connection issues.
-
-  Keywords: frontend backend integration, Cloudflare Workers, Hono, Clerk auth, JWT verification, CORS, React API client,
-  race conditions, auth loading, connection issues, full-stack integration, vite plugin, @cloudflare/vite-plugin,
-  D1 database, environment variables, token attachment, session management, protected routes, API middleware
+description: >-
+  Production-tested patterns for wiring a React frontend to a Cloudflare Workers + Hono backend
+  with Clerk authentication and D1, including an API client that attaches auth tokens
+  automatically, a ProtectedRoute auth gate with loading states, CORS middleware for dev and
+  production, Clerk JWT verification middleware, wrangler.jsonc bindings, .dev.vars environment
+  variables, and @cloudflare/vite-plugin config (the Worker and frontend share one dev port, so
+  relative /api URLs are correct). Use when connecting frontend to backend, implementing an auth
+  flow, or troubleshooting CORS errors, 401 Unauthorized responses, auth tokens not passing, race
+  conditions while auth is still loading, environment variable confusion, or D1 connection issues.
 license: MIT
 metadata:
   version: 1.0.0

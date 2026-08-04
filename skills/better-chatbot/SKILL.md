@@ -1,13 +1,16 @@
 ---
 name: better-chatbot
-description: |
-  This skill provides project-specific coding conventions, architectural principles, repository structure standards, testing patterns, and contribution guidelines for the better-chatbot project (https://github.com/cgoinglove/better-chatbot). Use this skill when contributing to or working with better-chatbot to understand the design philosophy and ensure code follows established patterns.
-
-  Includes: API architecture deep-dive, three-tier tool system (MCP/Workflow/Default), component design patterns, database repository patterns, architectural principles (progressive enhancement, defensive programming, streaming-first), practical templates for adding features (tools, routes, repositories).
-
-  Use when: working in better-chatbot repository, contributing features/fixes, understanding architectural decisions, following server action validators, implementing tools/workflows, setting up Playwright tests, adding API routes, designing database queries, building UI components, handling multi-AI provider integration
-
-  Keywords: better-chatbot, chatbot contribution, better-chatbot standards, chatbot development, AI chatbot patterns, API architecture, three-tier tool system, repository pattern, progressive enhancement, defensive programming, streaming-first, compound component pattern, Next.js chatbot, Vercel AI SDK chatbot, MCP tools, workflow builder, server action validators, tool abstraction, DAG workflows, shared business logic, safe() wrapper, tool lifecycle
+description: >-
+  Supplies the project-specific conventions, architecture, and contribution guidelines for the
+  better-chatbot open-source AI chat platform (github.com/cgoinglove/better-chatbot; Next.js 15,
+  Vercel AI SDK 5, Better Auth, Drizzle ORM, PostgreSQL). Covers the API architecture, the three-
+  tier tool system (MCP, Workflow, Default), server action validators and the safe() wrapper,
+  database repository patterns, compound component design, DAG workflow builder internals,
+  Playwright E2E test setup, and principles such as progressive enhancement, defensive
+  programming, and streaming-first, plus templates for adding tools, API routes, and repositories.
+  Use when working in the better-chatbot repository, contributing features or fixes, adding API
+  routes or database queries, implementing tools and workflows, building UI components, or
+  integrating multiple AI providers.
 license: MIT
 metadata:
   version: 2.1.0

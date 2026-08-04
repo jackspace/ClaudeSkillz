@@ -1,21 +1,14 @@
 ---
 name: openai-assistants
-description: |
-  Complete guide for OpenAI's Assistants API v2: stateful conversational AI with built-in tools
-  (Code Interpreter, File Search, Function Calling), vector stores for RAG (up to 10,000 files),
-  thread/run lifecycle management, and streaming patterns. Both Node.js SDK and fetch approaches.
-
-  ⚠️ DEPRECATION NOTICE: OpenAI plans to sunset Assistants API in H1 2026 in favor of Responses API.
-  This skill remains valuable for existing apps and migration planning.
-
-  Use when: building stateful chatbots with OpenAI, implementing RAG with vector stores, executing
-  Python code with Code Interpreter, using file search for document Q&A, managing conversation threads,
-  streaming assistant responses, or encountering errors like "thread already has active run", vector
-  store indexing delays, run polling timeouts, or file upload issues.
-
-  Keywords: openai assistants, assistants api, openai threads, openai runs, code interpreter assistant,
-  file search openai, vector store openai, openai rag, assistant streaming, thread persistence,
-  stateful chatbot, thread already has active run, run status polling, vector store error
+description: >-
+  Guide to OpenAI's Assistants API v2: stateful conversational AI with Code Interpreter, File
+  Search and function calling, vector stores for RAG up to 10,000 files, thread and run lifecycle
+  management, and streaming, using the Node.js SDK or plain fetch. Notes the planned H1 2026
+  sunset and the migration path to the Responses API. Use when building stateful OpenAI chatbots,
+  implementing RAG with vector stores, running Python via Code Interpreter, doing document Q&A
+  with file search, managing conversation threads and run polling, streaming assistant responses,
+  maintaining legacy Assistants code, or debugging errors such as thread already has active run,
+  run status polling timeouts, vector store indexing delays, and file upload failures.
 license: MIT
 ---
 

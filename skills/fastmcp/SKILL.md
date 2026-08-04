@@ -1,9 +1,17 @@
 ---
 name: fastmcp
-description: |
-  Use this skill when building MCP (Model Context Protocol) servers with FastMCP in Python. FastMCP is a framework for creating servers that expose tools, resources, and prompts to LLMs like Claude. The skill covers server creation, tool/resource definitions, storage backends (memory/disk/Redis/DynamoDB), server lifespans, middleware system (8 built-in types), server composition (import/mount), OAuth Proxy, authentication patterns, icons, OpenAPI integration, client configuration, cloud deployment (FastMCP Cloud), error handling, and production patterns. It prevents 25+ common errors including storage misconfiguration, lifespan issues, middleware order errors, circular imports, module-level server issues, async/await confusion, OAuth security vulnerabilities, and cloud deployment failures. Includes templates for basic servers, storage backends, middleware, server composition, OAuth proxy, API integrations, testing, and self-contained production architectures.
-
-  Keywords: FastMCP, MCP server Python, Model Context Protocol Python, fastmcp framework, mcp tools, mcp resources, mcp prompts, fastmcp storage, fastmcp memory storage, fastmcp disk storage, fastmcp redis, fastmcp dynamodb, fastmcp lifespan, fastmcp middleware, fastmcp oauth proxy, server composition mcp, fastmcp import, fastmcp mount, fastmcp cloud, fastmcp deployment, mcp authentication, fastmcp icons, openapi mcp, claude mcp server, fastmcp testing, storage misconfiguration, lifespan issues, middleware order, circular imports, module-level server, async await mcp
+description: >-
+  Builds MCP (Model Context Protocol) servers in Python with FastMCP, covering tool, resource, and
+  prompt definitions, storage backends (memory, disk, Redis, DynamoDB), server lifespans, the 8
+  built-in middleware types, server composition via import and mount, OAuth Proxy and
+  authentication, OpenAPI integration, client configuration, and FastMCP Cloud deployment.
+  Includes templates for basic servers, storage, middleware, composition, OAuth proxy, API
+  integrations, testing, and production architectures, and prevents 25+ common errors such as
+  storage misconfiguration, lifespan and middleware-order mistakes, circular imports, module-level
+  server issues, async/await confusion, OAuth security holes, and cloud deployment failures. Use
+  when creating or debugging a Python FastMCP server, defining mcp tools, resources, or prompts,
+  wiring fastmcp storage or middleware, mounting sub-servers, setting up MCP OAuth, or deploying
+  to FastMCP Cloud.
 license: MIT
 metadata:
   version: "2.0.0"

@@ -1,11 +1,14 @@
 ---
 name: cloudflare-hyperdrive
-description: |
-  Complete knowledge domain for Cloudflare Hyperdrive - connecting Cloudflare Workers to existing PostgreSQL and MySQL databases with global connection pooling, query caching, and reduced latency.
-
-  Use when: connecting Workers to existing databases, migrating PostgreSQL/MySQL to Cloudflare, setting up connection pooling, configuring Hyperdrive bindings, using node-postgres/postgres.js/mysql2 drivers, integrating Drizzle ORM or Prisma ORM, or encountering "Failed to acquire a connection from the pool", "TLS not supported by the database", "connection refused", "nodejs_compat missing", "Code generation from strings disallowed", or Hyperdrive configuration errors.
-
-  Keywords: hyperdrive, cloudflare hyperdrive, workers hyperdrive, postgres workers, mysql workers, connection pooling, query caching, node-postgres, pg, postgres.js, mysql2, drizzle hyperdrive, prisma hyperdrive, workers rds, workers aurora, workers neon, workers supabase, database acceleration, hybrid architecture, cloudflare tunnel database, wrangler hyperdrive, hyperdrive bindings, local development hyperdrive
+description: >-
+  Covers Cloudflare Hyperdrive, which connects Cloudflare Workers to existing PostgreSQL and MySQL
+  databases with global connection pooling and query caching: creating configs with wrangler
+  hyperdrive create, wrangler.jsonc bindings, the required nodejs_compat flag, driver setup for
+  node-postgres (pg), postgres.js and mysql2, Drizzle ORM and Prisma integration, local
+  development, and caching and TLS options. Use when giving Workers access to RDS, Aurora, Neon or
+  Supabase databases, setting up connection pooling or a hybrid architecture, or debugging errors
+  such as Failed to acquire a connection from the pool, TLS not supported by the database,
+  connection refused, missing nodejs_compat, or Code generation from strings disallowed.
 license: MIT
 ---
 

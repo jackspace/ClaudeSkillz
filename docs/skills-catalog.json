@@ -32,7 +32,7 @@
     },
     {
       "name": "auto-animate",
-      "description": "Production-tested setup for AutoAnimate (@formkit/auto-animate) - a zero-config, drop-in animation library that automatically adds smooth transitions when DOM elements are added, removed, or moved. Th",
+      "description": "Production-tested setup for AutoAnimate (@formkit/auto-animate), a zero-config drop-in library that automatically adds smooth transitions when DOM elements are added, removed, or moved, at about 3 KB ",
       "category": "General"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "name": "base-ui-react",
-      "description": "Production-tested setup for Base UI (@base-ui-components/react) - MUI's unstyled component library that provides accessible, customizable React components using render props pattern. This skill should",
+      "description": "Production-tested setup for Base UI (@base-ui-components/react), MUI's unstyled, accessible React component library that uses a render prop API instead of Radix's asChild pattern, with Floating UI pos",
       "category": "Web Development"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "name": "better-chatbot",
-      "description": "This skill provides project-specific coding conventions, architectural principles, repository structure standards, testing patterns, and contribution guidelines for the better-chatbot project (https:/",
+      "description": "Supplies the project-specific conventions, architecture, and contribution guidelines for the better-chatbot open-source AI chat platform (github.com/cgoinglove/better-chatbot; Next.js 15, Vercel AI SD",
       "category": "General"
     },
     {
@@ -132,17 +132,17 @@
     },
     {
       "name": "clerk-auth",
-      "description": "This skill provides comprehensive knowledge for integrating Clerk authentication in React, Next.js, and Cloudflare Workers applications. It should be used when setting up user authentication, implemen",
+      "description": "Integrates Clerk authentication in React/Vite, Next.js App Router, and Cloudflare Workers apps. Covers ClerkProvider setup, clerkMiddleware and createRouteMatcher for protected routes, token verificat",
       "category": "General"
     },
     {
       "name": "cloudflare-agents",
-      "description": "Comprehensive guide for the Cloudflare Agents SDK - build AI-powered autonomous agents on Workers + Durable Objects. Use when: building AI agents, creating stateful agents with WebSockets, implementin",
+      "description": "Guide to the Cloudflare Agents SDK for building stateful AI agents on Workers plus Durable Objects. Covers the Agent class, this.setState and this.sql state, WebSocket and streaming chat via AIChatAge",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-browser-rendering",
-      "description": "Complete knowledge domain for Cloudflare Browser Rendering - Headless Chrome automation with Puppeteer and Playwright on Cloudflare Workers for screenshots, PDFs, web scraping, and browser automation ",
+      "description": "Reference for Cloudflare Browser Rendering, headless Chrome on Workers via @cloudflare/puppeteer and @cloudflare/playwright. Covers the browser binding, puppeteer.launch, puppeteer.connect and puppete",
       "category": "Cloudflare"
     },
     {
@@ -157,32 +157,32 @@
     },
     {
       "name": "cloudflare-durable-objects",
-      "description": "Comprehensive guide for Cloudflare Durable Objects - globally unique, stateful objects for coordination, real-time communication, and persistent state management. Use when: building real-time applicat",
+      "description": "Guide to Cloudflare Durable Objects: globally unique, stateful objects for coordination, real- time communication and persistent state. Covers the DurableObject class and bindings, WebSocket Hibernati",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-email-routing",
-      "description": "Complete guide for Cloudflare Email Routing covering both Email Workers (receiving emails) and Send Email bindings (sending emails from Workers). Use when: setting up email routing, creating email wor",
+      "description": "Guide to Cloudflare Email Routing, covering both Email Workers for receiving mail and the send_email binding for sending mail from Workers. Covers dashboard setup with MX, SPF and DKIM records, the em",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-full-stack-integration",
-      "description": "Production-tested integration patterns for connecting React frontends to Cloudflare Worker backends with Hono, Clerk authentication, and D1 databases. Prevents common frontend-backend connection issue",
+      "description": "Production-tested patterns for wiring a React frontend to a Cloudflare Workers + Hono backend with Clerk authentication and D1, including an API client that attaches auth tokens automatically, a Prote",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-full-stack-scaffold",
-      "description": "Production-ready starter project for React + Cloudflare Workers + Hono with core services (D1, KV, R2, Workers AI) and optional advanced features (Clerk Auth, AI Chat, Queues, Vectorize). Complete wit",
+      "description": "Production-ready starter project for React 19 + Cloudflare Workers + Hono, with D1, KV, R2, and Workers AI pre-configured plus opt-in enable scripts for Clerk auth, AI chat, Queues, and Vectorize. Shi",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-hyperdrive",
-      "description": "Complete knowledge domain for Cloudflare Hyperdrive - connecting Cloudflare Workers to existing PostgreSQL and MySQL databases with global connection pooling, query caching, and reduced latency. Use w",
+      "description": "Covers Cloudflare Hyperdrive, which connects Cloudflare Workers to existing PostgreSQL and MySQL databases with global connection pooling and query caching: creating configs with wrangler hyperdrive c",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-images",
-      "description": "This skill provides comprehensive knowledge for Cloudflare Images, covering both the Images API (upload/storage) and Image Transformations (optimize any image). It should be used when uploading images",
+      "description": "Cloudflare Images, covering both the Images API for upload and storage and Image Transformations for optimizing any publicly accessible image. Includes account setup and API tokens, multipart uploads,",
       "category": "Cloudflare"
     },
     {
@@ -192,12 +192,12 @@
     },
     {
       "name": "cloudflare-mcp-server",
-      "description": "Use this skill when building Model Context Protocol (MCP) servers on Cloudflare Workers. This skill should be used when deploying remote MCP servers with TypeScript, implementing OAuth authentication ",
+      "description": "Builds and deploys remote Model Context Protocol (MCP) servers on Cloudflare Workers in TypeScript with @modelcontextprotocol/sdk: McpAgent class patterns for tools, resources, and prompts, all four a",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-nextjs",
-      "description": "Deploy Next.js applications (App Router and Pages Router) to Cloudflare Workers using the OpenNext adapter. This skill should be used when deploying Next.js apps with SSR, ISR, or server components to",
+      "description": "Covers deploying Next.js apps (App Router and Pages Router) to Cloudflare Workers with the OpenNext adapter @opennextjs/cloudflare: scaffolding new projects via create-cloudflare, migrating existing a",
       "category": "Cloudflare"
     },
     {
@@ -212,17 +212,17 @@
     },
     {
       "name": "cloudflare-sandbox",
-      "description": "This skill provides comprehensive knowledge for building applications with Cloudflare Sandboxes SDK, which enables secure, isolated code execution in full Linux containers at the edge. It should be us",
+      "description": "Guide to the Cloudflare Sandbox SDK (@cloudflare/sandbox), which runs code inside isolated Ubuntu Linux containers at the edge, routed by Durable Objects. Covers wrangler container and Durable Object ",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-turnstile",
-      "description": "This skill provides comprehensive knowledge for implementing Cloudflare Turnstile, the CAPTCHA-alternative bot protection system. It should be used when integrating bot protection into forms, login pa",
+      "description": "Covers implementing Cloudflare Turnstile, the invisible CAPTCHA alternative for bot protection: creating widgets and sitekey/secret pairs, embedding the cf-turnstile widget or @marsidev/react- turnsti",
       "category": "Cloudflare"
     },
     {
       "name": "cloudflare-vectorize",
-      "description": "Complete knowledge domain for Cloudflare Vectorize - globally distributed vector database for building semantic search, RAG (Retrieval Augmented Generation), and AI-powered applications. Use when: cre",
+      "description": "Cloudflare Vectorize, the globally distributed vector database for semantic search, RAG, and AI applications on Workers. Covers index creation with fixed dimensions and distance metric (cosine, euclid",
       "category": "Cloudflare"
     },
     {
@@ -232,7 +232,7 @@
     },
     {
       "name": "cloudflare-workers-ai",
-      "description": "Complete knowledge domain for Cloudflare Workers AI - Run AI models on serverless GPUs across Cloudflare's global network. Use when: implementing AI inference on Workers, running LLM models, generatin",
+      "description": "Reference for Cloudflare Workers AI, running AI models on serverless GPUs through the env.AI.run() binding. Covers the AI binding in wrangler.jsonc, model selection (@cf/meta/llama, Flux and Stable Di",
       "category": "Cloudflare"
     },
     {
@@ -242,7 +242,7 @@
     },
     {
       "name": "cloudflare-zero-trust-access",
-      "description": "Use this skill when integrating Cloudflare Zero Trust Access authentication with Cloudflare Workers applications. Provides Hono middleware setup, manual JWT validation patterns, service token authenti",
+      "description": "Cloudflare Zero Trust Access authentication for Cloudflare Workers applications. Covers hono- cloudflare-access middleware setup, manual Access JWT validation with public key caching, service tokens f",
       "category": "Cloudflare"
     },
     {
@@ -267,7 +267,7 @@
     },
     {
       "name": "content-collections",
-      "description": "Production-tested setup for Content Collections - a TypeScript-first build tool that transforms local content files (Markdown/MDX) into type-safe data collections with automatic validation. Use when: ",
+      "description": "Content Collections, a TypeScript-first build tool that turns local Markdown and MDX files into type-safe, Zod-validated data collections. Covers @content-collections/core and the Vite plugin, defineC",
       "category": "General"
     },
     {
@@ -312,12 +312,12 @@
     },
     {
       "name": "drizzle-orm-d1",
-      "description": "Type-safe ORM for Cloudflare D1 databases using Drizzle. This skill provides comprehensive patterns for schema definition, migrations management, type-safe queries, relations, and Cloudflare Workers i",
+      "description": "Type-safe Drizzle ORM patterns for Cloudflare D1 databases: schema definition, migration management with Drizzle Kit and drizzle.config.ts, relations and relational queries, joins, prepared statements",
       "category": "General"
     },
     {
       "name": "elevenlabs-agents",
-      "description": "Use this skill when building AI voice agents with the ElevenLabs Agents Platform. This skill covers the complete platform including agent configuration (system prompts, turn-taking, workflows), voice ",
+      "description": "Guide to building conversational AI voice agents on the ElevenLabs Agents Platform (ASR, LLM, TTS, turn-taking model). Covers agent configuration and system prompts, workflows, multi-voice, pronunciat",
       "category": "AI/ML"
     },
     {
@@ -337,7 +337,7 @@
     },
     {
       "name": "fastmcp",
-      "description": "Use this skill when building MCP (Model Context Protocol) servers with FastMCP in Python. FastMCP is a framework for creating servers that expose tools, resources, and prompts to LLMs like Claude. The",
+      "description": "Builds MCP (Model Context Protocol) servers in Python with FastMCP, covering tool, resource, and prompt definitions, storage backends (memory, disk, Redis, DynamoDB), server lifespans, the 8 built-in ",
       "category": "General"
     },
     {
@@ -402,7 +402,7 @@
     },
     {
       "name": "github-project-automation",
-      "description": "This skill provides comprehensive automation for GitHub repository setup and configuration. It should be used when creating new projects, setting up CI/CD pipelines, configuring issue templates, enabl",
+      "description": "Automates GitHub repository setup: 12 production-tested GitHub Actions workflow templates (React/Vite, Node matrix testing, Python, Cloudflare Workers deploy, basic CI), 4 YAML issue and pull request ",
       "category": "Development Tools"
     },
     {
@@ -412,12 +412,12 @@
     },
     {
       "name": "google-gemini-api",
-      "description": "Complete guide for Google Gemini API using the CORRECT current SDK (@google/genai v1.27+, NOT the deprecated @google/generative-ai). Covers text generation, multimodal inputs (text + images + video + ",
+      "description": "Guide to the Google Gemini API using the current @google/genai SDK v1.27+, not the deprecated @google/generative-ai (sunset November 2025). Covers text generation, streaming, multimodal input (images,",
       "category": "AI/ML"
     },
     {
       "name": "google-gemini-embeddings",
-      "description": "This skill provides complete coverage of Google Gemini embeddings API (gemini-embedding-001) for building RAG systems, semantic search, document clustering, and similarity matching. Use when implement",
+      "description": "Covers the Google Gemini embeddings API (gemini-embedding-001) for RAG, semantic search, document clustering, and similarity matching: @google/genai SDK usage, fetch-based calls from Cloudflare Worker",
       "category": "AI/ML"
     },
     {
@@ -427,7 +427,7 @@
     },
     {
       "name": "hugo",
-      "description": "This skill provides comprehensive knowledge for building static websites with Hugo static site generator. It should be used when setting up Hugo projects (blogs, documentation sites, landing pages, po",
+      "description": "Guide to building static websites with the Hugo static site generator: blogs, documentation sites, landing pages and portfolios. Covers scaffolding new sites, choosing Hugo Extended over Standard, hug",
       "category": "General"
     },
     {
@@ -452,7 +452,7 @@
     },
     {
       "name": "motion",
-      "description": "Production-ready setup for Motion (formerly Framer Motion) - the most popular React animation library with 30,200+ GitHub stars. Motion provides declarative animations, gesture controls, scroll-based ",
+      "description": "Production-ready setup for Motion (formerly Framer Motion), the React animation library for declarative animations, gesture controls (drag, hover, tap, pan), scroll-linked and viewport- triggered effe",
       "category": "General"
     },
     {
@@ -467,7 +467,7 @@
     },
     {
       "name": "neon-vercel-postgres",
-      "description": "This skill provides comprehensive knowledge for integrating Neon serverless Postgres and Vercel Postgres (which is built on Neon infrastructure) into web applications. It should be used when setting u",
+      "description": "Integrates Neon serverless Postgres and Vercel Postgres (built on Neon) into web and edge applications: the @neondatabase/serverless and @vercel/postgres HTTP and WebSocket drivers, pooled versus non-",
       "category": "General"
     },
     {
@@ -482,27 +482,27 @@
     },
     {
       "name": "open-source-contributions",
-      "description": "Use this skill when contributing code to open source projects. The skill covers proper pull request creation, avoiding common mistakes that annoy maintainers, cleaning up personal development artifact",
+      "description": "Guidance for contributing code to open source projects the contributor does not maintain. Covers the fork and feature-branch workflow, upstream sync, writing effective pull request descriptions and co",
       "category": "General"
     },
     {
       "name": "openai-agents",
-      "description": "Use this skill when building AI applications with OpenAI Agents SDK for JavaScript/TypeScript. The skill covers both text-based agents and realtime voice agents, including multi-agent workflows (hando",
+      "description": "Guide to the OpenAI Agents SDK for JavaScript and TypeScript (@openai/agents, @openai/agents- realtime), covering text agents and realtime voice agents. Covers agents, tools defined with Zod schemas, ",
       "category": "AI/ML"
     },
     {
       "name": "openai-api",
-      "description": "Complete guide for OpenAI's traditional/stateless APIs: Chat Completions (GPT-5, GPT-4o), Embeddings, Images (DALL-E 3), Audio (Whisper + TTS), and Moderation. Includes both Node.js SDK and fetch-base",
+      "description": "OpenAI's traditional stateless APIs: Chat Completions (GPT-5, GPT-5-mini, GPT-5-nano, GPT-4o, GPT-4 Turbo), Embeddings (text-embedding-3-small/large), Images (DALL-E 3 generation, GPT- Image-1 editing",
       "category": "AI/ML"
     },
     {
       "name": "openai-assistants",
-      "description": "Complete guide for OpenAI's Assistants API v2: stateful conversational AI with built-in tools (Code Interpreter, File Search, Function Calling), vector stores for RAG (up to 10,000 files), thread/run ",
+      "description": "Guide to OpenAI's Assistants API v2: stateful conversational AI with Code Interpreter, File Search and function calling, vector stores for RAG up to 10,000 files, thread and run lifecycle management, ",
       "category": "AI/ML"
     },
     {
       "name": "openai-responses",
-      "description": "This skill provides comprehensive knowledge for working with OpenAI's Responses API, the unified stateful API for building agentic applications. It should be used when building AI agents that preserve",
+      "description": "Reference for OpenAI's Responses API (/v1/responses), the unified stateful API for agentic applications. Covers reasoning state preserved across turns, conversation IDs and automatic state management,",
       "category": "AI/ML"
     },
     {
@@ -542,7 +542,7 @@
     },
     {
       "name": "react-hook-form-zod",
-      "description": "This skill provides comprehensive knowledge for building type-safe, validated forms in React using React Hook Form and Zod schema validation. Use when: building forms with validation in React, integra",
+      "description": "Type-safe validated forms in React with react-hook-form and Zod, wired through zodResolver from @hookform/resolvers, covering useForm, register, handleSubmit, formState, Controller and useController, ",
       "category": "Web Development"
     },
     {
@@ -1167,7 +1167,7 @@
     },
     {
       "name": "sveltia-cms",
-      "description": "Complete Sveltia CMS skill for lightweight, Git-backed content management. Sveltia is the modern successor to Decap/Netlify CMS with 5x smaller bundle (300 KB), faster GraphQL-based performance, and s",
+      "description": "Sveltia CMS, a lightweight Git-backed headless CMS and modern successor to Decap/Netlify CMS (about 300 KB bundle, GraphQL-based). Covers admin/config.yml collection config, YAML and TOML frontmatter,",
       "category": "General"
     },
     {
@@ -1177,7 +1177,7 @@
     },
     {
       "name": "tanstack-query",
-      "description": "This skill provides comprehensive knowledge for TanStack Query v5 (React Query) server state management in React applications. It should be used when setting up data fetching with useQuery, implementi",
+      "description": "TanStack Query v5 (React Query) server-state management for React: QueryClient and QueryClientProvider setup, custom useQuery hooks, useMutation with error handling, useInfiniteQuery pagination, useSu",
       "category": "General"
     },
     {
@@ -1217,7 +1217,7 @@
     },
     {
       "name": "thesys-generative-ui",
-      "description": "Production-ready skill for integrating TheSys C1 Generative UI API into React applications. This skill should be used when building AI-powered interfaces that stream interactive components (forms, cha",
+      "description": "TheSys C1 Generative UI API (@thesysai/genui-sdk with @crayonai/react-ui) for React apps that stream interactive components such as forms, charts, and tables instead of plain text LLM output. Covers i",
       "category": "General"
     },
     {
@@ -1227,12 +1227,12 @@
     },
     {
       "name": "tinacms",
-      "description": "Complete TinaCMS skill for building content-heavy sites with Git-backed CMS. Use this skill when setting up blogs, documentation sites, or marketing sites that require visual editing and content manag",
+      "description": "Git-backed headless CMS setup with TinaCMS 2.9 and @tinacms/cli 1.11, covering schema and collection modeling in tina/config.ts, the auto-generated GraphQL API, visual and contextual editing, and depl",
       "category": "General"
     },
     {
       "name": "typescript-mcp",
-      "description": "Use this skill when building MCP (Model Context Protocol) servers with TypeScript on Cloudflare Workers. This skill provides production-tested patterns for implementing tools, resources, and prompts u",
+      "description": "Building MCP (Model Context Protocol) servers in TypeScript on Cloudflare Workers with the official @modelcontextprotocol/sdk: registering tools, resources, and prompts, Hono HTTP routing, StreamableH",
       "category": "Automation"
     },
     {
@@ -1252,12 +1252,12 @@
     },
     {
       "name": "vercel-blob",
-      "description": "This skill provides comprehensive knowledge for integrating Vercel Blob object storage into Vercel applications. It should be used when setting up file uploads, managing images and documents, implemen",
+      "description": "Covers integrating Vercel Blob object storage (@vercel/blob) into Next.js and other Vercel apps: server-side uploads with put, client-side uploads via presigned client upload tokens, listing, download",
       "category": "General"
     },
     {
       "name": "vercel-kv",
-      "description": "This skill provides comprehensive knowledge for integrating Vercel KV (Redis-compatible key-value storage powered by Upstash) into Vercel applications. It should be used when setting up Vercel KV for ",
+      "description": "Vercel KV, the Redis-compatible key-value store powered by Upstash, in Next.js and other Vercel applications. Covers @vercel/kv setup and environment variables (KV_REST_API_URL, KV_REST_API_TOKEN), ke",
       "category": "General"
     },
     {
@@ -1282,7 +1282,7 @@
     },
     {
       "name": "wordpress-plugin-core",
-      "description": "This skill provides comprehensive knowledge for WordPress plugin development, covering core patterns, security best practices, database interactions, hooks/filters, Settings API, custom post types, RE",
+      "description": "WordPress plugin development fundamentals: plugin headers and file structure (simple, OOP, or PSR-4 with Composer autoload), activation and deactivation hooks, actions and filters, the Settings API, c",
       "category": "General"
     },
     {
@@ -1302,7 +1302,7 @@
     },
     {
       "name": "zustand-state-management",
-      "description": "Production-tested setup for Zustand state management in React applications with TypeScript. This skill provides comprehensive patterns for building scalable, type-safe global state. Use when: setting ",
+      "description": "Production-tested patterns for Zustand state management in React with TypeScript: creating type- safe stores, the slices pattern for modular stores, persist middleware backed by localStorage or sessio",
       "category": "General"
     }
   ]

@@ -1,11 +1,15 @@
 ---
 name: wordpress-plugin-core
-description: |
-  This skill provides comprehensive knowledge for WordPress plugin development, covering core patterns, security best practices, database interactions, hooks/filters, Settings API, custom post types, REST API, and AJAX. This skill should be used when creating WordPress plugins, troubleshooting security issues, implementing custom post types/taxonomies, building admin interfaces, or working with the WordPress database.
-
-  Use when: Creating new WordPress plugins, implementing nonces/sanitization/escaping, working with $wpdb and prepared statements, building Settings API pages, registering custom post types or taxonomies, implementing REST API endpoints, handling AJAX requests, debugging plugin activation/deactivation issues, preventing SQL injection/XSS/CSRF vulnerabilities.
-
-  Keywords: wordpress plugin development, wordpress security, wordpress hooks, wordpress filters, wordpress database, wpdb prepare, sanitize_text_field, esc_html, wp_nonce, custom post type, register_post_type, settings api, rest api, admin-ajax, wordpress sql injection, wordpress xss, wordpress csrf, plugin header, activation hook, deactivation hook, wordpress coding standards, wordpress plugin architecture
+description: >-
+  WordPress plugin development fundamentals: plugin headers and file structure (simple, OOP, or
+  PSR-4 with Composer autoload), activation and deactivation hooks, actions and filters, the
+  Settings API, custom post types and taxonomies, REST API endpoints, admin-ajax handlers, and
+  $wpdb database access with prepared statements. Emphasizes security: nonces, capability checks,
+  sanitization such as sanitize_text_field, escaping such as esc_html, and preventing SQL
+  injection, XSS, and CSRF. Use when creating or structuring a WordPress plugin, registering post
+  types or taxonomies with register_post_type, building admin settings pages, adding REST or AJAX
+  endpoints, querying the WordPress database safely, auditing plugin security, or debugging plugin
+  activation and deactivation problems.
 license: MIT
 ---
 

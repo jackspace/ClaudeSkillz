@@ -1,11 +1,15 @@
 ---
 name: cloudflare-turnstile
-description: |
-  This skill provides comprehensive knowledge for implementing Cloudflare Turnstile, the CAPTCHA-alternative bot protection system. It should be used when integrating bot protection into forms, login pages, signup flows, or any user-facing feature requiring spam/bot prevention. Turnstile runs invisible challenges in the background, maintaining excellent user experience while blocking automated traffic.
-
-  Use when: Adding bot protection to forms, implementing login security, protecting API endpoints from abuse, migrating from reCAPTCHA/hCaptcha, encountering CSP errors with Turnstile, handling token validation failures, implementing E2E tests with Turnstile, integrating with React/Next.js/Hono applications, or debugging error codes 100*, 300*, 600*.
-
-  Keywords: turnstile, captcha, bot protection, cloudflare challenge, siteverify, recaptcha alternative, spam prevention, form protection, cf-turnstile, turnstile widget, token validation, managed challenge, invisible challenge, @marsidev/react-turnstile, hono turnstile, workers turnstile
+description: >-
+  Covers implementing Cloudflare Turnstile, the invisible CAPTCHA alternative for bot protection:
+  creating widgets and sitekey/secret pairs, embedding the cf-turnstile widget or @marsidev/react-
+  turnstile, server-side token validation through the siteverify API, widget lifecycle and reset
+  handling, pre-clearance for SPAs, custom actions and cData, required CSP directives, and E2E
+  testing with dummy keys. Use when protecting forms, login and signup flows or API endpoints from
+  spam and bots, migrating from reCAPTCHA or hCaptcha, integrating Turnstile with React, Next.js,
+  Hono or Workers, or debugging error 110200 unknown domain, 300030 widget crash, 600010
+  configuration error, 200500 CSP iframe blocking, token expiry and single-use reuse failures, or
+  Safari 18 Hide IP problems.
 license: MIT
 ---
 

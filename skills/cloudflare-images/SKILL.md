@@ -1,11 +1,15 @@
 ---
 name: cloudflare-images
-description: |
-  This skill provides comprehensive knowledge for Cloudflare Images, covering both the Images API (upload/storage) and Image Transformations (optimize any image). It should be used when uploading images to Cloudflare, resizing images, optimizing image delivery, implementing direct creator uploads, creating image variants, generating signed URLs for private images, transforming images via Workers, or encountering image upload/transformation errors.
-
-  Use when: setting up Cloudflare Images storage, implementing user-uploaded images, creating responsive images, optimizing image formats (WebP/AVIF), resizing images via URL or Workers, debugging CORS errors with direct uploads, handling image transformation errors (9401-9413), implementing signed URLs, managing image variants, or building image CDNs.
-
-  Keywords: cloudflare images, image upload cloudflare, imagedelivery.net, cloudflare image transformations, /cdn-cgi/image/, direct creator upload, image variants, cf.image workers, signed urls images, flexible variants, webp avif conversion, responsive images cloudflare, error 5408, error 9401, error 9403, CORS direct upload, multipart/form-data, image optimization cloudflare
+description: >-
+  Cloudflare Images, covering both the Images API for upload and storage and Image Transformations
+  for optimizing any publicly accessible image. Includes account setup and API tokens, multipart
+  uploads, direct creator uploads for end users, named and flexible variants, signed URLs for
+  private images, imagedelivery.net delivery, /cdn-cgi/image/ URL transforms, and cf.image options
+  from a Worker, plus automatic WebP and AVIF conversion for responsive images. Use when adding
+  image upload or storage to a project, resizing or reformatting images via URL or Workers,
+  building an image CDN or responsive image pipeline, managing variants, generating signed URLs,
+  or debugging CORS failures on direct creator uploads and transformation errors such as 5408,
+  9401, and 9403.
 license: MIT
 ---
 

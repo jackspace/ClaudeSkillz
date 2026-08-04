@@ -1,21 +1,16 @@
 ---
 name: google-gemini-api
-description: |
-  Complete guide for Google Gemini API using the CORRECT current SDK (@google/genai v1.27+, NOT the
-  deprecated @google/generative-ai). Covers text generation, multimodal inputs (text + images + video +
-  audio + PDFs), function calling, thinking mode, streaming, and system instructions with accurate 2025
-  model information (Gemini 2.5 Pro/Flash/Flash-Lite with 1M input tokens, NOT 2M).
-
-  Use when: integrating Gemini API, implementing multimodal AI applications, using thinking mode for
-  complex reasoning, function calling with parallel execution, streaming responses, deploying to
-  Cloudflare Workers, building chat applications, or encountering SDK deprecation warnings, context window
-  errors, model not found errors, function calling failures, or multimodal format errors.
-
-  Keywords: gemini api, @google/genai, gemini-2.5-pro, gemini-2.5-flash, gemini-2.5-flash-lite,
-  multimodal gemini, thinking mode, google ai, genai sdk, function calling gemini, streaming gemini,
-  gemini vision, gemini video, gemini audio, gemini pdf, system instructions, multi-turn chat,
-  DEPRECATED @google/generative-ai, gemini context window, gemini models 2025, gemini 1m tokens,
-  gemini tool use, parallel function calling, compositional function calling
+description: >-
+  Guide to the Google Gemini API using the current @google/genai SDK v1.27+, not the deprecated
+  @google/generative-ai (sunset November 2025). Covers text generation, streaming, multimodal
+  input (images, video, audio, PDFs), function calling including parallel and compositional calls,
+  system instructions, multi-turn chat, thinking mode, generation parameters, context caching,
+  built-in code execution, grounding with Google Search, error handling and rate limits, plus
+  accurate 2025 model facts (Gemini 2.5 Pro, Flash and Flash-Lite with 1M input tokens, not 2M).
+  Use when integrating Gemini, building multimodal or chat applications, deploying Gemini calls to
+  Cloudflare Workers, migrating off @google/generative-ai, or debugging model not found, context
+  window, function calling, or multimodal format errors. Embeddings live in the google-gemini-
+  embeddings skill.
 license: MIT
 ---
 

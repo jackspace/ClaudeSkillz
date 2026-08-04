@@ -1,5 +1,23 @@
 # ClaudeSkillz
 
+> ## 📦 Archived, August 2026
+>
+> **This repository is archived and read-only. It is still cloneable, and every skill here still works, but nothing further will be merged or updated.**
+>
+> **Why:** this collection was built in November 2025, when there was no good way to find and install Claude Code skills. That gap has closed. Claude Code now has plugin marketplaces natively, and dedicated registries do discovery and security auditing far better than a hand-curated repo and a static site can.
+>
+> **What to use instead:**
+> - `/plugin marketplace add` inside Claude Code, which is now the native way to install skills
+> - The [Agent Skills documentation](https://code.claude.com/docs/en/skills) for writing your own
+>
+> **Before you copy anything from here**, note that the content is a snapshot from late 2025 and has drifted. Skills pinned to specific library versions are out of date, and a few document APIs that have since changed. Read a skill before you trust it.
+>
+> **Attribution:** a number of these skills were harvested from other authors, usually marked by a `_suffix` on the directory name. Credit belongs to them. If your work is here and you would rather it were not, open an issue on my profile and I will take it down.
+>
+> Thanks to everyone who cloned, filed an issue, or sent a PR.
+
+---
+
 > A curated collection of 260+ Claude Code skills for productivity, development, and automation
 
 [![Skills](https://img.shields.io/badge/skills-261-blue)](https://claudeskillz.jackspace.com)
