@@ -17,7 +17,7 @@ It happens! Skills break. Dependencies change. Stuff gets weird. Open an issue a
 
 ### 💡 Got an Idea?
 
-We LOVE ideas. New skills? Better workflows? Wild improvements? Drop it in [Discussions](https://github.com/jackspace/ClaudeSkillz/discussions) or open an issue. Let's talk it through.
+We LOVE ideas. New skills? Better workflows? Wild improvements? [Open an issue](https://github.com/jackspace/ClaudeSkillz/issues) and let's talk it through.
 
 ### 🛠️ Want to Add a Skill?
 
@@ -46,6 +46,27 @@ YES PLEASE. Fix that typo. Clarify that confusing section. Add a better example.
 - **Placeholders only** - Replace all real credentials with obvious placeholders
 - **Test before submit** - Does it work? Does it *really* work?
 - **Security first** - If your skill touches sensitive stuff, call it out clearly
+
+## Disclosure (If You Built the Thing, Say So)
+
+If you have a commercial stake in what your PR adds, tell us in the PR. That covers:
+
+- You work for, founded, or are paid by the service a skill points at
+- You earn referral, affiliate, or signup revenue from it
+- You are submitting the same skill across a lot of repositories
+
+None of that is disqualifying on its own. Plenty of good skills wrap paid services and we already ship several. We just want it said out loud so we can review it for what it actually is. One line does the job:
+
+> Disclosure: I work on the service this skill uses.
+
+What does get closed:
+
+- Undisclosed vendor submissions
+- Skills whose real job is advertising a product
+- Mass-submitted PRs blasted at hundreds of repos with the names swapped
+- Bug-fix PRs that quietly bundle an unrelated promotional skill. Split them, and we will happily take the fix
+
+This is not us being cynical. It keeps the collection honest for the people installing from it.
 
 ## The PR Process
 
