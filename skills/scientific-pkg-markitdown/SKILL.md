@@ -48,8 +48,6 @@ print(result.text_content)
 markitdown document.pdf -o output.md
 ```
 
-See `references/document_conversion.md` for detailed documentation on document-specific features.
-
 ### 2. Media Processing
 
 Extract text from images using OCR and transcribe audio files to text.
@@ -73,8 +71,6 @@ result = md.convert("audio.wav")
 print(result.text_content)  # Transcribed speech
 ```
 
-See `references/media_processing.md` for advanced media handling options.
-
 ### 3. Web Content Extraction
 
 Convert web-based content and e-books to Markdown.
@@ -94,8 +90,6 @@ result = md.convert("https://youtube.com/watch?v=VIDEO_ID")
 print(result.text_content)
 ```
 
-See `references/web_content.md` for web extraction details.
-
 ### 4. Structured Data Handling
 
 Convert structured data formats to readable Markdown tables.
@@ -113,8 +107,6 @@ md = MarkItDown()
 result = md.convert("data.csv")
 print(result.text_content)  # Formatted as Markdown table
 ```
-
-See `references/structured_data.md` for format-specific options.
 
 ### 5. Advanced Integrations
 
@@ -140,8 +132,6 @@ md = MarkItDown(llm_client=client, llm_model="gpt-4o")
 result = md.convert("presentation.pptx")  # Images described with LLM
 ```
 
-See `references/advanced_integrations.md` for integration details.
-
 ### 6. Batch Processing
 
 Process multiple files or entire ZIP archives at once.
@@ -155,13 +145,16 @@ result = md.convert("archive.zip")
 print(result.text_content)  # All files converted and concatenated
 ```
 
-**Batch script:**
-Use the provided batch processing script for directory conversion:
-```bash
-python scripts/batch_convert.py /path/to/documents /path/to/output
-```
+**Batch conversion:**
+```python
+from pathlib import Path
+from markitdown import MarkItDown
 
-See `scripts/batch_convert.py` for implementation details.
+md = MarkItDown()
+for source in Path("documents").rglob("*.pdf"):
+    result = md.convert(str(source))
+    Path(f"output/{source.stem}.md").write_text(result.text_content, encoding="utf-8")
+```
 
 ## Installation
 
@@ -231,11 +224,4 @@ md = MarkItDown(enable_plugins=True)
 
 ## Resources
 
-This skill includes comprehensive reference documentation for each capability:
-
-- **references/document_conversion.md** - Detailed PDF, DOCX, PPTX, XLSX conversion options
-- **references/media_processing.md** - Image OCR and audio transcription details
-- **references/web_content.md** - HTML, YouTube, and EPUB extraction
-- **references/structured_data.md** - CSV, JSON, XML conversion formats
-- **references/advanced_integrations.md** - Azure Document Intelligence and LLM integration
-- **scripts/batch_convert.py** - Batch processing utility for directories
+- [MarkItDown on GitHub](https://github.com/microsoft/markitdown)
