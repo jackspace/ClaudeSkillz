@@ -1,3 +1,8 @@
+---
+name: comfyui-workflow-helper
+description: Build and tune ComfyUI workflows: node graphs, model loaders, samplers and schedulers, conditioning, and ControlNet. Use when creating or debugging a ComfyUI workflow, configuring nodes, installing checkpoints or LoRAs, or optimizing VRAM and generation speed.
+---
+
 # ComfyUI Workflow Helper Skill
 
 Expert guidance for ComfyUI workflow creation, node configuration, and optimization.

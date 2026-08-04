@@ -20,5 +20,5 @@
   "content": "Expert skill for downloading and consolidating Claude Code skills from multiple GitHub repositories efficiently.",
   "id": "bulk-github-skills-downloader",
   "name": "bulk-github-skills-downloader",
-  "description": ""
+  "description": "Discover, clone, and consolidate Claude Code skills from many GitHub repositories at once. Use when bulk-downloading skills, building or refreshing a skills collection, flattening nested skill directories, or batch-importing from a curated list of repos."
 }

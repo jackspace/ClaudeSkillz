@@ -1,3 +1,8 @@
+---
+name: stable-diffusion-helper
+description: Generate and troubleshoot Stable Diffusion images: model installation and selection, prompt and negative-prompt engineering, CFG, sampler and step tuning, and VRAM optimization. Use when setting up SD models, improving photorealism, or diagnosing poor generation quality.
+---
+
 # Stable Diffusion Helper Skill
 
 Expert guidance for Stable Diffusion image generation, optimization, and troubleshooting.

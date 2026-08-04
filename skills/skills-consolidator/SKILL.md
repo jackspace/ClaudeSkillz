@@ -1,3 +1,8 @@
+---
+name: skills-consolidator
+description: Merge and organize large Claude Code skill collections with conflict resolution. Use when combining skills from multiple sources, flattening directory structures, resolving duplicate names, preserving metadata, or preparing a curated skills library for distribution.
+---
+
 # Skills Consolidator
 
 Expert skill for merging, organizing, and maintaining large collections of Claude Code skills with intelligent conflict resolution and structure optimization.

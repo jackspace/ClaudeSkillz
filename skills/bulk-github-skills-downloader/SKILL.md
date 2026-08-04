@@ -1,3 +1,8 @@
+---
+name: bulk-github-skills-downloader
+description: Discover, clone, and consolidate Claude Code skills from many GitHub repositories at once. Use when bulk-downloading skills, building or refreshing a skills collection, flattening nested skill directories, or batch-importing from a curated list of repos.
+---
+
 # Bulk GitHub Skills Downloader
 
 Expert skill for downloading and consolidating Claude Code skills from multiple GitHub repositories efficiently.

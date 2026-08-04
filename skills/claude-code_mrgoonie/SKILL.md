@@ -1,3 +1,8 @@
+---
+name: claude-code_mrgoonie
+description: Guidance on Claude Code, Anthropic's terminal-based agentic coding tool. Use when asked about Claude Code features, installation and authentication, slash commands, Agent Skills, MCP server configuration, hooks and plugins, IDE integration, enterprise deployment, or troubleshooting.
+---
+
 # Claude Code Expert
 
 Claude Code is Anthropic's agentic coding tool that lives in the terminal and helps turn ideas into code faster. It combines autonomous planning, execution, and validation with extensibility through skills, plugins, MCP servers, and hooks.

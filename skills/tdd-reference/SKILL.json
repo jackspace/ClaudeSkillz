@@ -1,5 +1,5 @@
 {
-  "description": ">",
+  "description": "On-demand TDD guideline access without loading full documentation into context. Provides targeted guidance for RED-GREEN-REFACTOR phases, refactoring decisions, and test quality patterns.",
   "metadata": {
     "version": "1.0.0",
     "tags": "[tdd, guidelines, reference, on-demand]"

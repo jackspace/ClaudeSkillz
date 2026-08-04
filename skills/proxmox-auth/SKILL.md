@@ -1,3 +1,8 @@
+---
+name: proxmox-auth
+description: Authenticate to and manage a Proxmox VE cluster over SSH and the pvesh API. Use when querying cluster nodes, listing or controlling LXC containers and VMs, checking cluster and node status, or automating Proxmox administration.
+---
+
 # Proxmox Authentication & Management Skill
 
 Expert guidance for Proxmox VE cluster authentication, API access, and infrastructure management.
