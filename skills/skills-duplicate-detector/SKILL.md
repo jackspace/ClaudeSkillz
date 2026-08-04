@@ -1,3 +1,8 @@
+---
+name: skills-duplicate-detector
+description: Find duplicate, near-duplicate, and functionally overlapping Claude Code skills in a collection. Use when auditing a skills library for redundancy, after bulk-downloading from multiple sources, or before committing new skills to a repository.
+---
+
 # Skills Duplicate Detector
 
 Expert skill for identifying duplicate, similar, and overlapping Claude Code skills across your collection using intelligent comparison algorithms.

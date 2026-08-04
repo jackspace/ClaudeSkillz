@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "Guidance on Claude Code, Anthropic's terminal-based agentic coding tool. Use when asked about Claude Code features, installation and authentication, slash commands, Agent Skills, MCP server configuration, hooks and plugins, IDE integration, enterprise deployment, or troubleshooting.",
   "references": {
     "files": [
       "references/advanced-features.md",
