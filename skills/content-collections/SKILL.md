@@ -1,25 +1,14 @@
 ---
 name: content-collections
-description: |
-  Production-tested setup for Content Collections - a TypeScript-first build tool that transforms
-  local content files (Markdown/MDX) into type-safe data collections with automatic validation.
-
-  Use when: building blogs, documentation sites, or content-heavy applications with Vite + React,
-  setting up MDX content with React components, implementing type-safe content schemas with Zod,
-  migrating from Contentlayer, or encountering TypeScript import errors with content collections.
-
-  Covers: Vite plugin setup, tsconfig path aliases, collection schemas with Zod validation,
-  MDX compilation with compileMDX, transform functions for computed properties, rehype/remark plugins,
-  React component integration with MDXContent, Cloudflare Workers deployment, and production build optimization.
-
-  Keywords: content-collections, @content-collections/core, @content-collections/vite,
-  @content-collections/mdx, MDX, markdown, Zod schema validation, type-safe content,
-  frontmatter, compileMDX, defineCollection, defineConfig, Vite plugin, tsconfig paths,
-  .content-collections/generated, MDXContent component, rehype plugins, remark plugins,
-  content schema, document transform, allPosts import, static site generation,
-  blog setup, documentation, Cloudflare Workers static assets, content validation errors,
-  module not found content-collections, path alias not working, MDX type errors,
-  transform function async, collection not updating
+description: >-
+  Content Collections, a TypeScript-first build tool that turns local Markdown and MDX files into
+  type-safe, Zod-validated data collections. Covers @content-collections/core and the Vite plugin,
+  defineCollection and defineConfig, the tsconfig path alias to .content-collections/generated,
+  MDX compilation with compileMDX and the MDXContent component, rehype/remark plugins, transform
+  functions for computed properties, and Cloudflare Workers deployment. Use when building blogs,
+  documentation sites, or content-heavy Vite + React apps, defining content schemas with Zod,
+  migrating from Contentlayer, or debugging errors like module not found content-collections, path
+  alias not working, MDX type errors, or collections not updating after edits.
 license: MIT
 ---
 

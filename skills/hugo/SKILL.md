@@ -1,11 +1,15 @@
 ---
 name: hugo
-description: |
-  This skill provides comprehensive knowledge for building static websites with Hugo static site generator. It should be used when setting up Hugo projects (blogs, documentation sites, landing pages, portfolios), integrating Tailwind CSS v4 for custom styling, integrating headless CMS systems (Sveltia CMS or TinaCMS), deploying to Cloudflare Workers with Static Assets, configuring themes and templates, and preventing common Hugo setup errors.
-
-  Use this skill when encountering these scenarios: scaffolding new Hugo sites, choosing between Hugo Extended and Standard editions, integrating Tailwind CSS v4 with Hugo Pipes, configuring hugo.yaml or hugo.toml files, integrating PaperMod or other themes via Git submodules, setting up Sveltia CMS or TinaCMS for content management, deploying to Cloudflare Workers or Pages, troubleshooting baseURL configuration, resolving theme installation errors, fixing frontmatter format issues (YAML vs TOML), preventing date-related build failures, setting up PostCSS with Hugo, or setting up CI/CD with GitHub Actions.
-
-  Keywords: hugo, hugo-extended, static-site-generator, ssg, go-templates, papermod, goldmark, markdown, blog, documentation, docs-site, landing-page, sveltia-cms, tina-cms, headless-cms, cloudflare-workers, workers-static-assets, wrangler, hugo-server, hugo-build, frontmatter, yaml-frontmatter, toml-config, hugo-themes, hugo-modules, multilingual, i18n, github-actions, version-mismatch, baseurl-error, theme-not-found, tailwind, tailwind-v4, tailwind-css, hugo-pipes, postcss, css-framework, utility-css, hugo-tailwind, tailwind-integration, hugo-assets
+description: >-
+  Guide to building static websites with the Hugo static site generator: blogs, documentation
+  sites, landing pages and portfolios. Covers scaffolding new sites, choosing Hugo Extended over
+  Standard, hugo.yaml and hugo.toml configuration, themes such as PaperMod via Git submodules or
+  Hugo Modules, Go templates and Goldmark, Tailwind CSS v4 through Hugo Pipes and PostCSS,
+  headless CMS integration with Sveltia CMS or TinaCMS, multilingual sites, GitHub Actions CI/CD,
+  and deployment to Cloudflare Workers Static Assets or Pages with wrangler. Documents 15
+  pitfalls: Hugo version mismatch, baseURL errors, theme not found, YAML versus TOML frontmatter,
+  and date-related build failures. Use when creating, styling, adding a CMS to, deploying or
+  troubleshooting a Hugo site.
 license: MIT
 metadata:
   version: "2.0.0"

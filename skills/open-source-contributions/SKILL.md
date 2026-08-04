@@ -1,9 +1,16 @@
 ---
 name: open-source-contributions
-description: |
-  Use this skill when contributing code to open source projects. The skill covers proper pull request creation, avoiding common mistakes that annoy maintainers, cleaning up personal development artifacts before submission, writing effective PR descriptions, following project conventions, and communicating professionally with maintainers. It prevents 16 common contribution mistakes including working on main branch, not testing before PR submission, including unrelated changes, submitting planning documents, session notes, temporary test files, screenshots, and other personal artifacts. Includes 3 Critical Workflow Rules that must NEVER be skipped: (1) Always work on feature branches, (2) Test thoroughly with evidence before PR, (3) Keep PRs focused on single feature. The skill includes automation scripts to validate PRs before submission, templates for PR descriptions and commit messages, and comprehensive checklists. This skill should be used whenever creating pull requests for public repositories, contributing to community projects, or submitting code to projects you don't own.
-
-  Keywords: open source contributions, github pull request, PR best practices, contribution guidelines, feature branch workflow, PR description, commit messages, open source etiquette, maintainer-friendly PR, PR checklist, clean PR, avoid personal artifacts, session notes cleanup, planning docs cleanup, test before PR, unrelated changes, working on main branch, focused PR, single feature PR, professional communication, community contributions, public repository contributions, fork workflow, upstream sync
+description: >-
+  Guidance for contributing code to open source projects the contributor does not maintain. Covers
+  the fork and feature-branch workflow, upstream sync, writing effective pull request descriptions
+  and commit messages, following project conventions, and communicating professionally with
+  maintainers. Enforces three rules that are never skipped: work on a feature branch, test
+  thoroughly with evidence before opening the PR, and keep each PR focused on a single feature.
+  Documents 16 common mistakes, especially leaking personal development artifacts (SESSION.md,
+  NOTES.md, TODO.md, planning docs, debug screenshots, temporary test files) and mixing in
+  unrelated changes. Includes validation scripts, PR and commit message templates, and pre-
+  submission checklists. Use when creating a pull request for a public repository or contributing
+  to a community project.
 license: MIT
 metadata:
   version: "1.1.0"

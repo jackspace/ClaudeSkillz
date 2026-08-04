@@ -12,8 +12,8 @@ Expert guidance for Proxmox VE cluster authentication, API access, and infrastru
 ### SSH Access (Primary)
 ```bash
 # Access Proxmox nodes directly
-ssh 192.168.1.100  # spacenode1
-ssh 192.168.1.100  # spacenode2
+ssh 192.168.1.100  # pve-node1
+ssh 192.168.1.100  # pve-node2
 
 # Execute commands on nodes
 ssh 192.168.1.100 "pct list"
@@ -26,7 +26,7 @@ ssh 192.168.1.100 "qm list"
 ssh 192.168.1.100 "pvesh get /nodes"
 
 # Get node status
-ssh 192.168.1.100 "pvesh get /nodes/spacenode1/status"
+ssh 192.168.1.100 "pvesh get /nodes/pve-node1/status"
 
 # Get cluster status
 ssh 192.168.1.100 "pvecm status"
@@ -35,8 +35,8 @@ ssh 192.168.1.100 "pvecm status"
 ## Cluster Configuration
 
 **Nodes:**
-- spacenode1: 192.168.1.100 (4 cores, 11.45 GiB RAM)
-- spacenode2: 192.168.1.100 (20 cores, 62.71 GiB RAM)
+- pve-node1: 192.168.1.100 (example: 4 cores, 12 GiB RAM)
+- pve-node2: 192.168.1.100 (example: 20 cores, 64 GiB RAM)
 
 **Important:** Commands default to the node you're connected to. For cross-node operations, SSH to the target node directly.
 
@@ -63,7 +63,7 @@ ssh 192.168.1.100 "pct exec 200 -- command"
 ### Configuration
 ```bash
 # Read container config
-ssh 192.168.1.100 "cat /etc/pve/nodes/spacenode2/lxc/200.conf"
+ssh 192.168.1.100 "cat /etc/pve/nodes/pve-node2/lxc/200.conf"
 
 # Find which node hosts a container
 ssh 192.168.1.100 "ls -lh /etc/pve/nodes/*/lxc/*.conf | grep 200.conf"
@@ -71,7 +71,7 @@ ssh 192.168.1.100 "ls -lh /etc/pve/nodes/*/lxc/*.conf | grep 200.conf"
 
 ### GPU Passthrough Containers
 ```bash
-# CT200 (ai-workloads) on spacenode2
+# CT200 (ai-workloads) on pve-node2
 # IP: 192.168.1.100
 # Services: Stable Diffusion (7860), ComfyUI (8188), Ollama (11434)
 
@@ -125,7 +125,7 @@ ssh 192.168.1.100 "pvesm list local-lvm"
 ### Backups
 ```bash
 # List backups
-ssh 192.168.1.100 "pvesh get /nodes/spacenode1/storage/local/content --content backup"
+ssh 192.168.1.100 "pvesh get /nodes/pve-node1/storage/local/content --content backup"
 
 # Backup container
 ssh 192.168.1.100 "vzdump 200 --mode snapshot --storage local"
@@ -196,8 +196,8 @@ ssh 192.168.1.100 "pct exec 200 -- journalctl -u docker -n 50"
 **Fix:** Find correct node first:
 ```bash
 ssh 192.168.1.100 "ls /etc/pve/nodes/*/lxc/200.conf"
-# Result shows: /etc/pve/nodes/spacenode2/lxc/200.conf
-# SSH to spacenode2 (192.168.1.100) instead
+# Result shows: /etc/pve/nodes/pve-node2/lxc/200.conf
+# SSH to pve-node2 (192.168.1.100) instead
 ```
 
 ### Container Not Responding on Network
@@ -218,7 +218,7 @@ ssh 192.168.1.100 "ls /etc/pve/nodes/*/lxc/200.conf"
 ## Important Notes
 
 - **Always SSH to the correct node** for container operations
-- **CT200 is on spacenode2** (192.168.1.100)
+- **CT200 is on pve-node2** (192.168.1.100)
 - **Use `pct exec`** for running commands inside containers
 - **GPU passthrough** requires specific LXC configuration (see CT200 config)
 - **DHCP containers** may change IP after restart (check with `pct exec`)
@@ -240,8 +240,8 @@ ssh 192.168.1.100 "ls /etc/pve/nodes/*/lxc/200.conf"
 
 **Hostname:** ai-workloads
 **IP:** 192.168.1.100
-**Node:** spacenode2 (192.168.1.100)
-**Resources:** 6 cores, 24GB RAM, NVIDIA GPU passthrough
+**Node:** pve-node2 (192.168.1.100)
+**Resources:** example 6 cores, 24GB RAM, GPU passthrough
 
 **Services:**
 - Stable Diffusion WebUI: http://192.168.1.100:7860

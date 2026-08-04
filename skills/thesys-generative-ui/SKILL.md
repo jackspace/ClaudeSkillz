@@ -1,9 +1,15 @@
 ---
 name: thesys-generative-ui
-description: |
-  Production-ready skill for integrating TheSys C1 Generative UI API into React applications. This skill should be used when building AI-powered interfaces that stream interactive components (forms, charts, tables) instead of plain text responses. Covers complete integration patterns for Vite+React, Next.js, and Cloudflare Workers with OpenAI, Anthropic Claude, and Cloudflare Workers AI. Includes tool calling with Zod schemas, theming, thread management, and production deployment. Prevents 12+ common integration errors and provides working templates for chat interfaces, data visualization, and dynamic forms. Use this skill when implementing conversational UIs, AI assistants, search interfaces, or any application requiring real-time generative user interfaces with streaming LLM responses.
-
-  Keywords: TheSys C1, TheSys Generative UI, @thesysai/genui-sdk, generative UI, AI UI, streaming UI components, interactive components, AI forms, AI charts, AI tables, conversational UI, AI assistants UI, React generative UI, Vite generative UI, Next.js generative UI, Cloudflare Workers generative UI, OpenAI generative UI, Claude generative UI, Anthropic UI, Cloudflare Workers AI UI, tool calling UI, Zod schemas UI, thread management, theming UI, chat interface, data visualization, dynamic forms, streaming LLM UI
+description: >-
+  TheSys C1 Generative UI API (@thesysai/genui-sdk with @crayonai/react-ui) for React apps that
+  stream interactive components such as forms, charts, and tables instead of plain text LLM
+  output. Covers integration for Vite + React, Next.js, and Cloudflare Workers with OpenAI,
+  Anthropic Claude, or Workers AI backends, plus C1Component and ThemeProvider, tool calling with
+  Zod schemas, theming, thread management and persistence, and production deployment. Use when
+  building conversational UIs, AI assistants and copilots, AI-generated dashboards, or dynamic
+  forms, or when debugging empty agent responses, streaming and response transformation failures,
+  ignored system prompts, themes not applying, SDK/API version mismatches, CORS failures, or rate
+  limit crashes.
 license: MIT
 metadata:
   version: "1.0.0"

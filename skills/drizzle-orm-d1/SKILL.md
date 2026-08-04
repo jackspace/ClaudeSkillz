@@ -1,26 +1,16 @@
 ---
 name: drizzle-orm-d1
-description: |
-  Type-safe ORM for Cloudflare D1 databases using Drizzle. This skill provides comprehensive
-  patterns for schema definition, migrations management, type-safe queries, relations, and
-  Cloudflare Workers integration.
-
-  Use when: building D1 database schemas, writing type-safe SQL queries, managing database
-  migrations with Drizzle Kit, defining table relations, implementing prepared statements,
-  using D1 batch API for transactions, or encountering "D1_ERROR", transaction errors,
-  foreign key constraint failures, migration apply errors, or schema inference issues.
-
-  Prevents 12 documented issues: D1 transaction errors (SQL BEGIN not supported), foreign key
-  constraint failures during migrations, module import errors with Wrangler, D1 binding not found,
-  migration apply failures, schema TypeScript inference errors, prepared statement caching issues,
-  transaction rollback patterns, TypeScript strict mode errors, drizzle.config.ts not found,
-  remote vs local database confusion, and wrangler.toml vs wrangler.jsonc mixing.
-
-  Keywords: drizzle orm, drizzle d1, type-safe sql, drizzle schema, drizzle migrations,
-  drizzle kit, orm cloudflare, d1 orm, drizzle typescript, drizzle relations, drizzle transactions,
-  drizzle query builder, schema definition, prepared statements, drizzle batch, migration management,
-  relational queries, drizzle joins, D1_ERROR, BEGIN TRANSACTION d1, foreign key constraint,
-  migration failed, schema not found, d1 binding error
+description: >-
+  Type-safe Drizzle ORM patterns for Cloudflare D1 databases: schema definition, migration
+  management with Drizzle Kit and drizzle.config.ts, relations and relational queries, joins,
+  prepared statements, the D1 batch API for transaction-like work, and Workers/Wrangler
+  integration. Documents 12 known pitfalls including D1 transaction errors (SQL BEGIN is
+  unsupported), foreign key constraint failures during migrations, module import errors under
+  Wrangler, missing D1 bindings, migration apply failures, schema TypeScript inference errors,
+  prepared statement caching, rollback patterns, TypeScript strict mode errors, remote versus
+  local database confusion, and mixing wrangler.toml with wrangler.jsonc. Use when building a D1
+  schema, writing type-safe queries, running or repairing Drizzle migrations, or hitting D1_ERROR,
+  BEGIN TRANSACTION, d1 binding, or schema inference errors.
 license: MIT
 ---
 

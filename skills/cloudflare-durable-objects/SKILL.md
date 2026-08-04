@@ -1,13 +1,17 @@
 ---
 name: cloudflare-durable-objects
-description: |
-  Comprehensive guide for Cloudflare Durable Objects - globally unique, stateful objects for coordination, real-time communication, and persistent state management.
-
-  Use when: building real-time applications, creating WebSocket servers with hibernation, implementing chat rooms or multiplayer games, coordinating between multiple clients, managing per-user or per-room state, implementing rate limiting or session management, scheduling tasks with alarms, building queues or workflows, or encountering "do class export", "new_sqlite_classes", "migrations required", "websocket hibernation", "alarm api error", or "global uniqueness" errors.
-
-  Prevents 15+ documented issues: class not exported, missing migrations, wrong migration type, constructor overhead blocking hibernation, setTimeout breaking hibernation, in-memory state lost on hibernation, outgoing WebSocket not hibernating, global uniqueness confusion, partial deleteAll on KV backend, binding name mismatches, state size limits exceeded, non-atomic migrations, location hints misunderstood, alarm retry failures, and fetch calls blocking hibernation.
-
-  Keywords: durable objects, cloudflare do, DurableObject class, do bindings, websocket hibernation, do state api, ctx.storage.sql, ctx.acceptWebSocket, webSocketMessage, alarm() handler, storage.setAlarm, idFromName, newUniqueId, getByName, DurableObjectStub, serializeAttachment, real-time cloudflare, multiplayer cloudflare, chat room workers, coordination cloudflare, stateful workers, new_sqlite_classes, do migrations, location hints, RPC methods, blockConcurrencyWhile, "do class export", "new_sqlite_classes", "migrations required", "websocket hibernation", "alarm api error", "global uniqueness", "binding not found"
+description: >-
+  Guide to Cloudflare Durable Objects: globally unique, stateful objects for coordination, real-
+  time communication and persistent state. Covers the DurableObject class and bindings, WebSocket
+  Hibernation (ctx.acceptWebSocket, webSocketMessage, serializeAttachment), SQLite storage via
+  ctx.storage.sql, alarms with storage.setAlarm and the alarm() handler, ids from idFromName,
+  newUniqueId and getByName, RPC methods, blockConcurrencyWhile, migrations and location hints.
+  Documents 15+ pitfalls: class not exported, missing or wrong migrations, new_sqlite_classes,
+  constructor work and setTimeout or fetch breaking hibernation, in-memory state lost on
+  hibernation, partial deleteAll on the KV backend, binding mismatches, state size limits and
+  alarm retry failures. Use when building chat rooms, multiplayer games, rate limiters, session
+  stores, queues or per-user state on Workers, or debugging DO migration, hibernation and alarm
+  errors.
 license: MIT
 ---
 

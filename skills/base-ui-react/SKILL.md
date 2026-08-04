@@ -1,24 +1,14 @@
 ---
 name: base-ui-react
-description: |
-  Production-tested setup for Base UI (@base-ui-components/react) - MUI's unstyled component library
-  that provides accessible, customizable React components using render props pattern. This skill
-  should be used when building accessible UIs with full styling control, migrating from Radix UI,
-  or needing components with Floating UI integration for smart positioning.
-
-  Use when: Setting up Base UI in Vite + React projects, migrating from Radix UI to Base UI,
-  implementing accessible components (Dialog, Select, Popover, Tooltip, NumberField, Accordion),
-  encountering positioning issues with popups, needing render prop API instead of asChild pattern,
-  building with Tailwind v4 + shadcn/ui, or deploying to Cloudflare Workers.
-
-  ⚠️ BETA STATUS: Base UI is v1.0.0-beta.4. Stable v1.0 expected Q4 2025. This skill provides
-  workarounds for known beta issues and guidance on API stability.
-
-  Keywords: base-ui, @base-ui-components/react, mui base ui, unstyled components, accessible components,
-  render props, radix alternative, radix migration, floating-ui, positioner pattern, headless ui,
-  accessible dialog, accessible select, accessible popover, accessible tooltip, accessible accordion,
-  number field, react components, tailwind components, vite react, cloudflare workers ui,
-  beta components, component library
+description: >-
+  Production-tested setup for Base UI (@base-ui-components/react), MUI's unstyled, accessible
+  React component library that uses a render prop API instead of Radix's asChild pattern, with
+  Floating UI positioning. Covers installation, component patterns (Dialog, Select, Popover,
+  Tooltip, NumberField, Accordion), Radix UI migration, Tailwind v4 and shadcn/ui styling,
+  Cloudflare Workers deployment, and workarounds for known v1.0.0-beta issues. Use when setting up
+  Base UI in a Vite + React project, migrating from Radix UI, building accessible headless
+  components with full styling control, debugging popup or positioner placement issues, or judging
+  Base UI beta API stability before adopting it.
 license: MIT
 ---
 

@@ -1,13 +1,16 @@
 ---
 name: cloudflare-agents
-description: |
-  Comprehensive guide for the Cloudflare Agents SDK - build AI-powered autonomous agents on Workers + Durable Objects.
-
-  Use when: building AI agents, creating stateful agents with WebSockets, implementing chat agents with streaming, scheduling tasks with cron/delays, running asynchronous workflows, building RAG (Retrieval Augmented Generation) systems with Vectorize, creating MCP (Model Context Protocol) servers, implementing human-in-the-loop workflows, browsing the web with Browser Rendering, managing agent state with SQL, syncing state between agents and clients, calling agents from Workers, building multi-agent systems, or encountering Agent configuration errors.
-
-  Prevents 15+ documented issues: migrations not atomic, missing new_sqlite_classes, Agent class not exported, binding name mismatch, global uniqueness gotchas, WebSocket state handling, scheduled task callback errors, state size limits, workflow binding missing, browser binding required, vectorize index not found, MCP transport confusion, authentication bypassed, instance naming errors, and state sync failures.
-
-  Keywords: Cloudflare Agents, agents sdk, cloudflare agents sdk, Agent class, Durable Objects agents, stateful agents, WebSocket agents, this.setState, this.sql, this.schedule, schedule tasks, cron agents, run workflows, agent workflows, browse web, puppeteer agents, browser rendering, rag agents, vectorize agents, embeddings, mcp server, McpAgent, mcp tools, model context protocol, routeAgentRequest, getAgentByName, useAgent hook, AgentClient, agentFetch, useAgentChat, AIChatAgent, chat agents, streaming chat, human in the loop, hitl agents, multi-agent, agent orchestration, autonomous agents, long-running agents, AI SDK, Workers AI, "Agent class must extend", "new_sqlite_classes", "migrations required", "binding not found", "agent not exported", "callback does not exist", "state limit exceeded"
+description: >-
+  Guide to the Cloudflare Agents SDK for building stateful AI agents on Workers plus Durable
+  Objects. Covers the Agent class, this.setState and this.sql state, WebSocket and streaming chat
+  via AIChatAgent and useAgentChat, scheduling with this.schedule (delays, dates, cron),
+  triggering Workflows, Browser Rendering, RAG with Vectorize and Workers AI embeddings, MCP
+  servers with McpAgent, human-in-the-loop review, and routing through routeAgentRequest,
+  getAgentByName, useAgent and AgentClient. Documents 15+ pitfalls: missing new_sqlite_classes,
+  non-atomic migrations, Agent class not exported, binding name mismatches, global uniqueness
+  surprises, state size limits, MCP transport confusion and bypassed authentication. Use when
+  building AI agents, chat agents, MCP servers or multi-agent systems on Cloudflare, or debugging
+  Agent binding, migration and state-sync errors.
 license: MIT
 ---
 
