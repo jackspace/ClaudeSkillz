@@ -60,11 +60,22 @@ def generate_catalog():
         skill_json = skill_dir / 'SKILL.json'
         skill_md = skill_dir / 'SKILL.md'
 
-        # Try to read from JSON first, then MD
+        # SKILL.md frontmatter wins. It is what Claude Code actually loads, so
+        # treating it as the single source of truth keeps an edit there from
+        # being silently overridden by a stale SKILL.json copy.
         description = ""
         category = "General"
+        content = ""
 
-        if skill_json.exists():
+        if skill_md.exists():
+            try:
+                with open(skill_md, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                description = parse_frontmatter(content).get('description', '').strip()
+            except:
+                pass
+
+        if not description and skill_json.exists():
             try:
                 with open(skill_json, 'r', encoding='utf-8') as f:
                     data = json.load(f)
@@ -72,33 +83,24 @@ def generate_catalog():
                     if not description and 'overview' in data:
                         description = data['overview']
                     # Some SKILL.json files carry a bare block-scalar marker
-                    # instead of a description. Treat that as absent so the
-                    # SKILL.md frontmatter gets its turn.
+                    # instead of a description. Treat that as absent.
                     if str(description).strip() in ('|', '|-', '|+', '>', '>-', '>+', '---'):
                         description = ''
             except:
                 pass
 
-        if not description and skill_md.exists():
+        if not description and content:
+            # Nothing structured to work with, so fall back to the first real
+            # paragraph of prose, skipping the heading and any block markers.
             try:
-                with open(skill_md, 'r', encoding='utf-8') as f:
-                    content = f.read()
-
-                # The frontmatter is the authoritative description. Reading it
-                # properly is what keeps 'name: <skill>' out of the catalog.
-                description = parse_frontmatter(content).get('description', '').strip()
-
-                if not description:
-                    # No frontmatter to work with, fall back to the first real
-                    # paragraph of prose, skipping the heading and any block.
-                    body = re.sub(r'^---[ \t]*\r?\n.*?\r?\n---[ \t]*\r?\n', '', content, flags=re.S)
-                    for line in body.split('\n')[:30]:
-                        line = line.strip()
-                        if not line or line[0] in '|->#*`' or line.startswith('---'):
-                            continue
-                        if len(line) > 20:
-                            description = line
-                            break
+                body = re.sub(r'^---[ \t]*\r?\n.*?\r?\n---[ \t]*\r?\n', '', content, flags=re.S)
+                for line in body.split('\n')[:30]:
+                    line = line.strip()
+                    if not line or line[0] in '|->#*`' or line.startswith('---'):
+                        continue
+                    if len(line) > 20:
+                        description = line
+                        break
             except:
                 pass
 
